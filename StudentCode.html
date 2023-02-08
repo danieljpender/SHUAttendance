@@ -12,9 +12,144 @@ catch (PDOException $e) {
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/ico" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
   </head>
   <body>
+    <header class="forge-nav">
+      <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand navbar-expand-lg">
+          <a href="Dashboard.html" class="pl-4 router-link-active">
+              <img src="images/EDSWhite.png" alt="EDSLogo" class="logo">
+          </a>
+          <div class="h-100 navbar-collapse collapse" style="display: none;">
+              <ul class="navbar-nav ml-auto flex-row align-items-end align-items-center h-100">
+                  <li class="nav-item border-left border-white nav-notifications px-1 h-100">
+                      <a href="Notifications.html" target="_self" class="nav-link">
+                          <i class="fa-regular fa-bell"></i>
+                      </a>
+                  </li>
+                  <li class="nav-item b-nav-dropdown dropdown forge-nav-user-dropdown border-left border-white h-100 px-1">
+                      <a role="button" aria-haspopup="true" aria-expanded="false" href="#" target="_self" class="nav-link dropdown-toggle">
+                          <i class="fa-regular fa-circle-user topnav-user-profile-pic"></i>
+                          <em>Mr 3Squared</em>
+                      </a>
+              </ul>
+                      <ul class="dropdown-menu dropdown-menu-right show">
+                          <li role="presentation">
+                              <a href="#" class="dropdown-item router-link-active" role="menuitem" target="_self">Profile</a>
+                          </li>
+                          <li role="presentation">
+                              <a href="#" class="dropdown-item" role="menuitem" target="_self">Sign Out</a>
+                          </li>
+                      </ul>
+                  </li>
+          </div>
+          </nav>
+          <div>
+              <nav class="navbar d-lg-block navbar-light bg-white navbar-expand forge-sub-nav">
+                  <ul class="navbar-nav forge-nav-dividers flex-lg-row w-100">
+                      <li class=nav-item">
+                          <a href="#" target="_self" classs="nav-link">Home</a>
+                      </li>
+                      <li class=nav-item">
+                          <a href="#" target="_self" classs="nav-link">Home</a>
+                      </li>
+                      <li class=nav-item">
+                          <a href="#" target="_self" classs="nav-link">Home</a>
+                      </li>
+                      <li class=nav-item">
+                          <a href="#" target="_self" classs="nav-link">Home</a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+
+
+
+
+                          <div class="navigation-container">
+              
+                  <div class="topnav">
+                      
+                     
+                  </div>
+                  <div style="float: right;">
+                      <a class="topnav-user-profile" href="javascript:void(0)"></a>
+                          <div class="dropdown-nav dropbtn-user ml-left" style="float: right;">
+                              <span><i class="fa-regular fa-circle-user topnav-user-profile-pic"></i></span>
+                              <span class="topnav-user-profile-name">Dan Pender</span><i class="fa-solid fa-caret-down symbol white"></i>
+                              <div class="dropdown-content">
+                                  <a href="../UserManagement/ViewUser.html">Profile</a>
+                                  <a href="../Login.html">Change Password</a>
+                                  <a href="../Login.html">Sign Out</a>
+                              </div>
+                          </div>
+                      <div class="nav-notification">
+                          <a class="link-white" href="Notifications.html"><i class="fa-regular fa-bell"></i></a>
+                      </div>
+                  </div>
+              </div>
+      </nav>
+      <div>
+          <nav>
+              <ul>
+                  <li><a href="Dashboard.html">Home</a></li>
+                  <li><a href="EmployeeSearch.html">Employees</a></li>
+                  <li class="dropdown-nav">
+                      <a href="javascript:void(0)" class="dropbtn">Assessments</a>
+                      <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
+                      <div class="dropdown-content">
+                          <a href="AssessmentManagement/AddEditAssessment.html">Create Assessment</a>
+                          <a href="AssessmentManagement/ViewAssessmentsDueDynamic.html">Create Obs Visit</a>
+                          <a href="AssessmentManagement/ViewAssessmentArchive.html">Interaction Archive</a>
+                          <a href="AssessmentManagement/ViewAssessmentsInProgress.html">In Progress</a>
+                      </div>
+                  </li>
+                  <li class="dropdown-nav">
+                      <a href="javascript:void(0)" class="dropbtn">Competency Cycles</a>
+                      <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
+                      <div class="dropdown-content">
+                          <a href="CompetencyManagement/ManageCompetencyCycles.html">Manage Competency Cycles</a>
+                          <a href="CompetencyManagement/ManageCompetencyUnits.html">Manage Competency Units</a>
+                      </div>
+                  </li>
+                  <li class="dropdown-nav">
+                      <a href="javascript:void(0)" class="dropbtn">Licences</a>
+                      <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
+                      <div class="dropdown-content">
+                          <a href="CompetencyManagement/ManageCompetencyCycles.html">Manage Competency Cycles</a>
+                          <a href="CompetencyManagement/ManageCompetencyUnits.html">Manage Competency Units</a>
+                      </div>
+                  </li>
+                  <li class="dropdown-nav">
+                      <a href="javascript:void(0)" class="dropbtn">Training and Development</a>
+                      <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
+                      <div class="dropdown-content">
+                          <a href="CompetencyManagement/ManageCompetencyCycles.html">Manage Competency Cycles</a>
+                          <a href="CompetencyManagement/ManageCompetencyUnits.html">Manage Competency Units</a>
+                      </div>
+                  </li>
+                  <li><a href="LearningResourceManagement/LearningResources.html">Learning Resources</a></li>
+                  <li class="dropdown-nav">
+                      <a href="javascript:void(0)" class="dropbtn">Admin Tools</a>
+                      <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
+                      <div class="dropdown-content">
+                          <a href="AdminManagement/ViewDepartments.html">Departments</a>
+                          <a href="AdminManagement/ViewLocations.html">Locations</a>
+                          <a href="AdminManagement/ViewRoles.html">Roles</a>
+                          <a href="AdminManagement/ManageRoutes.html">Routes</a>
+                          <a href="AdminManagement/ViewTasks.html">Tasks</a>
+                          <a href="AdminManagement/ViewTeams.html">Teams</a>
+                          <a href="AdminManagement/ManageTractions.html">Traction</a>
+                          <a href="AdminManagement/ManageVerificationStatements.html">Verification Statements</a>
+                          <a href="AdminManagement/ViewCompanyInformation.html">Company Information</a>
+                          <a href="AdminManagement/ManageSkills.html">Skills</a>
+                      </div>
+                  </li>
+              </ul>
+          </nav>
+      </div>
+  </header>
     <div class="container">
       <table class="event-table">
         <thead>
