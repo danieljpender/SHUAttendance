@@ -1,7 +1,18 @@
+<?php
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:eam-group27.database.windows.net,1433; Database = SHUAttendance", "eam", "{your_password_here}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+?>
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico">
   </head>
   <body>
     <div class="container">
