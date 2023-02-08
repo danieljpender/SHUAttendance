@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+  
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+  
+        <input type="button" value="Login" onclick="submitForm()">
+      </form>
+    </div>
+
+    <script>
+      function submitForm() {
+        const username = document.querySelector("#username").value;
+        const password = document.querySelector("#password").value;
+  
+        // Hardcoded admin credentials
+        const adminUsername = "admin";
+        const adminPassword = "admin";
+  
+        // Hardcoded student credentials
+        const studentUsername = "student";
+        const studentPassword = "student";
+  
+        if (username === adminUsername && password === adminPassword) {
+      alert("Welcome, Admin!");
+      window.location.replace("AdminCode.html");
+    } else if (username === studentUsername && password === studentPassword) {
+      alert("Welcome, Student!");
+      window.location.replace("StudentCode.html");
+    } else {
+      alert("Invalid credentials. Please try again.");
+    }
+  }
+    </script>
+  </body>
+</html>
