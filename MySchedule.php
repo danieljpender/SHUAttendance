@@ -28,6 +28,21 @@ $query = "SELECT * FROM UserEvents ue
 $result = odbc_exec($connection, $query);
 ?>
 
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+    <?php include 'navbar.php'; ?>
+  </header>
+  <div class="main-content">
+    <h1>
+      My Schedule 
+    </h1>
+    <div class="container">
 <table>
   <tr>
     <th>TYPE</th>
@@ -65,7 +80,10 @@ $result = odbc_exec($connection, $query);
   }
   ?>
 </table>
-
+    </div>
+  </div>
+</body>
+</html>
 <?php
 odbc_close($connection);
 ?>
