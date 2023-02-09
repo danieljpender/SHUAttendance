@@ -97,7 +97,7 @@ $result = odbc_exec($connection, $query);
   <?php
   while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['Type'] . "</td>";
+    echo "<td>" . $row['TYPE'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMember'] . "</td>";
