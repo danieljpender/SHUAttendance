@@ -1,12 +1,14 @@
 <?php
-// PHP Data Objects(PDO) Sample Code:
-try {
-    $conn = new PDO("sqlsrv:server = tcp:eam-group27.database.windows.net,1433; Database = SHUAttendance", "eam", "{your_password_here}");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
+
+$server = "eam-group27.database.windows.net";
+$database = "SHUAttendance";
+$username = "eam";
+$password = "%PA55w0rd";
+
+$conn = odbc_connect("Driver={ODBC Driver 17 for SQL Server};Server=$server;Database=$database;", $username, $password);
+
+if (!$conn) {
+  die("Connection failed: " . odbc_errormsg());
 }
 ?>
 <html>
