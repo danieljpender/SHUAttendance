@@ -41,8 +41,8 @@ if (!odbc_fetch_array($result)) {
 if (isset($_POST['code'])) {
   $code = $_POST['code'];
 
-  $query = "INSERT INTO ScheduledEventCode (ScheduledEventId, Code)
-            VALUES ('$eventid', '$code')";
+  $query = "INSERT INTO ScheduledEventCode (ScheduledEventCodeId, ScheduledEventId, Code)
+            VALUES (NEWID(), '$eventid', '$code')";
   $result = odbc_exec($connection, $query);
 
   if ($result) {
