@@ -30,6 +30,35 @@ $result = odbc_exec($connection, $query);
 ?>
 <html>
 <head>
+<script>
+// Get the modal
+var modal = document.getElementById("set-code-modal");
+
+// Get the buttons that open the modal
+var btn = document.getElementsByClassName("set-code-btn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close-btn")[0];
+
+// Loop through all the buttons and add an event listener to each one
+for (var i = 0; i < btn.length; i++) {
+  btn[i].addEventListener("click", function() {
+    modal.style.display = "block";
+  });
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+</script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
