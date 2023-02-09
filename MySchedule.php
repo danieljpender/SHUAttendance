@@ -27,52 +27,21 @@ $query = "SELECT * FROM UserEvents ue
           WHERE UserId= '$userid'";
 $result = odbc_exec($connection, $query);
 ?>
-
 <html>
-  <head>
+<head>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
-    <script>
-      function showModal(eventId) {
-        $("#eventId").val(eventId);
-        $("#codeModal").show();
-      }
-
-      function hideModal() {
-        $("#codeModal").hide();
-      }
-
-      function insertCode() {
-        const eventId = $("#eventId").val();
-        const code = $("#code").val();
-        
-        $.ajax({
-          url: "insert_code.php",
-          type: "post",
-          data: {eventId: eventId, code: code},
-          success: function(response) {
-            console.log(response);
-            hideModal();
-            location.reload();
-          },
-          error: function(error) {
-            console.error(error);
-          }
-        });
-      }
-    </script>
   </head>
   <body>
     <header>
     <?php include 'navbar.php'; ?>
-  </header>
+    </header>
   <div class="main-content">
     <h1>
-      My Schedule 
+      Admin Schedule 
     </h1>
-    <div class="container">
+  <div class="container">
 <table>
   <tr>
     <th>TYPE</th>
@@ -90,7 +59,7 @@ $result = odbc_exec($connection, $query);
   <?php
   while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['TYPE'] . "</td>";
+    echo "<td>" . $row['Type'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMember'] . "</td>";
@@ -100,7 +69,7 @@ $result = odbc_exec($connection, $query);
     }
     echo "<td>";
     if ($role == 'admin') {
-      echo "<a href='javascript:showModal(" . $row['EventId'] . ")'>Set Code</a> | ";
+      echo "<td><button>Set Code</button></td> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['EventId'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
       echo "<a href='enter_code.php?eventid=" . $row['EventId'] . "'>Enter Code</a>";
@@ -110,10 +79,44 @@ $result = odbc_exec($connection, $query);
   }
   ?>
 </table>
-    </div>
+<div id="set-code-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <form action="set_code.php" method="post">
+      <input type="hidden" name="eventid" id="eventid-input">
+      <label for="code-input">Enter Code:</label>
+      <input type="text" id="code-input" name="code">
+      <input type="submit" value="Submit">
+    </form>
   </div>
+</div>
+</div>
+</div>
 </body>
-</html>
+<script>
+  const setCodeBtns = document.querySelectorAll('.set-code-btn');
+  const modal = document.getElementById('set-code-modal');
+  const closeBtn = document.querySelector('.close-btn');
+  const eventidInput = document.getElementById('eventid-input');
+
+  setCodeBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      eventidInput.value = this.parentElement.parentElement.querySelectorAll('td')[0].innerText;
+      modal.style.display = "block";
+    });
+  });
+
+  closeBtn.addEventListener('click', function() {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+</script>
+
 <?php
 odbc_close($connection);
 ?>
