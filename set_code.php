@@ -38,8 +38,8 @@ if (!odbc_fetch_array($result)) {
 }
 
 // Insert the code for the event into the database
-if (isset($_POST['code'])) {
-  $code = $_POST['code'];
+if (isset($_POST['Code'])) {
+  $code = $_POST['Code'];
 
   $query = "INSERT INTO ScheduledEventCode (ScheduledEventCodeId, ScheduledEventId, Code)
             VALUES (NEWID(), '$eventid', '$code')";

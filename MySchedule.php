@@ -1,6 +1,4 @@
 <?php
-
-
 session_start();
 
 $server = "eam-group27.database.windows.net";
