@@ -29,12 +29,12 @@ $sql = "DECLARE @Today nvarchar(20) = DATENAME(dw, GETDATE())";
 odbc_exec($connection, $sql);
 
 // Query the database for the events associated with the user
-$query = "DECLARE @Today nvarchar(20) = DATENAME(dw, GETDATE());
+$query = "DECLARE @Today int = DATEPART(dw, GETDATE());
           SELECT * FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
           LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.ScheduledEventId
           WHERE UserId= '$userid'
-          AND [DayOfWeek] = @Today";
+          AND DATEPART(dw, e.StartDate) = @Today";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
