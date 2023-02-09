@@ -15,7 +15,7 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$sql = "SELECT [role] FROM [user] WHERE username='$username' AND password='$password'";
+$sql = "SELECT [role], [userid] FROM [user] WHERE username='$username' AND password='$password'";
 $result = odbc_exec($connection, $sql);
 
 if (!$result) {
@@ -26,6 +26,7 @@ if (odbc_num_rows($result) > 0) {
     $row = odbc_fetch_array($result);
     $_SESSION["username"] = $username;
     $_SESSION["role"] = $row["role"];
+    $_SESSION["userid"] = $userid;
 
     if ($_SESSION["role"] == "admin") {
         header("Location: AdminCode.php");
@@ -37,6 +38,8 @@ if (odbc_num_rows($result) > 0) {
 } else {
     echo "Invalid username or password";
 }
+
+$userid = $row["userid"];
 
 odbc_close($connection);
 
