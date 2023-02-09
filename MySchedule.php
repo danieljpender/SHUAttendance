@@ -26,12 +26,10 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['role'];
 
 // Query the database for the events associated with the user
-$query = "DECLARE @Today int = DATEPART(dw, GETDATE());
-          SELECT * FROM UserEvents ue
+$query = "SELECT * FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
           LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.ScheduledEventId
-          WHERE UserId= '$userid'
-          AND DATEPART(dw, e.StartDate) = @Today";
+          WHERE UserId= '$userid'";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
