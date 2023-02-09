@@ -36,7 +36,7 @@ if (!$conn) {
             <th>Time</th>
             <th>Location(s)</th>
             <th>Staff Member(s)</th>
-            <?php if ($user_role === "admin") { ?><th>Code</th><?php } ?>
+            <?php if ($user_role == "admin") { ?><th>Code</th><?php } ?>
             <th>Action</th>
           </tr>
         </thead>
