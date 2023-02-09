@@ -30,7 +30,7 @@ if (odbc_num_rows($result) > 0) {
     $_SESSION["userid"] = $userid;
 
     if ($_SESSION["role"] == "admin") {
-        header("Location: AdminCode.php");
+        header("Location: MySchedule.php");
     } elseif ($_SESSION["role"] == "student") {
         header("Location: MySchedule.php");
     } elseif ($_SESSION["role"] == "teacher") {
