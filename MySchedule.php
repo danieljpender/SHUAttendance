@@ -86,7 +86,7 @@ $result = odbc_exec($connection, $query);
   <div class="container">
 <table>
   <tr>
-    <th>TYPE</th>
+    <th>Type</th>
     <th>Title</th>
     <th>Location</th>
     <th>Staff Member</th>
