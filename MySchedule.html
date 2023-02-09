@@ -40,7 +40,7 @@ catch (PDOException $e) {
                       </div>
               </nav>
       <div>
-          <nav>
+          <nav class="shadow">
               <ul>
                   <li><a href="MySchedule.html">My Schedule</a></li>
                   <li><a href="MyAttendance.html">My Attendance Record</a></li>
@@ -116,10 +116,11 @@ catch (PDOException $e) {
       <table>
         <thead>
           <tr>
-            <th>Event Title</th>
-            <th>Time of Event</th>
-            <th>Location</th>
-            <th>Teacher</th>
+            <th>Type</th>
+            <th>Title</th>
+            <th>Time</th>
+            <th>Location(s)</th>
+            <th>Staff Member(s)</th>
           </tr>
         </thead>
         <tbody id="table-body"></tbody>
@@ -151,18 +152,21 @@ const closeButton = document.querySelector(".close");
 // Static list of events
 const eventData = [
   {
+    type: "Lecture",
     title: "Event 1",
     time: "10:00 AM",
     location: "Room 1",
     teacher: "John Doe",
   },
   {
+    type: "Lecture",
     title: "Event 2",
     time: "11:00 AM",
     location: "Room 2",
     teacher: "Jane Doe",
   },
   {
+    type: "Lecture",
     title: "Event 3",
     time: "12:00 PM",
     location: "Room 3",
@@ -195,6 +199,8 @@ function populateEventsTable() {
     });
 
     // Create a table cell for each event property
+    const typeCell = document.createElement("td");
+    typeCell.textContent = event.type;
     const titleCell = document.createElement("td");
     titleCell.textContent = event.title;
     const timeCell = document.createElement("td");
@@ -205,6 +211,7 @@ function populateEventsTable() {
     teacherCell.textContent = event.teacher;
 
     // Append the table cells to the table row
+    tableRow.appendChild(typeCell);
     tableRow.appendChild(titleCell);
     tableRow.appendChild(timeCell);
     tableRow.appendChild(locationCell);

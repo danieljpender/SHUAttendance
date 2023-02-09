@@ -40,6 +40,7 @@ a {
 
 h1 {
     padding-bottom: 20px;
+    color: #141414!important;
 }
 
 h2 {
@@ -385,14 +386,31 @@ w-100 {
     justify-content: space-between;
 }
 
+.shadow {
+  box-shadow: 0 .5rem 1rem rgba(20,20,20,.15)!important;
+}
+
+.vue-page .d-lg-block {
+  display: block!important;
+}
+.bg-white {
+  background-color: #fff!important;
+}
+.navbar-expand {
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+.forge-sub-nav .navbar-nav:first-child, .vue-page .forge-sub-sub-nav .navbar-nav:first-child {
+  padding-left: 0.5rem;
+}
 ul {
     margin-top: 0;
     margin-bottom: 1rem;
-    margin-block-start: 1em;
+    margin-block-start: 0;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+    padding-inline-start: 0px!important;
 }
 
 li {
@@ -407,9 +425,6 @@ li:last-child {
     border: none;
 }
 
-li:first-child {
-    padding-left: 15px;
-}
 
 /* Style The Dropdown Button */
 li a, .dropbtn {
@@ -685,6 +700,7 @@ th {
 
 tr:hover {
     background-color: #e9b5cc;
+    cursor: pointer;
 }
 
 /*Forms*/
