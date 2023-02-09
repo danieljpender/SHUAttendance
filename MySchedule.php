@@ -2,11 +2,11 @@
 session_start();
 
 // Check if user role is stored in the session
-if (!isset($_SESSION['user_role'])) {
+if (!isset($_SESSION['role'])) {
   // If not, set it to 'guest' by default
-  $_SESSION['user_role'] = 'guest';
+  $_SESSION['role'] = 'guest';
 }
-$user_role = $_SESSION['user_role'];
+$user_role = $_SESSION['role'];
 
 // Check if userid is stored in the session
 if (!isset($_SESSION['userid'])) {
