@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['role'];
 
 // Query the database for the events associated with the user
-$query = "SELECT * FROM UserEvents ue
+$query = "SELECT *, sec.Code FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
           LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.ScheduledEventId
           WHERE UserId= '$userid'";
