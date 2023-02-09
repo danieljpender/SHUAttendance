@@ -89,8 +89,8 @@ $result = odbc_exec($connection, $query);
     <th>Time</th>
     <?php
     if ($role == 'admin') {
-      echo "<td>" . $row['sec.code'] . "</td>";
-    }    
+      echo "<th>Code</th>";
+    }
     ?>
     <th>Action</th>
   </tr>
@@ -103,8 +103,8 @@ $result = odbc_exec($connection, $query);
     echo "<td>" . $row['StaffMember'] . "</td>";
     echo "<td>" . $row['Time'] . "</td>";
     if ($role == 'admin') {
-      echo "<td>" . $row['Code'] . "</td>";
-    }
+      echo "<td>" . $row['sec.Code'] . "</td>";
+    }   
     echo "<td>";
     if ($role == 'admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
