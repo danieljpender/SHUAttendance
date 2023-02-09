@@ -101,7 +101,7 @@ $result = odbc_exec($connection, $query);
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMember'] . "</td>";
-    echo "<td>" . $row['Time'] . "</td>";
+    echo "<td>" . $row['Time'] . "-" $row['TimeEnd'] . "</td>";
     if ($role == 'admin') {
       echo "<td>" . $row['sec.Code'] . "</td>";
     }   
