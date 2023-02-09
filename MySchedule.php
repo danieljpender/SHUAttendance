@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+// rest of your code
+
 session_start();
 
 $server = "eam-group27.database.windows.net";
@@ -28,7 +32,7 @@ $query = "DECLARE @Today nvarchar(20) = DATENAME(dw, GETDATE())
           JOIN Events e ON e.EventId=ue.EventId
           LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.ScheduledEventId
           WHERE [DayOfWeek] = @Today
-          ";
+          AND UserId= '$userid'";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
