@@ -396,13 +396,8 @@ w-100 {
 .bg-white {
   background-color: #fff!important;
 }
-.navbar-expand {
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-}
-.forge-sub-nav .navbar-nav:first-child, .vue-page .forge-sub-sub-nav .navbar-nav:first-child {
-  padding-left: 0.5rem;
-}
+
+
 ul {
     margin-top: 0;
     margin-bottom: 1rem;

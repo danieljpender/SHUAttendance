@@ -1,34 +1,43 @@
 <?php
+session_start();
+
+$username = $_POST["username"];
+$password = $_POST["password"];
+
 $server = "eam-group27.database.windows.net";
 $database = "SHUAttendance";
-$username = "eam";
-$password = "%PA55w0rd";
+$serverUsername = "eam";
+$serverPassword = "%PA55w0rd";
 
-$conn = odbc_connect("Driver={ODBC Driver 17 for SQL Server};Server=$server;Database=$database;", $username, $password);
+$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
 
-// Check the connection
-if (!$conn) {
-    die("ODBC Connection Failed: " . odbc_errormsg());
+if (!$connection) {
+    die("Error connecting to database: " . odbc_errormsg());
 }
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$sql = "SELECT [role] FROM [user] WHERE username='$username' AND password='$password'";
+$result = odbc_exec($connection, $sql);
 
-$sql = "SELECT * FROM [user] WHERE username = ? AND password = ?";
-$stmt = odbc_prepare($conn, $sql);
-$exec = odbc_execute($stmt, array($username, $password));
-
-if (!$exec) {
-  exit("Execution Failed: " . odbc_errormsg($conn));
+if (!$result) {
+    die("Error executing the query: " . odbc_errormsg());
 }
 
-if (odbc_num_rows($stmt) > 0) {
-  session_start();
-  $_SESSION['loggedin'] = true;
-  $_SESSION['username'] = $username;
-  header("Location: home.php");
+if (odbc_num_rows($result) > 0) {
+    $row = odbc_fetch_array($result);
+    $_SESSION["username"] = $username;
+    $_SESSION["role"] = $row["role"];
+
+    if ($_SESSION["role"] == "admin") {
+        header("Location: AdminCode.php");
+    } elseif ($_SESSION["role"] == "student") {
+        header("Location: MySchedule.php");
+    } elseif ($_SESSION["role"] == "teacher") {
+        header("Location: teacher.php");
+    }
 } else {
-  header("Location: login.php?error=Invalid Credentials");
+    echo "Invalid username or password";
 }
 
-odbc_close($conn);
+odbc_close($connection);
+
+?>
