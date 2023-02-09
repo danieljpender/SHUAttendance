@@ -1,19 +1,8 @@
 <?php
 session_start();
 
-// Check if user role is stored in the session
-if (!isset($_SESSION['role'])) {
-  // If not, set it to 'guest' by default
-  $_SESSION['role'] = 'guest';
-}
-$user_role = $_SESSION['role'];
-
-// Check if userid is stored in the session
-if (!isset($_SESSION['userid'])) {
-  // If not, set it to a default value (e.g. 0)
-  $_SESSION['userid'] = 0;
-}
-$UserId = $_SESSION['userid'];
+$role = $_SESSION["role"];
+$userid = $_SESSION["userid"];
 
 $server = "eam-group27.database.windows.net";
 $database = "SHUAttendance";
@@ -59,7 +48,7 @@ if (!$conn) {
           // Get data from the database to populate the table
           $query = "SELECT * FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
-          WHERE UserId= '$UserId'";
+          WHERE UserId= '$userid'";
           $result = odbc_exec($conn, $query);
           while ($row = odbc_fetch_array($result)) {
             $id = $row['id'];
@@ -76,14 +65,14 @@ if (!$conn) {
               <td><?php echo $time; ?></td>
               <td><?php echo $location; ?></td>
               <td><?php echo $staff; ?></td>
-              <?php if ($user_role === "admin") { ?><td><?php echo $code; ?></td><?php } ?>
+              <?php if ($role === "admin") { ?><td><?php echo $code; ?></td><?php } ?>
               <td>
-                <?php if ($user_role === "admin") { ?>
+                <?php if ($role === "admin") { ?>
                   <td>
-  <?php if ($user_role === "admin") { ?>
+  <?php if ($role === "admin") { ?>
     <button type="button" class="button-admin" onclick="setCode()">Set Code</button>
     <button type="button" class="button-admin" onclick="viewAttendance()">View Attendance</button>
-  <?php } else if ($user_role === "student") { ?>
+  <?php } else if ($role === "student") { ?>
     <button type="button" class="button-student" onclick="enterCode()">Enter Code</button>
   <?php } ?>
 </td>
