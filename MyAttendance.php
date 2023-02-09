@@ -5,6 +5,10 @@ $user_role = "";
 if (isset($_SESSION['role'])) {
   $user_role = $_SESSION['role'];
 }
+
+$userid = $_SESSION['userid'];
+$role = $_SESSION['role'];
+
 ?>
 <html>
   <head>
