@@ -1,7 +1,7 @@
       <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
           <div class="navigation-container">
                   <div class="topnav">
-                      <a href="../Dashboard.html">
+                      <a href="MySchedule.php">
                           <img src="../images/SHU.png" alt="SHULogo" class="logo">
                       </a>
                   </div>
