@@ -89,7 +89,7 @@ $result = odbc_exec($connection, $query);
     <th>Time</th>
     <?php
     if ($role == 'admin') {
-      echo "<td>" . $row['sec.Code'] . "</td>";
+      echo "<td>" . $row['sec.code'] . "</td>";
     }    
     ?>
     <th>Action</th>
