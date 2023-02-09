@@ -36,6 +36,8 @@ if (!$conn) {
             <th>Time</th>
             <th>Location(s)</th>
             <th>Staff Member(s)</th>
+            <th><?php if ($user_role === "admin") { ?>Code<?php } ?></th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody id="table-body"></tbody>
