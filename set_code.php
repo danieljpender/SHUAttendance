@@ -20,7 +20,7 @@ if (!isset($_SESSION['userid'])) {
 
 // Check if the eventid is set in the URL
 if (!isset($_GET['eventid'])) {
-  header("Location: my_schedule.php");
+  header("Location: myschedule.php");
   exit();
 }
 
