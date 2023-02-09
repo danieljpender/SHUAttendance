@@ -26,6 +26,7 @@ if (odbc_num_rows($result) > 0) {
     $row = odbc_fetch_array($result);
     $_SESSION["username"] = $username;
     $_SESSION["role"] = $row["role"];
+    $userid = $row["userid"];
     $_SESSION["userid"] = $userid;
 
     if ($_SESSION["role"] == "admin") {
@@ -38,8 +39,6 @@ if (odbc_num_rows($result) > 0) {
 } else {
     echo "Invalid username or password";
 }
-
-$userid = $row["userid"];
 
 odbc_close($connection);
 
