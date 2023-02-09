@@ -25,9 +25,6 @@ if (!isset($_SESSION['userid'])) {
 $userid = $_SESSION['userid'];
 $role = $_SESSION['role'];
 
-$sql = "DECLARE @Today nvarchar(20) = DATENAME(dw, GETDATE())";
-odbc_exec($connection, $sql);
-
 // Query the database for the events associated with the user
 $query = "DECLARE @Today int = DATEPART(dw, GETDATE());
           SELECT * FROM UserEvents ue
@@ -104,7 +101,9 @@ $result = odbc_exec($connection, $query);
     <th>Action</th>
   </tr>
   <?php
-  while ($row = odbc_fetch_array($result)) {
+ while ($row = odbc_fetch_array($result)) {
+  $dayOfWeek = date('l', strtotime($row['Time']));
+  if ($dayOfWeek == date('l')) {
     echo "<tr>";
     echo "<td>" . $row['TYPE'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
@@ -113,7 +112,7 @@ $result = odbc_exec($connection, $query);
     echo "<td>" . $row['Time'] . " - " . $row['EndTime'] . "</td>";
     if ($role == 'admin') {
       echo "<td>" . $row['sec.Code'] . "</td>";
-    }   
+    }
     echo "<td>";
     if ($role == 'admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
@@ -124,6 +123,8 @@ $result = odbc_exec($connection, $query);
     echo "</td>";
     echo "</tr>";
   }
+}
+
   ?>
 </table>
 <div id="set-code-modal" class="modal">
