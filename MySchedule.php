@@ -1,6 +1,20 @@
 <?php
 session_start();
 
+// Check if user role is stored in the session
+if (!isset($_SESSION['user_role'])) {
+  // If not, set it to 'guest' by default
+  $_SESSION['user_role'] = 'guest';
+}
+$user_role = $_SESSION['user_role'];
+
+// Check if userid is stored in the session
+if (!isset($_SESSION['userid'])) {
+  // If not, set it to a default value (e.g. 0)
+  $_SESSION['userid'] = 0;
+}
+$UserId = $_SESSION['userid'];
+
 $server = "eam-group27.database.windows.net";
 $database = "SHUAttendance";
 $username = "eam";
@@ -28,7 +42,7 @@ if (!$conn) {
     </h1>
     <div class="container">
       
-      <table>
+    <table>
         <thead>
           <tr>
             <th>Type</th>
@@ -36,11 +50,45 @@ if (!$conn) {
             <th>Time</th>
             <th>Location(s)</th>
             <th>Staff Member(s)</th>
-            <?php if ($user_role == "admin") { ?><th>Code</th><?php } ?>
+            <?php if ($user_role === "admin") { ?><th>Code</th><?php } ?>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody id="table-body"></tbody>
+        <tbody id="table-body">
+          <?php
+          // Get data from the database to populate the table
+          $query = "SELECT * FROM UserEvents ue
+          JOIN Events e ON e.EventId=ue.EventId
+          WHERE UserId= '$UserId'";
+          $result = odbc_exec($conn, $query);
+          while ($row = odbc_fetch_array($result)) {
+            $id = $row['id'];
+            $type = $row['type'];
+            $title = $row['title'];
+            $time = $row['time'];
+            $location = $row['location'];
+            $staff = $row['staff'];
+            $code = $row['code'];
+            ?>
+            <tr>
+              <td><?php echo $type; ?></td>
+              <td><?php echo $title; ?></td>
+              <td><?php echo $time; ?></td>
+              <td><?php echo $location; ?></td>
+              <td><?php echo $staff; ?></td>
+              <?php if ($user_role === "admin") { ?><td><?php echo $code; ?></td><?php } ?>
+              <td>
+                <?php if ($user_role === "admin") { ?>
+                  <td>
+  <?php if ($user_role === "admin") { ?>
+    <button type="button" class="button-admin" onclick="setCode()">Set Code</button>
+    <button type="button" class="button-admin" onclick="viewAttendance()">View Attendance</button>
+  <?php } else if ($user_role === "student") { ?>
+    <button type="button" class="button-student" onclick="enterCode()">Enter Code</button>
+  <?php } ?>
+</td>
+          </tr>
+        </tbody>
       </table>
       <!-- Modal -->
       <div id="event-modal" class="modal">
