@@ -69,7 +69,7 @@ $result = odbc_exec($connection, $query);
     }
     echo "<td>";
     if ($role == 'admin') {
-      echo "<button>Set Code</button> | ";
+      echo "<button class='set-code-btn'>Set Code</button> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['EventId'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
       echo "<a href='enter_code.php?eventid=" . $row['EventId'] . "'>Enter Code</a>";
