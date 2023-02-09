@@ -32,7 +32,37 @@ $result = odbc_exec($connection, $query);
   <head>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
+    <script>
+      function showModal(eventId) {
+        $("#eventId").val(eventId);
+        $("#codeModal").show();
+      }
+
+      function hideModal() {
+        $("#codeModal").hide();
+      }
+
+      function insertCode() {
+        const eventId = $("#eventId").val();
+        const code = $("#code").val();
+        
+        $.ajax({
+          url: "insert_code.php",
+          type: "post",
+          data: {eventId: eventId, code: code},
+          success: function(response) {
+            console.log(response);
+            hideModal();
+            location.reload();
+          },
+          error: function(error) {
+            console.error(error);
+          }
+        });
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -60,7 +90,7 @@ $result = odbc_exec($connection, $query);
   <?php
   while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['Type'] . "</td>";
+    echo "<td>" . $row['TYPE'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMember'] . "</td>";
@@ -70,7 +100,7 @@ $result = odbc_exec($connection, $query);
     }
     echo "<td>";
     if ($role == 'admin') {
-      echo "<a href='set_code.php?eventid=" . $row['EventId'] . "'>Set Code</a> | ";
+      echo "<a href='javascript:showModal(" . $row['EventId'] . ")'>Set Code</a> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['EventId'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
       echo "<a href='enter_code.php?eventid=" . $row['EventId'] . "'>Enter Code</a>";
