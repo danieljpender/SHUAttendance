@@ -30,9 +30,7 @@ $query = "DECLARE @Today nvarchar(20) = DATENAME(dw, GETDATE())
          
           SELECT * FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
-          LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.ScheduledEventId
-          WHERE [DayOfWeek] = @Today
-          AND UserId= '$userid'";
+          LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.ScheduledEventId";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
