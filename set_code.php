@@ -44,6 +44,9 @@ if (isset($_POST['Code'])) {
   $query = "INSERT INTO ScheduledEventCode (ScheduledEventCodeId, ScheduledEventId, Code)
             VALUES (NEWID(), '$eventid', '$code')";
   $result = odbc_exec($connection, $query);
+  if (!$result) {
+  echo "Error: " . odbc_errormsg();
+  }
 
   if ($result) {
     header("Location: myschedule.php");
