@@ -22,6 +22,6 @@ $query = "INSERT INTO ScheduledEventCode (Code, EventId, DateCreated)
 odbc_exec($connection, $query);
 
 // Redirect the user back to the main page
-header("Location: admin_schedule.php");
+header("Location: myschedule.php");
 exit();
 ?>
