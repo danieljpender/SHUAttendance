@@ -82,6 +82,7 @@ $result = odbc_exec($connection, $query);
   <div class="container">
 <table>
   <tr>
+    <th>EventId</th>
     <th>Type</th>
     <th>Title</th>
     <th>Location</th>
@@ -99,6 +100,7 @@ $result = odbc_exec($connection, $query);
   $dayOfWeek = date('l', strtotime($row['Time']));
   if ($dayOfWeek == date('l')) {
     echo "<tr>";
+    echo "<td>" . $row['ue.EventId'] . "</td>";
     echo "<td>" . $row['TYPE'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
