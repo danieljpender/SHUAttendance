@@ -12,8 +12,10 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-if (isset($_POST['eventid']) && isset($_POST['code'])) {
-  $eventid = $_POST['eventid'];
+if (isset($_POST['eventid']) && isset($_POST['code']) && isset($_POST['usereventid'])) {
+  
+    $usereventid = $_POST['usereventid'];
+    $eventid = $_POST['eventid'];
   $code = $_POST['code'];
   $userid = $_SESSION['userid'];
 
@@ -22,7 +24,8 @@ if (isset($_POST['eventid']) && isset($_POST['code'])) {
   $result = odbc_exec($connection, $query);
   if (odbc_num_rows($result) > 0) {
     // Insert the attendance record
-    $query = "INSERT INTO UserEventAttendance VALUES (NEWID(), '$userid', '$eventid')";
+    $query = "INSERT INTO UserEventAttendance (UserEventAttendanceId, UserEventId, DateAttended, Attended) 
+                VALUES (NEWID(), '$usereventid', '$userid', '$eventid')";
     odbc_exec($connection, $query);
     header("Location: myschedule.php");
     exit();
