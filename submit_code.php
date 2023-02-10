@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 session_start();
 
 $server = "eam-group27.database.windows.net";
@@ -15,6 +16,8 @@ if (!$connection) {
 // Get the data from the form
 $code = $_POST['code'];
 $eventid = $_POST['eventid'];
+
+echo "Code: " . $code . " EventId: " . $eventid;
 
 // Insert the data into the database
 $query = "INSERT INTO ScheduledEventCode (Code, EventId, DateCreated)
