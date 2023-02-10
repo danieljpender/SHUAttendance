@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['role'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, sec.Code, e.EventId FROM UserEvents ue
+$query = "SELECT *, sec.Code as code, e.EventId as event_id FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
           LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.EventId
           WHERE UserId= '$userid'";
@@ -100,14 +100,14 @@ $result = odbc_exec($connection, $query);
   $dayOfWeek = date('l', strtotime($row['Time']));
   if ($dayOfWeek == date('l')) {
     echo "<tr>";
-    echo "<td>" . $row['e.EventId'] . "</td>";
+    echo "<td>" . $row['event_id'] . "</td>";
     echo "<td>" . $row['TYPE'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMember'] . "</td>";
     echo "<td>" . $row['Time'] . " - " . $row['EndTime'] . "</td>";
     if ($role == 'admin') {
-      echo "<td>" . $row['sec.Code'] . "</td>";
+      echo "<td>" . $row['code'] . "</td>";
     }
     echo "<td>";
     if ($role == 'admin') {

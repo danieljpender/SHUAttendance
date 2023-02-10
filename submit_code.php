@@ -20,8 +20,8 @@ $eventid = $_POST['eventid'];
 echo "Code: " . $code . " EventId: " . $eventid;
 
 // Insert the data into the database
-$query = "INSERT INTO ScheduledEventCode (Code, EventId, DateCreated)
-          VALUES ('$code', '$eventid', GETDATE())";
+$query = "INSERT INTO ScheduledEventCode (ScheduledEventCodeId, Code, EventId, DateCreated)
+          VALUES (NEWID(), '$code', '$eventid', GETDATE())";
 odbc_exec($connection, $query);
 
 // Redirect the user back to the main page
