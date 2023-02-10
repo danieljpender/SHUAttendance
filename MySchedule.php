@@ -111,7 +111,7 @@ $result = odbc_exec($connection, $query);
     }
     echo "<td>";
     if ($role == 'admin') {
-     echo "<button class="set-code-btn" onclick="document.getElementById('eventid').value = '<?php echo $row["event_id"]; ?>';">Set Code</button>";
+     echo "<button class='set-code-btn' onclick='document.getElementById('eventid').value = '<?php echo $row['event_id']; ?>';'>Set Code</button>";
       echo "<a href='view_attendance.php?eventid=" . $row['event_id'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
       echo "<a href='enter_code.php?eventid=" . $row['event_id'] . "'>Enter Code</a>";
