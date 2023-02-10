@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['role'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, sec.Code FROM UserEvents ue
+$query = "SELECT *, sec.Code, e.EventId FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
           LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.EventId
           WHERE UserId= '$userid'";
@@ -100,7 +100,7 @@ $result = odbc_exec($connection, $query);
   $dayOfWeek = date('l', strtotime($row['Time']));
   if ($dayOfWeek == date('l')) {
     echo "<tr>";
-    echo "<td>" . $row['EventId'] . "</td>";
+    echo "<td>" . $row['e.EventId'] . "</td>";
     echo "<td>" . $row['TYPE'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -112,9 +112,9 @@ $result = odbc_exec($connection, $query);
     echo "<td>";
     if ($role == 'admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
-      echo "<a href='view_attendance.php?eventid=" . $row['EventId'] . "'>View Attendance</a>";
+      echo "<a href='view_attendance.php?eventid=" . $row['e.EventId'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
-      echo "<a href='enter_code.php?eventid=" . $row['EventId'] . "'>Enter Code</a>";
+      echo "<a href='enter_code.php?eventid=" . $row['e.EventId'] . "'>Enter Code</a>";
     }
     echo "</td>";
     echo "</tr>";
@@ -130,7 +130,7 @@ $result = odbc_exec($connection, $query);
     <span class="close-btn">&times;</span>
     <form action="submit_code.php" method="post">
       <input type="text" name="code" placeholder="Enter code">
-      <input type="text" name="eventid" value="<?php echo $row['EventId']; ?>">
+      <input type="text" name="eventid" value="<?php echo $row['e.EventId']; ?>">
       <input type="submit" value="Submit">
     </form>
   </div>
