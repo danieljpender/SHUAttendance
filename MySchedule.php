@@ -112,9 +112,9 @@ $result = odbc_exec($connection, $query);
     echo "<td>";
     if ($role == 'admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
-      echo "<a href='view_attendance.php?eventid=" . $row['e.EventId'] . "'>View Attendance</a>";
+      echo "<a href='view_attendance.php?eventid=" . $row['event_id'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
-      echo "<a href='enter_code.php?eventid=" . $row['e.EventId'] . "'>Enter Code</a>";
+      echo "<a href='enter_code.php?eventid=" . $row['event_id'] . "'>Enter Code</a>";
     }
     echo "</td>";
     echo "</tr>";
@@ -130,7 +130,7 @@ $result = odbc_exec($connection, $query);
     <span class="close-btn">&times;</span>
     <form action="submit_code.php" method="post">
       <input type="text" name="code" placeholder="Enter code">
-      <input type="disabled" name="eventid" value="<?php echo $row['event_id']; ?>">
+      <input type="text" name="event_id" value="<?php echo $row['event_id']; ?>">
       <input type="submit" value="Submit">
     </form>
   </div>
