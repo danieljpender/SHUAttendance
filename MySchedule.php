@@ -120,6 +120,37 @@ $result = odbc_exec($connection, $query);
 }
 
   ?>
+  <div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <form action="enter_code.php" method="post">
+      <input type="hidden" name="eventid" value="<?php echo $row['EventId']; ?>">
+      <input type="text" name="code" placeholder="Enter code">
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+<script>
+var modal = document.getElementById("myModal");
+var btn = document.querySelector(".set-code-btn");
+var closeBtn = document.querySelector(".close-btn");
+
+btn.onclick = function() {
+  modal.style.display = "block";
+};
+
+closeBtn.onclick = function() {
+  modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+</script>
+
 </table>
 <div id="set-code-modal" class="modal">
   <div class="modal-content">
