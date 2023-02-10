@@ -130,7 +130,7 @@ $result = odbc_exec($connection, $query);
     <span class="close-btn">&times;</span>
     <form action="submit_code.php" method="post">
       <input type="text" name="code" placeholder="Enter code">
-      <input type="text" name="eventid" value="<?php echo $row['e.EventId']; ?>">
+      <input type="text" name="eventid" value="<?php echo $row['event_id']; ?>">
       <input type="submit" value="Submit">
     </form>
   </div>
