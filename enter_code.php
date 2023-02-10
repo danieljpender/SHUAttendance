@@ -24,7 +24,7 @@ if (isset($_POST['eventid']) && isset($_POST['code'])) {
     // Insert the attendance record
     $query = "INSERT INTO UserEventAttendance VALUES (NEWID(), '$userid', '$eventid')";
     odbc_exec($connection, $query);
-    header("Location: schedule.php");
+    header("Location: myschedule.php");
     exit();
   } else {
     echo "Incorrect code";
@@ -43,7 +43,7 @@ if (isset($_POST['eventid']) && isset($_POST['code'])) {
     </header>
     <div class="main-content">
       <h1>
-        Set Code
+        Enter Code
       </h1>
       <div class="container">
         <form action="" method="post">
@@ -55,3 +55,7 @@ if (isset($_POST['eventid']) && isset($_POST['code'])) {
     </div>
   </body>
 </html>
+
+<?php
+odbc_close($connection);
+?>
