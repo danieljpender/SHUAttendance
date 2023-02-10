@@ -31,3 +31,27 @@ if (isset($_POST['eventid']) && isset($_POST['code'])) {
   }
 }
 ?>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  </head>
+  <body>
+    <header>
+    <?php include 'navbar.php'; ?>
+    </header>
+    <div class="main-content">
+      <h1>
+        Set Code
+      </h1>
+      <div class="container">
+        <form action="" method="post">
+          <label for="code">Enter Code:</label>
+          <input type="text" id="code" name="code">
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
