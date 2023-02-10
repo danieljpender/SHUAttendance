@@ -15,7 +15,7 @@ if (!$connection) {
 
 // Get the data from the form
 $code = $_POST['code'];
-$eventid = $_POST['eventid'];
+$eventid = $_POST['event_id'];
 
 echo "Code: " . $code . " EventId: " . $eventid;
 
