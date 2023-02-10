@@ -100,7 +100,7 @@ $result = odbc_exec($connection, $query);
   $dayOfWeek = date('l', strtotime($row['Time']));
   if ($dayOfWeek == date('l')) {
     echo "<tr>";
-    echo "<td>" . $row['ue.EventId'] . "</td>";
+    echo "<td>" . $row['EventId'] . "</td>";
     echo "<td>" . $row['TYPE'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
