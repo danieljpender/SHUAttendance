@@ -120,30 +120,43 @@ $result = odbc_exec($connection, $query);
 }
 
   ?>
-  <div id="myModal" class="modal">
+
+  <!-- The modal -->
+<div id="modal" class="modal">
+  <!-- Modal content -->
   <div class="modal-content">
     <span class="close-btn">&times;</span>
-    <form action="enter_code.php" method="post">
-      <input type="hidden" name="eventid" value="<?php echo $row['EventId']; ?>">
+    <form action="submit_code.php" method="post">
       <input type="text" name="code" placeholder="Enter code">
+      <input type="hidden" name="eventid" value="<?php echo $row['EventId']; ?>">
       <input type="submit" value="Submit">
     </form>
   </div>
 </div>
 
 <script>
-var modal = document.getElementById("myModal");
-var btn = document.querySelector(".set-code-btn");
-var closeBtn = document.querySelector(".close-btn");
+// Get the modal
+var modal = document.getElementById("modal");
 
-btn.onclick = function() {
-  modal.style.display = "block";
-};
+// Get the button that opens the modal
+var btns = document.getElementsByClassName("set-code-btn");
 
-closeBtn.onclick = function() {
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close-btn")[0];
+
+// Loop through all buttons and bind the click event
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    modal.style.display = "block";
+  });
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
   modal.style.display = "none";
 };
 
+// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -152,43 +165,10 @@ window.onclick = function(event) {
 </script>
 
 </table>
-<div id="set-code-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <form action="set_code.php" method="post">
-      <input type="hidden" name="eventid" id="eventid-input">
-      <label for="code-input">Enter Code:</label>
-      <input type="text" id="code-input" name="code">
-      <input type="submit" value="Submit">
-    </form>
-  </div>
 </div>
 </div>
 </div>
 </body>
-<script>
-  const setCodeBtns = document.querySelectorAll('.set-code-btn');
-  const modal = document.getElementById('set-code-modal');
-  const closeBtn = document.querySelector('.close-btn');
-  const eventidInput = document.getElementById('eventid-input');
-
-  setCodeBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      eventidInput.value = this.parentElement.parentElement.querySelectorAll('td')[0].innerText;
-      modal.style.display = "block";
-    });
-  });
-
-  closeBtn.addEventListener('click', function() {
-    modal.style.display = "none";
-  });
-
-  window.addEventListener('click', function(event) {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  });
-</script>
 
 <?php
 odbc_close($connection);
