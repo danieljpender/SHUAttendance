@@ -329,7 +329,7 @@ h2 {
     font-weight: 400;
 }
 
-.nav-item:hover {
+.nav-link:hover {
     -webkit-text-decoration-color: #B40756!important;
     text-decoration-color: #B40756!important;
     text-decoration: underline;
