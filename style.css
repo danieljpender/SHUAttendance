@@ -251,6 +251,10 @@ h2 {
     flex-direction: row !important;
 }
 
+.flex-lg-row {
+    flex-direction: row!important;
+}
+
 /* Navbar */
 
 .forge-main-nav{
