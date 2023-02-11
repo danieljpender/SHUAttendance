@@ -324,11 +324,13 @@ h2 {
     padding: 0.125rem 0;
     position: relative;
     font-weight: 400;
+    -webkit-text-decoration-color: transparent!important;
+    text-decoration-color: transparent!important;
 }
 
 .nav-link:hover {
-    -webkit-text-decoration-color: #B40756!important;
-    text-decoration-color: #B40756!important;
+    -webkit-text-decoration-color: #B40756;
+    text-decoration-color: #B40756;
     text-decoration: underline;
     text-decoration-thickness: 3.5px;
     text-underline-offset: 3px;
