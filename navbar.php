@@ -1,3 +1,8 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
+  </head>
 <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
           <div class="navigation-container">
                   <div class="topnav">
