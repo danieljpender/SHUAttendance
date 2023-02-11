@@ -15,7 +15,7 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$sql = "SELECT * FROM [user] WHERE username='$username' AND password='$password'";
+$sql = "SELECT [role], [userid] FROM [user] WHERE username='$username' AND password='$password'";
 $result = odbc_exec($connection, $sql);
 
 if (!$result) {
@@ -35,7 +35,9 @@ if (odbc_num_rows($result) > 0) {
         header("Location: MySchedule.php");
     } elseif ($_SESSION["role"] == "student") {
         header("Location: MySchedule.php");
-    } 
+    } elseif ($_SESSION["role"] == "teacher") {
+        header("Location: teacher.php");
+    }
 } else {
     echo "Invalid username or password";
 }
