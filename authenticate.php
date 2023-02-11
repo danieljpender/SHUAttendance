@@ -15,7 +15,7 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$sql = "SELECT [role], [userid] FROM [user] WHERE username='$username' AND password='$password'";
+$sql = "SELECT [role], [userid], [firstname] FROM [user] WHERE username='$username' AND password='$password'";
 $result = odbc_exec($connection, $sql);
 
 if (!$result) {
