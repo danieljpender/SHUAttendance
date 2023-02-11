@@ -716,6 +716,7 @@ table {
 th {
     height: 50px;
     background-color: #f8e6ee;
+    cursor: default;
 }
 
 tr:hover {

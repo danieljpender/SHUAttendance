@@ -22,7 +22,7 @@ $role = $_SESSION['role'];
     </header>
     <div class="main-content">
   <h1>
-  Student Attendance Record
+  Student Attendance Records
 </h1>
   <div class="container">
   </div>
