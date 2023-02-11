@@ -114,7 +114,7 @@ $result = odbc_exec($connection, $query);
       echo "<button class='set-code-btn'>Set Code</button> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['event_id'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
-      echo "<a href='enter_code.php?eventid=" . $row['event_id'] . "'>Enter Code</a>";
+      echo "<button class='set-code-btn'>Enter Code</button>";
     }
     echo "</td>";
     echo "</tr>";
