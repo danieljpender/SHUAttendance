@@ -313,17 +313,17 @@ h2 {
     position: relative;
 }
 
-.forge-sub-nav .forge-nav-dividers .nav-item:before, .vue-page .forge-sub-sub-nav .forge-nav-dividers .nav-item:before {
+.forge-sub-nav, .forge-nav-dividers, .nav-item:before {
     content: "";
     display: inline;
     margin: 0 0.75rem;
 }
 
-.forge-sub-nav .forge-nav-dividers .nav-item:before {
+.forge-sub-nav, .forge-nav-dividers, .nav-item:before {
     border-left: 1px solid #d6d6d6;
 }
 
-.vue-page .forge-sub-nav .navbar-nav .nav-item .nav-link, .vue-page .forge-sub-sub-nav .navbar-nav .nav-item .nav-link {
+.vue-page, .forge-sub-nav, .navbar-nav, .nav-item, .nav-link {
     padding: 0.125rem 0;
     position: relative;
     font-weight: 400;
@@ -335,7 +335,7 @@ h2 {
     transition: .2s ease-in-out;
 }
 
-.forge-sub-nav .navbar-nav .nav-item .nav-link {
+.forge-sub-nav, .navbar-nav, .nav-item, .nav-link {
     color: #5f5f5f;
 }
 
