@@ -580,10 +580,7 @@ li.dropdown-nav {
 
 .nav-notification {
     float: right;
-    padding: 11px;
-    border-right: solid #ffffff;
     border-left: solid #ffffff;
-    font-size: 32px;
     color: #ffffff;
     text-decoration-line: none;
 }

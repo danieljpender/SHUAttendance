@@ -6,7 +6,7 @@
                       </a>
                   </div>
                   </div> 
-                  <div style="float: right;">
+                  <div class="nav-notification" style="float: right;">
                       <a class="topnav-user-profile" href="javascript:void(0)"></a>
                           <div class="dropdown-nav dropbtn-user ml-left" style="float: right;">
                               <span><i class="fa-regular fa-circle-user topnav-user-profile-pic"></i></span>
@@ -22,9 +22,6 @@
                               <div class="dropdown-content">
                                   <a href="logout.php">Sign Out</a>
                               </div>
-                          </div>
-                          <div class="nav-notification">
-                              <a class="link-white" href="../Notifications.html"><i class="fa-regular fa-bell"></i></a>
                           </div>
                       </div>
               </nav>
