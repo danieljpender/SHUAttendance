@@ -30,7 +30,7 @@ $result = odbc_exec($connection, $query);
 ?>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+    
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
   </head>
