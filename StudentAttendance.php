@@ -45,7 +45,7 @@ $role = $_SESSION['role'];
           $query = "SELECT * FROM Department";
           $result = odbc_exec($connection, $query);
           while ($row = odbc_fetch_array($result)) {
-            echo '<option value="' . $row['DepartmentID'] . '">' . $row['DepartmentName'] . '</option>';
+            echo '<option value="' . $row['DepartmentId'] . '">' . $row['DepartmentName'] . '</option>';
           }
         ?>
       </select>
@@ -55,7 +55,18 @@ $role = $_SESSION['role'];
           <option value="">Select a Module</option>
         </select>
       </div>
-      <input type="submit" name="submit" value="Submit">
+      <script>
+  function showModule() {
+    var department = document.getElementById("department").value;
+    if (department) {
+      document.getElementById("module-container").style.display = "block";
+      document.getElementById("attendance-table").style.display = "block";
+    } else {
+      document.getElementById("module-container").style.display = "none";
+      document.getElementById("attendance-table").style.display = "none";
+    }
+  }
+</script>
     </form>
     <table id="attendance-table" style="display:none">
       <thead>
