@@ -77,7 +77,7 @@ $result = odbc_exec($connection, $query);
     </header>
   <div class="main-content">
   <h1>
-  My Schedule (<?php echo date('jS F Y'); ?>)
+  My Schedule - <?php echo date('jS F Y'); ?>
 </h1>
   <div class="container">
 <table>
@@ -97,8 +97,6 @@ $result = odbc_exec($connection, $query);
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-  $dayOfWeek = date('l', strtotime($row['Time']));
-  if ($dayOfWeek == date('l')) {
     echo "<tr>";
     echo "<td>" . $row['event_id'] . "</td>";
     echo "<td>" . $row['TYPE'] . "</td>";
@@ -119,7 +117,6 @@ $result = odbc_exec($connection, $query);
     echo "</td>";
     echo "</tr>";
   }
-}
 
   ?>
 
