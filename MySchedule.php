@@ -77,7 +77,7 @@ $result = odbc_exec($connection, $query);
     </header>
   <div class="main-content">
     <h1>
-      My Schedule (<?php echo date('dd-mmm-YYYY'); ?>)
+      My Schedule (<?php echo date('d-m-Y'); ?>)
     </h1>
   <div class="container">
 <table>
