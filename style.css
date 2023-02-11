@@ -372,6 +372,10 @@ w-100 {
     margin-bottom: auto !important;
 }
 
+.mb-2{
+    margin-bottom: .50rem!important;
+}
+
 .ml-auto{
     margin-left: auto !important;
 }

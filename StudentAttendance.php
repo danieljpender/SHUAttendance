@@ -36,7 +36,7 @@ $role = $_SESSION['role'];
   <h1>
   Student Attendance Records
 </h1>
-<form action="" method="post">
+<form action="" method="post" class="mb-2">
       <label for="department">Select a Department:</label>
       <select name="department" id="department" onchange="showModule()">
         <option value="">Select a Department</option>
@@ -66,9 +66,16 @@ $role = $_SESSION['role'];
     var department = document.getElementById("department").value;
     if (department) {
       document.getElementById("module-container").style.display = "block";
-      document.getElementById("attendance-table").style.display = "block";
+      document.getElementById("attendance-table").style.display = "none";
     } else {
       document.getElementById("module-container").style.display = "none";
+      document.getElementById("attendance-table").style.display = "none";
+    }
+    var department = document.getElementById("department").value;
+    var module = document.getElementById("module").value;
+    if (department && module) {
+      document.getElementById("attendance-table").style.display = "block";
+    } else {
       document.getElementById("attendance-table").style.display = "none";
     }
   }
