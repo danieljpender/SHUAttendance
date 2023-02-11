@@ -324,8 +324,8 @@ h2 {
     padding: 0.125rem 0;
     position: relative;
     font-weight: 400;
-    -webkit-text-decoration-color: transparent!important;
-    text-decoration-color: transparent!important;
+    -webkit-text-decoration-color: transparent;
+    text-decoration-color: transparent;
 }
 
 .nav-link:hover {
