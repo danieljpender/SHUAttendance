@@ -77,7 +77,7 @@ $result = odbc_exec($connection, $query);
     </header>
   <div class="main-content">
     <h1>
-      Admin Schedule 
+      My Schedule 
     </h1>
   <div class="container">
 <table>
