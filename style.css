@@ -444,6 +444,7 @@ li a, .dropbtn {
 
 .dropbtn-user {
     display: inline-block;
+    color: #fff;
     text-align: center;
     margin: 15px 10px 10px 10px;
     text-decoration: none;
