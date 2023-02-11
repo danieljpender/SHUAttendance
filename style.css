@@ -39,7 +39,8 @@ a {
 }
 
 h1 {
-    padding-bottom: 20px;
+    margin-top: 1rem;
+    padding-bottom: .5rem;
     color: #141414!important;
 }
 
