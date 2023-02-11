@@ -74,8 +74,7 @@ $role = $_SESSION['role'];
   }
 </script>
     </form>
-  <div class="container">
-    
+  <div>
     <table id="attendance-table" style="display:none">
       <thead>
         <tr>
