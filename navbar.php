@@ -12,8 +12,8 @@
                               <span><i class="fa-regular fa-circle-user topnav-user-profile-pic"></i></span>
                               <span class="topnav-user-profile-name">
                               <?php
-                                if (isset($_SESSION['username'])) {
-                                 echo $_SESSION['username'];
+                                if (isset($_SESSION['firstname'])) {
+                                 echo $_SESSION['firstname'];
                                 } else {
                                  echo "Unknown";
                                 }
