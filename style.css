@@ -314,12 +314,15 @@ h2 {
 }
 
 .nav-link {
-    color: #fff;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding: 0.125rem 0;
+    position: relative;
+    font-weight: 400;
+    -webkit-text-decoration-color: transparent!important;
+    text-decoration-color: transparent!important;
+    text-decoration: underline;
+    text-decoration-thickness: 3.5px;
+    text-underline-offset: 3px;
+    transition: .2s ease-in-out;
 }
 
 .forge-sub-nav, .forge-nav-dividers, .nav-item>.nav-link, .forge-sub-sub-nav, .forge-nav-dividers, .nav-item>.nav-link {

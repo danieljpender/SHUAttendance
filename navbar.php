@@ -31,7 +31,7 @@
       <div>
           <nav class="navbar shadow">
               <ul class="navbar-nav forge-nav-dividers flex-lg-row w-100">
-                  <li><a href="MySchedule.php">My Schedule</a></li>
+                  <li ><a class="nav-link router-link-exact-active" href="MySchedule.php">My Schedule</a></li>
                   <li><?php if ($role === "student") { ?><a href="MyAttendance.php">My Attendance Record</a><?php } ?></li>
                   <li><?php if ($role === "admin") { ?><a href="StudentAttendance.php">Student Attendance Records</a><?php } ?></li>
                   <li><?php if ($role === "admin") { ?><a href="Events.php">Events</a><?php } ?></li>
