@@ -25,8 +25,7 @@ $role = $_SESSION['role'];
 $query = "SELECT *, sec.Code as code, e.EventId as event_id FROM UserEvents ue
           JOIN Events e ON e.EventId=ue.EventId
           LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.EventId
-          WHERE UserId= '$userid'"
-          AND CONVERT(date, Time) = CONVERT(date, GETDATE())";
+          WHERE UserId= '$userid'";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
