@@ -37,17 +37,11 @@
                       <a href="javascript:void(0)" class="dropbtn">Admin Tools</a>
                       <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
                       <div class="dropdown-content">
-                      <a href="ViewDepartments.php">Departments</a>
+                            <a href="ViewDepartments.php">Departments</a>
                           <a href="ViewModules.php">Modules</a>
+                          <a href="ViewActivityTypes.php">Activity Types</a>
                           <a href="ViewRoles.php">Roles</a>
                           <a href="ViewUsers.php">Users</a>
-                          <a href="../AdminManagement/ViewTasks.html">Tasks</a>
-                          <a href="../AdminManagement/ViewTeams.html">Teams</a>
-                          <a href="../AdminManagement/ManageTractions.html">Traction</a>
-                          <a href="../AdminManagement/ManageVerificationStatements.html">Verification Statements</a>
-                          <a href="../AdminManagement/ViewCompanyInformation.html">Company Information</a>
-                          <a href="../AdminManagement/ManageSkills.html">Skills</a>
-                          <a href="../AdminManagement/ViewSafetyBriefs.html">Safety Briefs</a>
                       </div>
                       
                   </li><?php } ?>
