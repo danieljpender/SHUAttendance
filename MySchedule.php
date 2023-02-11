@@ -76,9 +76,9 @@ $result = odbc_exec($connection, $query);
     <?php include 'navbar.php'; ?>
     </header>
   <div class="main-content">
-    <h1>
-      My Schedule (<?php echo date('d-m-Y'); ?>)
-    </h1>
+  <h1>
+  My Schedule (<?php echo date('jS F Y'); ?>)
+</h1>
   <div class="container">
 <table>
   <tr>
