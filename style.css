@@ -313,13 +313,13 @@ h2 {
     position: relative;
 }
 
-.forge-sub-nav, .forge-nav-dividers, .nav-item:before {
+.forge-sub-nav, .nav-item:before {
     content: "";
     display: inline;
     margin: 0 0.75rem;
 }
 
-.forge-sub-nav, .forge-nav-dividers, .nav-item:before {
+.forge-sub-nav, .nav-item:before {
     border-left: 1px solid #d6d6d6;
 }
 
