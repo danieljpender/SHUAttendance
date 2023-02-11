@@ -64,20 +64,22 @@ $role = $_SESSION['role'];
       <script>
   function showModule() {
     var department = document.getElementById("department").value;
-    if (department) {
-      document.getElementById("module-container").style.display = "block";
-      document.getElementById("attendance-table").style.display = "none";
-    } else {
-      document.getElementById("module-container").style.display = "none";
-      document.getElementById("attendance-table").style.display = "none";
-    }
-    var department = document.getElementById("department").value;
-    var module = document.getElementById("module").value;
-    if (department && module) {
-      document.getElementById("attendance-table").style.display = "block";
-    } else {
-      document.getElementById("attendance-table").style.display = "none";
-    }
+if (department) {
+  document.getElementById("module-container").style.display = "block";
+} else {
+  document.getElementById("module-container").style.display = "none";
+  document.getElementById("attendance-table").style.display = "none";
+}
+document.getElementById("module").onchange = function() {
+  var department = document.getElementById("department").value;
+  var module = document.getElementById("module").value;
+  if (department && module) {
+    document.getElementById("attendance-table").style.display = "block";
+  } else {
+    document.getElementById("attendance-table").style.display = "none";
+  }
+}
+
   }
 </script>
     </form>
