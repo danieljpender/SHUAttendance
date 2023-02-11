@@ -31,7 +31,11 @@ if (odbc_num_rows($result) > 0) {
     $userid = $row["userid"];
     $_SESSION["userid"] = $userid;
 
-    header("Location: MySchedule.php");
+    if ($_SESSION["role"] == "admin") {
+        header("Location: MySchedule.php");
+    } elseif ($_SESSION["role"] == "student") {
+        header("Location: MySchedule.php");
+    } 
 } else {
     echo "Invalid username or password";
 }
