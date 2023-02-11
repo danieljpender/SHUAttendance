@@ -29,3 +29,7 @@ $role = $_SESSION['role'];
     </div>
   </body>
 </html>
+
+<?php
+odbc_close($connection);
+?>
