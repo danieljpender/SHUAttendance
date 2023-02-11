@@ -1,7 +1,3 @@
-<?php
-session_start();
-$_SESSION["firstname"] = $row["firstname"];
-?>
 <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
           <div class="navigation-container">
                   <div class="topnav">
