@@ -306,7 +306,7 @@ h2 {
     list-style: none;
 }
 .forge-sub-nav, .navbar-nav:first-child {
-    padding-left: 0.5rem;
+    padding-left: .5rem!important;
     display: inline-block;
 }
 .nav-notifications {
@@ -327,8 +327,11 @@ h2 {
     padding: 0.125rem 0;
     position: relative;
     font-weight: 400;
-    -webkit-text-decoration-color: transparent!important;
-    text-decoration-color: transparent!important;
+}
+
+.nav-item:hover {
+    -webkit-text-decoration-color: #B40756!important;
+    text-decoration-color: #B40756!important;
     text-decoration: underline;
     text-decoration-thickness: 3.5px;
     text-underline-offset: 3px;
