@@ -28,7 +28,7 @@
       <div>
           <nav class="navbar shadow">
               <ul class="navbar-nav forge-nav-dividers flex-lg-row w-100">
-                  <li><a class="nav-link <?php if ($currentPage === 'MySchedule') { echo 'underline'; } ?>" href="MySchedule.php">My Schedule</a></li>
+                  <li><a class="nav-link <?php if ($currentPage === 'MySchedule.php') { echo 'underline'; } ?>" href="MySchedule.php">My Schedule</a></li>
                   <?php if ($role === "student") { ?><li class="nav-item"><a class="nav-link" href="MyAttendance.php">My Attendance Record</a></li><?php } ?>
                   <?php if ($role === "admin") { ?><li class="nav-item"><a class="nav-link" href="StudentAttendance.php">Student Attendance Records</a></li><?php } ?>
                   <?php if ($role === "admin") { ?><li class="nav-item"><a class="nav-link" href="Events.php">Events</a></li><?php } ?>
