@@ -53,6 +53,13 @@ $role = $_SESSION['role'];
         <label for="module">Select a Module:</label>
         <select name="module" id="module">
           <option value="">Select a Module</option>
+          <?php
+          $query = "SELECT * FROM Module";
+          $result = odbc_exec($connection, $query);
+          while ($row = odbc_fetch_array($result)) {
+            echo '<option value="' . $row['ModuleId'] . '">' . $row['ModuleName'] . '</option>';
+          }
+        ?>
         </select>
       </div>
       <script>
