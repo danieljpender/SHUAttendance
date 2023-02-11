@@ -1,4 +1,4 @@
-     <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
+<nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
           <div class="navigation-container">
                   <div class="topnav">
                       <a href="MySchedule.php">
@@ -29,7 +29,7 @@
                       </div>
               </nav>
       <div>
-          <nav class="shadow">
+          <nav class="navbar shadow">
               <ul>
                   <li><a href="MySchedule.php">My Schedule</a></li>
                   <li><?php if ($role === "student") { ?><a href="MyAttendance.php">My Attendance Record</a><?php } ?></li>
