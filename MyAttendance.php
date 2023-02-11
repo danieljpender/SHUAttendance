@@ -20,5 +20,11 @@ $role = $_SESSION['role'];
     <header>
     <?php include 'navbar.php'; ?>
     </header>
+    <h1>
+  My Attendance Record
+</h1>
+  <div class="container">
+  </div>
+    </div>
   </body>
 </html>
