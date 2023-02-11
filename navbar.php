@@ -31,11 +31,11 @@
       <div>
           <nav class="navbar shadow">
               <ul class="navbar-nav forge-nav-dividers flex-lg-row w-100">
-                  <li ><a class="nav-link router-link-exact-active" href="MySchedule.php">My Schedule</a></li>
-                  <li><?php if ($role === "student") { ?><a href="MyAttendance.php">My Attendance Record</a><?php } ?></li>
-                  <li><?php if ($role === "admin") { ?><a href="StudentAttendance.php">Student Attendance Records</a><?php } ?></li>
-                  <li><?php if ($role === "admin") { ?><a href="Events.php">Events</a><?php } ?></li>
-                  <li><?php if ($role === "admin") { ?><a href="Reporting.php">Reporting</a><?php } ?></li>
+                  <li class="nav-item"><a class="nav-link router-link-exact-active" href="MySchedule.php">My Schedule</a></li>
+                  <li class="nav-item"><?php if ($role === "student") { ?><a href="MyAttendance.php">My Attendance Record</a><?php } ?></li>
+                  <li class="nav-item"><?php if ($role === "admin") { ?><a href="StudentAttendance.php">Student Attendance Records</a><?php } ?></li>
+                  <li class="nav-item"><?php if ($role === "admin") { ?><a href="Events.php">Events</a><?php } ?></li>
+                  <li class="nav-item"><?php if ($role === "admin") { ?><a href="Reporting.php">Reporting</a><?php } ?></li>
                   <li class="dropdown-nav"><?php if ($role === "admin") { ?>
                       <a href="javascript:void(0)" class="dropbtn">Admin Tools</a>
                       <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
