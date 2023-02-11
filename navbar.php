@@ -31,12 +31,12 @@
       <div>
           <nav class="navbar shadow">
               <ul class="navbar-nav forge-nav-dividers flex-lg-row w-100">
-                  <li class="nav-item"><a class="nav-link router-link-exact-active" href="MySchedule.php">My Schedule</a></li>
+                  <li><a class="nav-link router-link-exact-active" href="MySchedule.php">My Schedule</a></li>
                   <?php if ($role === "student") { ?><li class="nav-item"><a href="MyAttendance.php">My Attendance Record</a></li><?php } ?>
                   <?php if ($role === "admin") { ?><li class="nav-item"><a href="StudentAttendance.php">Student Attendance Records</a></li><?php } ?>
                   <?php if ($role === "admin") { ?><li class="nav-item"><a href="Events.php">Events</a></li><?php } ?>
                   <?php if ($role === "admin") { ?><li class="nav-item"><a href="Reporting.php">Reporting</a></li><?php } ?>
-                  <?php if ($role === "admin") { ?><li class="dropdown-nav">
+                  <?php if ($role === "admin") { ?><li class="nav-item dropdown-nav">
                       <a href="javascript:void(0)" class="dropbtn">Admin Tools</a>
                       <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
                       <div class="dropdown-content">
