@@ -40,7 +40,7 @@ $result = odbc_exec($connection, $query);
     </header>
     <div class="main-content">
     <h1>
-  Manage Departments
+  Manage Modules
 </h1>
   <div class="container">
         <table>
