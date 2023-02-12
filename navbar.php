@@ -7,7 +7,7 @@ if (!isset($_SESSION['userid'])) {
   exit();
 }
 
-$roleidid = $_SESSION['roleid'];
+$roleid = $_SESSION['roleid'];
 
 ?>
 <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
