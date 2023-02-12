@@ -571,7 +571,7 @@ li.dropdown-nav {
 }
 
 .topnav-user-profile-name:hover {
-    text-decoration: underline;
+    cursor: pointer;
 }
 
 .topnav {

@@ -19,10 +19,10 @@
                                 }
                               ?>
                               </span><i class="fa-solid fa-caret-down symbol white"></i>
-                          </div>
-                          <div class="dropdown-content">
+                              <div class="dropdown-content">
                                   <a href="logout.php">Sign Out</a>
                               </div>
+                          </div>
                       </div>
               </nav>
       <div>
