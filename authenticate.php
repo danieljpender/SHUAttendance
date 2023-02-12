@@ -37,10 +37,7 @@ if (odbc_num_rows($result) > 0) {
 echo "User ID: " . $userid . "<br>";
 echo "Role: " . $role . "<br>";
     
-    header("Location: MySchedule.php");
-} else {
-    echo "Invalid username or password";
-}
+ 
 
 odbc_close($connection);
 
