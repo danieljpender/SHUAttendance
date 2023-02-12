@@ -84,7 +84,7 @@ $result = odbc_exec($connection, $query);
 <table>
   <tr>
     <th>Type</th>
-    <th>Title</th>
+    <th>Module</th>
     <th>Location</th>
     <th>Staff Member</th>
     <th>Time</th>
@@ -98,8 +98,8 @@ $result = odbc_exec($connection, $query);
   <?php
  while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['ActivityTypeName'] . "</td>";
-    echo "<td>" . $row['Title'] . "</td>";
+    echo "<td>" . $row['ta.ActivityTypeName'] . "</td>";
+    echo "<td>" . $row['m.ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMembers'] . "</td>";
     echo "<td>" . $row['StartTime'] . " - " . $row['EndTime'] . "</td>";
