@@ -1,13 +1,29 @@
 <?php
-// Start the session
 session_start();
-$user_role = "";
-if (isset($_SESSION['role'])) {
-  $user_role = $_SESSION['role'];
+
+$server = "eam-group27.database.windows.net";
+$database = "SHUAttendance";
+$serverUsername = "eam";
+$serverPassword = "%PA55w0rd";
+
+$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
+
+if (!$connection) {
+    die("Error connecting to database: " . odbc_errormsg());
+}
+
+// Check if the user is logged in
+if (!isset($_SESSION['userid'])) {
+  header("Location: login.php");
+  exit();
 }
 
 $userid = $_SESSION['userid'];
-$role = $_SESSION['role'];
+$role = $_SESSION['rolename'];
+
+// Query the database for the events associated with the user
+$query = "SELECT *  FROM Department";
+$result = odbc_exec($connection, $query);
 
 ?>
 <html>
@@ -27,11 +43,17 @@ $role = $_SESSION['role'];
   <div class="container">
         <table>
             <tr>
-                <th>Department Code</th>
                 <th>Department Name</th>
-                <th>Location</th>
                 <th>Options</th>
             </tr>
+            <?php
+ while ($row = odbc_fetch_array($result)) {
+    echo "<tr>";
+    echo "<td>" . $row['DepartmentName'] . "</td>";
+    echo "</tr>";
+  }
+
+  ?>
             <tr>
                 <td>3333</td>
                 <td>3Squared Admin</td>
