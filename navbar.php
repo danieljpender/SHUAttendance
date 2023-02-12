@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['userid'])) {
+  header("Location: login.php");
+  exit();
+}
+
+$role = $_SESSION['roleid'];
+
+?>
 <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
           <div class="navigation-container">
                   <div class="topnav">
