@@ -57,6 +57,7 @@ $result = odbc_exec($connection, $query);
               echo "<td>" . $row['department_name'] . "</td>";
               echo "<td>" . $row['ModuleCode'] . "</td>";
               echo "<td>" . $row['ModuleName'] . "</td>";
+              echo "<td>" . $row['[Year]'] . "</td>";
               echo "<td class='link'><i class='fa-regular fa-pen-to-square symbol'></i>Edit<i class='fa-regular fa-trash-can symbol'></i>Delete</td>";
     echo "</tr>";
     
