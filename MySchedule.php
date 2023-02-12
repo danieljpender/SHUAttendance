@@ -22,9 +22,8 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['role'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, sec.Code as code, e.EventId as event_id FROM UserEvents ue
-          JOIN Events e ON e.EventId=ue.EventId
-          LEFT JOIN ScheduledEventCode sec ON e.EventId = sec.EventId
+$query = "SELECT *, t.TimetableId as timetable_id FROM UserTimetable ut
+          JOIN Timetable t ON t.ModuleId = ut.ModuleId
           WHERE UserId= '$userid'";
 $result = odbc_exec($connection, $query);
 ?>
@@ -98,11 +97,11 @@ $result = odbc_exec($connection, $query);
   <?php
  while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['event_id'] . "</td>";
-    echo "<td>" . $row['TYPE'] . "</td>";
+    echo "<td>" . $row['timetable_id'] . "</td>";
+    echo "<td>" . $row['ActivityTypeId'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
-    echo "<td>" . $row['Location'] . "</td>";
-    echo "<td>" . $row['StaffMember'] . "</td>";
+    echo "<td>" . $row['Location(s)'] . "</td>";
+    echo "<td>" . $row['StaffMember(s)'] . "</td>";
     echo "<td>" . $row['Time'] . " - " . $row['EndTime'] . "</td>";
     if ($role == 'admin') {
       echo "<td>" . $row['code'] . "</td>";
@@ -110,7 +109,7 @@ $result = odbc_exec($connection, $query);
     echo "<td>";
     if ($role == 'admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
-      echo "<a href='view_attendance.php?eventid=" . $row['event_id'] . "'>View Attendance</a>";
+      echo "<a href='view_attendance.php?eventid=" . $row['timetable_id'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
       echo "<button class='set-code-btn'>Enter Code</button>";
     }
