@@ -51,6 +51,7 @@ $role = $_SESSION['role'];
     </div>
     </div>
     </div>
+    <?php include 'footer.php'; ?>
   </body>
 </html>
 

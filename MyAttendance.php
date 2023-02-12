@@ -27,6 +27,7 @@ $role = $_SESSION['role'];
   <div class="container">
   </div>
     </div>
+    <?php include 'footer.php'; ?>
   </body>
 </html>
 

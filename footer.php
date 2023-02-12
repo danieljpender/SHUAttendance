@@ -2,17 +2,17 @@
 <footer class="forge-footer p-2 pl-3 bg-light shadow">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
-                        <img src="https://cdn.3sq.app/assets/products/general/images/RailSmart-by-3Squared.svg" alt="RailSmartLogo" class="my-1 mr-1 forge-footer-logo" />
+                        <img src=".../images/SHU_colour.png" alt="RailSmartLogo" class="my-1 mr-1 forge-footer-logo" />
                         <div class="border-left ml-1"><span class="px-2 text-body">
                             Version 0.1.0
                           </span></div>
                     </div>
                     <div class="d-flex align-items-center">
                         <div class="px-2">
-                            <a href="https://privacy.3squared.com/privacy-policy.html" rel="noopener" target="_blank" class="">Privacy</a>
+                            <a href="https://www.shu.ac.uk/study-here/terms-and-conditions-and-student-regulations" rel="noopener" target="_blank" class="">Terms and Conditions</a>
                         </div>
                         <div class="px-2 border-left">
-                            <a href="https://privacy.3squared.com/cookie-policy.html" rel="noopener" target="_blank" class="">Cookie Policy</a>
+                            <a href="https://www.shu.ac.uk/about-this-website/how-we-use-cookies" rel="noopener" target="_blank" class="">Cookie Policy</a>
                         </div>
                     </div>
             </footer>
