@@ -53,7 +53,7 @@ $role = $_SESSION['role'];
         <label for="module">Module:</label>
         <select name="module" id="module">
         </div>
-          <option value="">Select a Module</option>
+          <option value="StudentAttendance.php">Select a Module</option>
           <?php
           $query = "SELECT * FROM Module";
           $result = odbc_exec($connection, $query);
@@ -98,27 +98,24 @@ document.getElementById("module").onchange = function() {
       </thead>
       <tbody>
         <?php
-  if (isset($_POST['submit'])) {
-    $department = $_POST['department'];
-    $module = $_POST['module'];
-    $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, uah.DateCreated as attendance FROM UserTimetable ut
-                  LEFT JOIN UserAttendanceHistory uah ON ut.UserTimetableId = uah.UserTimetableId
-                  JOIN Timetable t ON ut.TimetableId = t.TimetableId
-                  JOIN Module m ON t.ModuleId = m.ModuleId
-                  JOIN Department d ON m.DepartmentId = d.DepartmentId
-                  JOIN Users u ON ut.UserId = u.UserId";
-    // Add the following line to the query to filter by selected department and module
-    $query .= " WHERE d.DepartmentId = $department AND m.ModuleId = $module";
-    $result = odbc_exec($connection, $query);
-    while ($row = odbc_fetch_array($result)) {
-      echo '<tr>
-              <td>' . $row['student_name'] . '</td>
-              <td>' . $row['attendance'] . '</td>
-              <td>' . $row['attendance_record'] . '</td>
-            </tr>';
-    }
-  }
-
+          if (isset($_POST['submit'])) {
+            $department = $_POST['department'];
+            $module = $_POST['module'];
+            $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, uah.DateCreated as attendance FROM UserTimetable ut
+                      LEFT JOIN UserAttendanceHistory uah ON ut.UserTimetableId = uah.UserTimetableId
+                      JOIN Timetable t ON t.ModuleId = ut.ModuleId
+                      JOIN Users u ON u.UserId = ut.UserId
+                      WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
+                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
+            $result = odbc_exec($connection, $query);
+            while ($row = odbc_fetch_array($result)) {
+              echo '<tr>';
+              echo '<td>' . $row['student_name'] . '</td>';
+              echo '<td>' . $row['startdate'] . '</td>';
+              echo '<td>' . $row['sttendance'] . '</td>';
+              echo '</tr>';
+            }
+          }
         ?>
       </tbody>
     </table>
