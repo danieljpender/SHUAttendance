@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $roleid = $_SESSION['roleid'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName,  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
