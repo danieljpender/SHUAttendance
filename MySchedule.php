@@ -24,7 +24,9 @@ $roleid = $_SESSION['roleid'];
 // Query the database for the events associated with the user
 $query = "SELECT *, t.TimetableId as timetable_id FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
-          WHERE UserId= '$userid'";
+          JOIN Module m ON m.ModuleId = t.ModuleId
+          JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
+          WHERE ut.UserId= '$userid'";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
@@ -81,7 +83,6 @@ $result = odbc_exec($connection, $query);
   <div class="container">
 <table>
   <tr>
-    <th>EventId</th>
     <th>Type</th>
     <th>Title</th>
     <th>Location</th>
@@ -97,12 +98,11 @@ $result = odbc_exec($connection, $query);
   <?php
  while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['timetable_id'] . "</td>";
-    echo "<td>" . $row['ActivityTypeId'] . "</td>";
+    echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['Title'] . "</td>";
-    echo "<td>" . $row['Location(s)'] . "</td>";
-    echo "<td>" . $row['StaffMember(s)'] . "</td>";
-    echo "<td>" . $row['Time'] . " - " . $row['EndTime'] . "</td>";
+    echo "<td>" . $row['Location'] . "</td>";
+    echo "<td>" . $row['StaffMembers'] . "</td>";
+    echo "<td>" . $row['StartTime'] . " - " . $row['EndTime'] . "</td>";
     if ($roleid == 'ce425e0d-7a9a-4d4f-96c2-333eef8c709d') {
       echo "<td>" . $row['code'] . "</td>";
     }
