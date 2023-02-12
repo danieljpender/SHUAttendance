@@ -175,8 +175,8 @@ window.onclick = function(event) {
 </table>
 </div>
 </div>
-</div>
 <?php include 'footer.php'; ?>
+</div>
 </body>
 </html>
 <?php
