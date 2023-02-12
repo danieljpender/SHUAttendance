@@ -26,8 +26,11 @@ if (!$result) {
 if (odbc_num_rows($result) > 0) {
     $row = odbc_fetch_array($result);
     $_SESSION["username"] = $username;
-    $_SESSION["roleid"] = $row["roleid"];
+    $roleid = $row["roleid"];
+    $_SESSION["roleid"] = $roleid;
+    $firstname = $row["firstname"];
     $_SESSION["firstname"] = $row["firstname"];
+    $surname = $row["surname"];
     $_SESSION["surname"] = $row["surname"];
     $userid = $row["userid"];
     $_SESSION["userid"] = $userid;
