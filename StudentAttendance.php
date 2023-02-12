@@ -101,11 +101,11 @@ document.getElementById("module").onchange = function() {
             $module = $_POST['module'];
             $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, uah.DateCreated as attendance FROM UserTimetable ut
                       LEFT JOIN UserAttendanceHistory uah ON ut.UserTimetableId = uah.UserTimetableId
-                      JOIN Timetable t ON t.TimetableId = ut.TimetableId
+                      JOIN Timetable t ON t.ModuleId = ut.ModuleId
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' 
-                      /*AND ut.ModuleId = '$module'
-                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'*/";
+                      AND ut.ModuleId = '$module'
+                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
             $result = odbc_exec($connection, $query);
             while ($row = odbc_fetch_array($result)) {
               echo '<tr>';
