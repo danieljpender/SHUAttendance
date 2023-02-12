@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['userid'])) {
+  header("Location: login.php");
+  exit();
+}
+
+$role = $_SESSION['rolename'];
+
+?>
 <nav class="navbar forge-main-nav p-0 navbar-dark bg-brand">
           <div class="navigation-container">
                   <div class="topnav">
@@ -29,11 +41,11 @@
           <nav class="navbar shadow">
               <ul class="navbar-nav forge-nav-dividers flex-lg-row w-100">
               <li><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'MySchedule.php') { echo 'nav-link-active'; } ?>" href="MySchedule.php">My Schedule</a></li>
-                  <?php if ($role === "student") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'MyAttendance.php') { echo 'nav-link-active'; } ?>" href="MyAttendance.php">My Attendance Record</a></li><?php } ?>
-                  <?php if ($role === "admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'StudentAttendance.php') { echo 'nav-link-active'; } ?>" href="StudentAttendance.php">Student Attendance Records</a></li><?php } ?>
-                  <?php if ($role === "admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'Events.php') { echo 'nav-link-active'; } ?>" href="Events.php">Events</a></li><?php } ?>
-                  <?php if ($role === "admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'Reporting.php') { echo 'nav-link-active'; } ?>" href="Reporting.php">Reporting</a></li><?php } ?>
-                  <?php if ($role === "admin") { ?><li class="nav-item dropdown-nav">
+                  <?php if ($role === "Student") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'MyAttendance.php') { echo 'nav-link-active'; } ?>" href="MyAttendance.php">My Attendance Record</a></li><?php } ?>
+                  <?php if ($role === "Admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'StudentAttendance.php') { echo 'nav-link-active'; } ?>" href="StudentAttendance.php">Student Attendance Records</a></li><?php } ?>
+                  <?php if ($role === "Admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'Events.php') { echo 'nav-link-active'; } ?>" href="Events.php">Events</a></li><?php } ?>
+                  <?php if ($role === "Admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'Reporting.php') { echo 'nav-link-active'; } ?>" href="Reporting.php">Reporting</a></li><?php } ?>
+                  <?php if ($role === "Admin") { ?><li class="nav-item dropdown-nav">
                       <a href="javascript:void(0)" class="dropbtn">Admin Tools</a>
                       <i class="fa-solid fa-caret-down symbol-margin-right grey"></i>
                       <div class="dropdown-content">
