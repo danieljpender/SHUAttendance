@@ -26,7 +26,8 @@ $query = "SELECT *, m.ModuleName as ModuleName  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
-          WHERE ut.UserId= '$userid'";
+          WHERE ut.UserId= '$userid'
+          AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
@@ -103,14 +104,14 @@ $result = odbc_exec($connection, $query);
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMembers'] . "</td>";
     echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
-    if ($roleid == 'ce425e0d-7a9a-4d4f-96c2-333eef8c709d') {
+    if ($role == 'admin') {
       echo "<td>" . $row['code'] . "</td>";
     }
     echo "<td>";
-    if ($roleid == 'ce425e0d-7a9a-4d4f-96c2-333eef8c709d') {
+    if ($role == 'admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['timetable_id'] . "'>View Attendance</a>";
-    } else if ($roleid == 'student') {
+    } else if ($role == 'student') {
       echo "<button class='set-code-btn'>Enter Code</button>";
     }
     echo "</td>";
