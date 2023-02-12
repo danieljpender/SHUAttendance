@@ -178,7 +178,10 @@ window.onclick = function(event) {
 </div>
 </div>
 </body>
-
+<footer>
+<?php include 'footer.php'; ?>
+</footer>
+</html>
 <?php
 odbc_close($connection);
 ?>
