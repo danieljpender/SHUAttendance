@@ -34,7 +34,7 @@
             <label for="password">Password</label>
             <input class="login_form" type="password" id="password" name="password" size="50" placeholder="Enter Password"/>
             </div>
-            <a class="link" href=""><p>Forgot your password?</p></a>
+            <a class="link" href="">Forgot your password?</a>
             <input class="btn btn-primary btn-login" type="submit" value="Sign In"/>
                 </form>
                 </div>
