@@ -29,6 +29,14 @@ $query = "SELECT *, m.ModuleName as ModuleName  FROM UserTimetable ut
           WHERE ut.UserId= '$userid'
           /*AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())*/";
 $result = odbc_exec($connection, $query);
+
+echo "Session data: " . var_dump($_SESSION) . "<br>";
+echo "Username: " . $_SESSION["username"] . "<br>";
+echo "First name: " . $_SESSION["firstname"] . "<br>";
+echo "Surname: " . $_SESSION["surname"] . "<br>";
+echo "User ID: " . $_SESSION["userid"] . "<br>";
+echo "Role: " . $_SESSION["rolename"] . "<br>";
+
 ?>
 <html>
 <head>
