@@ -771,10 +771,12 @@ label {
 
 input[type="submit"] {
     display: block;
-    margin: 1em 0;
     width: 100%;
   }
 
+  .form-group {
+    margin-bottom: 1rem;
+  }
 
 /* Footer */
 .bg-light{
