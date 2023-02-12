@@ -37,7 +37,7 @@ $role = $_SESSION['role'];
   Student Attendance Records
 </h1>
 <form action="" method="post" class="mb-2">
-      <label for="department">Select a Department:</label>
+      <label for="department">Department:</label>
       <select name="department" id="department" onchange="showModule()">
         <option value="">Select a Department</option>
         <?php
@@ -50,7 +50,7 @@ $role = $_SESSION['role'];
       </select>
       <div id="module-container" style="display:none">
       <div style="display: inline-block">
-        <label for="module">Select a Module:</label>
+        <label for="module">Module:</label>
         <select name="module" id="module">
         </div>
           <option value="">Select a Module</option>
@@ -89,7 +89,7 @@ document.getElementById("module").onchange = function() {
     <table id="attendance-table" style="display:none">
       <thead>
         <tr>
-          <th>Student name</th>
+          <th>Student Name</th>
           <th>Date</th>
           <th>Attendance Record</th>
         </tr>
@@ -120,16 +120,7 @@ document.getElementById("module").onchange = function() {
     </table>
   </div>
     </div>
-    <script>
-  function showModule() {
-    var department = document.getElementById("department").value;
-    if (department) {
-      document.getElementById("module-container").style.display = "block";
-    } else {
-      document.getElementById("module-container").style.display = "none";
-    }
-  }
-</script>
+
 <?php include 'footer.php'; ?>
 </body>
 </html>
