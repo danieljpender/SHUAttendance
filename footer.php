@@ -2,7 +2,7 @@
 <footer class="forge-footer p-2 pl-3 bg-light shadow">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
-                        <img src=".../images/SHU_colour.png" alt="RailSmartLogo" class="my-1 mr-1 forge-footer-logo" />
+                        <img src="../images/SHU_colour.png" alt="SHULogo" class="my-1 mr-1 forge-footer-logo" />
                         <div class="border-left ml-1"><span class="px-2 text-body">
                             Version 0.1.0
                           </span></div>
