@@ -102,7 +102,7 @@ $result = odbc_exec($connection, $query);
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMembers'] . "</td>";
-    echo "<td>" . $row['StartTime'] . " - " . $row['EndTime'] . "</td>";
+    echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
     if ($roleid == 'ce425e0d-7a9a-4d4f-96c2-333eef8c709d') {
       echo "<td>" . $row['code'] . "</td>";
     }
