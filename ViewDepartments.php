@@ -49,11 +49,11 @@ $result = odbc_exec($connection, $query);
             <?php
  while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['DepartmentName'] . "</td>";
+              echo "<td>" . $row['DepartmentName'] . "</td>";
+              echo "<td class='link'><i class='fa-regular fa-pen-to-square symbol'></i>Edit<i class='fa-regular fa-trash-can symbol'></i>Delete</td>";
     echo "</tr>";
-    echo "<td class='link'><i class='fa-regular fa-pen-to-square symbol'></i>Edit<i class='fa-regular fa-trash-can symbol'></i>Delete</td>"
+    
   }
-
   ?>
         </table>
     </div>
