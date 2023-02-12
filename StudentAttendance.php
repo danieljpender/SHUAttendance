@@ -77,6 +77,7 @@ document.getElementById("module").onchange = function() {
   var module = document.getElementById("module").value;
   if (department && module) {
     document.getElementById("attendance-table").style.display = "block";
+    document.forms[0].submit();
   } else {
     document.getElementById("attendance-table").style.display = "none";
   }
