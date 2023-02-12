@@ -1,4 +1,3 @@
-<div class="footer"> 
             <footer class="forge-footer p-2 pl-3 bg-light shadow">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
@@ -15,5 +14,4 @@
                             <a href="https://privacy.3squared.com/cookie-policy.html" rel="noopener" target="_blank" class="">Cookie Policy</a>
                         </div>
                     </div>
-                </div>
             </footer>
