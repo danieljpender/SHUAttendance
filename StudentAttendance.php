@@ -27,6 +27,31 @@ $role = $_SESSION['role'];
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
+    <script>
+  function showModule() {
+    var department = document.getElementById("department").value;
+    if (department) {
+      document.getElementById("module-container").style.display = "inline-block";
+      // Submit the form to retrieve the modules for the selected department
+      document.forms[0].submit();
+    } else {
+      document.getElementById("module-container").style.display = "none";
+      document.getElementById("attendance-table").style.display = "none";
+    }
+  }
+
+  function showAttendanceTable() {
+    var department = document.getElementById("department").value;
+    var module = document.getElementById("module").value;
+    if (department && module) {
+      document.getElementById("attendance-table").style.display = "block";
+      // Submit the form to retrieve the attendance records for the selected department and module
+      document.forms[0].submit();
+    } else {
+      document.getElementById("attendance-table").style.display = "none";
+    }
+  }
+</script>
   </head>
   <body>
     <header>
@@ -37,66 +62,43 @@ $role = $_SESSION['role'];
   Student Attendance Records
 </h1>
 <form action="StudentAttendance.php" method="post" class="mb-2">
-      <label for="department">Department:</label>
-      <select name="department" id="department" onchange="showModule()">
-        <option value="">Select a Department</option>
-        <?php
-          $query = "SELECT * FROM Department";
-          $result = odbc_exec($connection, $query);
-          while ($row = odbc_fetch_array($result)) {
-            echo '<option value="' . $row['DepartmentId'] . '">' . $row['DepartmentName'] . '</option>';
-          }
-        ?>
-      </select>
-      <div id="module-container" style="display:none">
-      <div style="display: inline-block">
-        <label for="module">Module:</label>
-        <select name="module" id="module">
-        </div>
-          <option value="StudentAttendance.php">Select a Module</option>
-          <?php
-          $query = "SELECT * FROM Module";
+  <label for="department">Department:</label>
+  <select name="department" id="department" onchange="showModule()">
+    <option value="">Select a Department</option>
+    <?php
+      $query = "SELECT * FROM Department";
+      $result = odbc_exec($connection, $query);
+      while ($row = odbc_fetch_array($result)) {
+        echo '<option value="' . $row['DepartmentId'] . '">' . $row['DepartmentName'] . '</option>';
+      }
+    ?>
+  </select>
+  <div id="module-container" style="display:none">
+    <label for="module">Module:</label>
+    <select name="module" id="module" onchange="showAttendanceTable()">
+      <option value="">Select a Module</option>
+      <?php
+        if (isset($_POST['department'])) {
+          $department = $_POST['department'];
+          $query = "SELECT * FROM Module WHERE DepartmentId = '$department'";
           $result = odbc_exec($connection, $query);
           while ($row = odbc_fetch_array($result)) {
             echo '<option value="' . $row['ModuleId'] . '">' . $row['ModuleName'] . '</option>';
           }
-        ?>
-        </select>
-      </div>
-      <input type="submit" name="submit" style="display:none">
-      <script>
-  function showModule() {
-    var department = document.getElementById("department").value;
-if (department) {
-  document.getElementById("module-container").style.display = "inline-block";
-} else {
-  document.getElementById("module-container").style.display = "none";
-  document.getElementById("attendance-table").style.display = "none";
-}
-document.getElementById("module").onchange = function() {
-  var department = document.getElementById("department").value;
-  var module = document.getElementById("module").value;
-  if (department && module) {
-    document.getElementById("attendance-table").style.display = "block";
-    document.forms[0].submit();
-  } else {
-    document.getElementById("attendance-table").style.display = "none";
-  }
-}
-
-  }
-</script>
-    </form>
-  <div class="container">
-    <table id="attendance-table" style="display:none">
-      <thead>
-        <tr>
-          <th>Student Name</th>
-          <th>Date</th>
-          <th>Attendance Record</th>
-        </tr>
-      </thead>
-      <tbody>
+        }
+      ?>
+    </select>
+  </div>
+</form>
+<table id="attendance-table" style="display:none">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Date</th>
+      <th>Attendance Record</th>
+    </tr>
+  </thead>
+  <tbody>
         <?php
           if (isset($_POST['submit'])) {
             $department = $_POST['department'];
