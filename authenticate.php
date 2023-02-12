@@ -15,8 +15,7 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$sql = "SELECT [RoleName], [userid], [firstname] FROM [users] u
-        JOIN [Role] r on r.RoleId=u.RoleId
+$sql = "SELECT [RoleId], [userid], [firstname] FROM [users] u
         WHERE username='$username' AND password='$password'";
 $result = odbc_exec($connection, $sql);
 
@@ -27,13 +26,13 @@ if (!$result) {
 if (odbc_num_rows($result) > 0) {
     $row = odbc_fetch_array($result);
     $_SESSION["username"] = $username;
-    $_SESSION["role"] = $row["RoleName"];
+    $_SESSION["role"] = $row["RoleId"];
     $_SESSION["firstname"] = $row["firstname"];
     $_SESSION["surname"] = $row["surname"];
     $userid = $row["userid"];
     $_SESSION["userid"] = $userid;
 
-    if ($_SESSION["role"] == "admin") {
+    if ($_SESSION["role"] == "ce425e0d-7a9a-4d4f-96c2-333eef8c709d") {
         header("Location: MySchedule.php");
     } elseif ($_SESSION["role"] == "student") {
         header("Location: MySchedule.php");
