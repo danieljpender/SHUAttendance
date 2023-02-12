@@ -24,7 +24,7 @@ $role = $_SESSION['rolename'];
 // Query the database for the events associated with the user
 $query = "SELECT *, r.RoleName as role_name FROM Users u
           JOIN [Role] r ON r.RoleId = u.RoleId
-          ORDER BY RoleName, Surname, FirstName ASC";
+          ORDER BY RoleName, FirstName, Surname ASC";
 $result = odbc_exec($connection, $query);
 
 ?>

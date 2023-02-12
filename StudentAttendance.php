@@ -49,8 +49,10 @@ $role = $_SESSION['role'];
         ?>
       </select>
       <div id="module-container" style="display:none">
+      <div style="display: ininline-block">
         <label for="module">Select a Module:</label>
         <select name="module" id="module">
+        </div>
           <option value="">Select a Module</option>
           <?php
           $query = "SELECT * FROM Module";
@@ -65,7 +67,7 @@ $role = $_SESSION['role'];
   function showModule() {
     var department = document.getElementById("department").value;
 if (department) {
-  document.getElementById("module-container").style.display = "block";
+  document.getElementById("module-container").style.display = "inline-block";
 } else {
   document.getElementById("module-container").style.display = "none";
   document.getElementById("attendance-table").style.display = "none";

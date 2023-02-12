@@ -119,7 +119,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     if ($role == 'Admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['timetable_id'] . "'>View Attendance</a>";
-    } else if ($role == 'student') {
+    } else if ($role == 'Student') {
       echo "<button class='set-code-btn'>Enter Code</button>";
     }
     echo "</td>";
