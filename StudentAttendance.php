@@ -85,7 +85,7 @@ document.getElementById("module").onchange = function() {
   }
 </script>
     </form>
-  <div>
+  <div class="container">
     <table id="attendance-table" style="display:none">
       <thead>
         <tr>
@@ -104,8 +104,8 @@ document.getElementById("module").onchange = function() {
                       JOIN Timetable t ON t.TimetableId = ut.TimetableId
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' 
-                      AND ut.ModuleId = '$module'
-                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
+                      /*AND ut.ModuleId = '$module'
+                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'*/";
             $result = odbc_exec($connection, $query);
             while ($row = odbc_fetch_array($result)) {
               echo '<tr>';
