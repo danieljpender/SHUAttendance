@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, d.DepartmentName AS department_name FROM Module m
+$query = "SELECT *, d.DepartmentName AS department_name, [Year] AS module_year FROM Module m
           JOIN Department d ON d.DepartmentId = m.DepartmentId
           ORDER BY d.DepartmentName, [Year], ModuleName ASC";
 $result = odbc_exec($connection, $query);
@@ -57,7 +57,7 @@ $result = odbc_exec($connection, $query);
               echo "<td>" . $row['department_name'] . "</td>";
               echo "<td>" . $row['ModuleCode'] . "</td>";
               echo "<td>" . $row['ModuleName'] . "</td>";
-              echo "<td>" . $row['[Year]'] . "</td>";
+              echo "<td>" . $row['module_year'] . "</td>";
               echo "<td class='link'><i class='fa-regular fa-pen-to-square symbol'></i>Edit<i class='fa-regular fa-trash-can symbol'></i>Delete</td>";
     echo "</tr>";
     
