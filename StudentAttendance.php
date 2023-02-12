@@ -49,7 +49,7 @@ $role = $_SESSION['role'];
         ?>
       </select>
       <div id="module-container" style="display:none">
-      <div style="display: ininline-block">
+      <div style="display: inline-block">
         <label for="module">Select a Module:</label>
         <select name="module" id="module">
         </div>
@@ -89,9 +89,9 @@ document.getElementById("module").onchange = function() {
     <table id="attendance-table" style="display:none">
       <thead>
         <tr>
-          <th>User ID</th>
-          <th>Module ID</th>
-          <th>Attendance Date</th>
+          <th>Student name</th>
+          <th>Date</th>
+          <th>Attendance Record</th>
         </tr>
       </thead>
       <tbody>
@@ -99,13 +99,19 @@ document.getElementById("module").onchange = function() {
           if (isset($_POST['submit'])) {
             $department = $_POST['department'];
             $module = $_POST['module'];
-            $query = "SELECT * FROM UserAttendance WHERE DepartmentID = '$department' AND ModuleID = '$module'";
+            $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, uah.DateCreated as attendance FROM UserTimetable ut
+                      LEFT JOIN UserAttendanceHistory uah ON ut.UserTimetableId = uah.UserTimetableId
+                      JOIN Timetable t ON t.TimetableId = ut.TimetableId
+                      JOIN Users u ON u.UserId = ut.UserId
+                      WHERE ut.DepartmentId = '$department' 
+                      AND ut.ModuleId = '$module'
+                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
             $result = odbc_exec($connection, $query);
             while ($row = odbc_fetch_array($result)) {
               echo '<tr>';
-              echo '<td>' . $row['UserID'] . '</td>';
-              echo '<td>' . $row['ModuleID'] . '</td>';
-              echo '<td>' . $row['AttendanceDate'] . '</td>';
+              echo '<td>' . $row['student_name'] . '</td>';
+              echo '<td>' . $row['startdate'] . '</td>';
+              echo '<td>' . $row['sttendance'] . '</td>';
               echo '</tr>';
             }
           }

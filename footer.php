@@ -4,7 +4,7 @@
                     <div class="d-flex align-items-center">
                         <img src="../images/SHU_colour.png" alt="SHULogo" class="my-1 mr-1 forge-footer-logo" />
                         <div class="border-left ml-1"><span class="px-2 text-body">
-                            Version 0.3.0-beta
+                            Version 0.4.0-beta
                           </span></div>
                     </div>
                     <div class="d-flex align-items-center">
