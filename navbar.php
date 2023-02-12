@@ -8,7 +8,7 @@
                   </div> 
                   <div class="nav-notification" style="float: right;">
                       <a class="topnav-user-profile" href="javascript:void(0)"></a>
-                          <div class="dropdown-nav dropbtn-user ml-left" style="float: right;">
+                          <div class="dropdown-nav dropbtn-user ml-left" style="display: flex; align-items: center;">
                               <span><i class="fa-regular fa-circle-user topnav-user-profile-pic"></i></span>
                               <span class="topnav-user-profile-name">
                               <?php
