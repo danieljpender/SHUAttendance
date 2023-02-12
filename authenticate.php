@@ -15,7 +15,7 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$sql = "SELECT [userid], [firstname], [surname], r.RoleId, r.RoleName as RoleName FROM [users] u
+$sql = "SELECT [userid], [firstname], [surname], u.RoleId, r.rolename as rolename FROM [users] u
         JOIN [Role] r ON r.RoleId = u.RoleId
         WHERE username='$username' AND password='$password'";
 $result = odbc_exec($connection, $sql);
@@ -26,7 +26,7 @@ if (!$result) {
 
 if (odbc_num_rows($result) > 0) {
     $row = odbc_fetch_array($result);
-    $_SESSION["RoleName"] = $row["RoleName"];
+    $_SESSION["rolename"] = $row["rolename"];
     $_SESSION["username"] = $username;
     $_SESSION["firstname"] = $row["firstname"];
     $_SESSION["surname"] = $row["surname"];
