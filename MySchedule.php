@@ -19,7 +19,7 @@ if (!isset($_SESSION['userid'])) {
 }
 
 $userid = $_SESSION['userid'];
-$role = $_SESSION['roleid'];
+$role = $_SESSION['role'];
 
 // Query the database for the events associated with the user
 $query = "SELECT *, t.TimetableId as timetable_id FROM UserTimetable ut

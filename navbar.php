@@ -27,7 +27,7 @@ $role = $_SESSION['roleid'];
                                 if (isset($_SESSION['firstname'])) {
                                  echo $_SESSION['firstname'];
                                 } else {
-                                 echo "Unknown";
+                                 echo " ";
                                 }
                               ?>
                               </span><i class="fa-solid fa-caret-down symbol white"></i>
