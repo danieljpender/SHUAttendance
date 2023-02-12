@@ -103,14 +103,14 @@ $result = odbc_exec($connection, $query);
     echo "<td>" . $row['Location(s)'] . "</td>";
     echo "<td>" . $row['StaffMember(s)'] . "</td>";
     echo "<td>" . $row['Time'] . " - " . $row['EndTime'] . "</td>";
-    if ($role == 'admin') {
+    if ($roleid == 'ce425e0d-7a9a-4d4f-96c2-333eef8c709d') {
       echo "<td>" . $row['code'] . "</td>";
     }
     echo "<td>";
-    if ($role == 'admin') {
+    if ($roleid == 'ce425e0d-7a9a-4d4f-96c2-333eef8c709d') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['timetable_id'] . "'>View Attendance</a>";
-    } else if ($role == 'student') {
+    } else if ($roleid == 'student') {
       echo "<button class='set-code-btn'>Enter Code</button>";
     }
     echo "</td>";
