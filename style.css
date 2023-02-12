@@ -63,6 +63,7 @@ h2 {
 .link {
     color: #0077c8;
     text-decoration-line: none;
+    line-height: 1.5;
 }
 
 .link-white {
