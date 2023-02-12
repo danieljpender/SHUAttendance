@@ -27,22 +27,13 @@ $role = $_SESSION['role'];
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+    <script>
   function showModule() {
     var department = document.getElementById("department").value;
     if (department) {
       document.getElementById("module-container").style.display = "inline-block";
       // Submit the form to retrieve the modules for the selected department
-      $.ajax({
-        type: 'post',
-        url: 'StudentAttendance.php',
-        data: $('form').serialize(),
-        success: function (data) {
-          // Update the contents of the module container with the returned HTML
-          $("#module-container").html(data);
-        }
-      });
+      document.forms[0].submit();
     } else {
       document.getElementById("module-container").style.display = "none";
       document.getElementById("attendance-table").style.display = "none";
@@ -55,15 +46,7 @@ $role = $_SESSION['role'];
     if (department && module) {
       document.getElementById("attendance-table").style.display = "block";
       // Submit the form to retrieve the attendance records for the selected department and module
-      $.ajax({
-        type: 'post',
-        url: 'StudentAttendance.php',
-        data: $('form').serialize(),
-        success: function (data) {
-          // Update the contents of the attendance table with the returned HTML
-          $("#attendance-table").html(data);
-        }
-      });
+      document.forms[0].submit();
     } else {
       document.getElementById("attendance-table").style.display = "none";
     }
