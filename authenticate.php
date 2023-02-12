@@ -32,6 +32,10 @@ if (odbc_num_rows($result) > 0) {
     $_SESSION["surname"] = $row["surname"];
     $userid = $row["userid"];
     $_SESSION["userid"] = $userid;
+
+    echo "Session data: " . var_dump($_SESSION) . "<br>";
+echo "User ID: " . $userid . "<br>";
+echo "Role: " . $role . "<br>";
     
     header("Location: MySchedule.php");
 } else {
