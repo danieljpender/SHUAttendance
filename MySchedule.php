@@ -98,7 +98,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     <th>Staff Member</th>
     <th>Time</th>
     <?php
-    if ($role == 'admin') {
+    if ($role == 'Admin') {
       echo "<th>Code</th>";
     }
     ?>
@@ -112,11 +112,11 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMembers'] . "</td>";
     echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
-    if ($role == 'admin') {
+    if ($role == 'Admin') {
       echo "<td>" . $row['code'] . "</td>";
     }
     echo "<td>";
-    if ($role == 'admin') {
+    if ($role == 'Admin') {
       echo "<button class='set-code-btn'>Set Code</button> | ";
       echo "<a href='view_attendance.php?eventid=" . $row['timetable_id'] . "'>View Attendance</a>";
     } else if ($role == 'student') {
