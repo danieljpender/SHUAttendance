@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *  FROM Department";
+$query = "SELECT * FROM Department";
 $result = odbc_exec($connection, $query);
 
 ?>
