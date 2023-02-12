@@ -27,7 +27,7 @@ $query = "SELECT *, m.ModuleName as ModuleName  FROM UserTimetable ut
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE ut.UserId= '$userid'
-          AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
+          /*AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())*/";
 $result = odbc_exec($connection, $query);
 ?>
 <html>
