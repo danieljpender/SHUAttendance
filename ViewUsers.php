@@ -24,7 +24,7 @@ $role = $_SESSION['rolename'];
 // Query the database for the events associated with the user
 $query = "SELECT *, r.RoleName as role_name FROM Users u
           JOIN [Role] r ON r.RoleId = u.RoleId
-          ORDER BY RoleName, Surname, Firstname ASC";
+          ORDER BY RoleName, Surname, FirstName ASC";
 $result = odbc_exec($connection, $query);
 
 ?>
@@ -53,7 +53,7 @@ $result = odbc_exec($connection, $query);
             <?php
  while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-              echo "<td>" . $row['Firstname'] . "</td>";
+              echo "<td>" . $row['FirstName'] . "</td>";
               echo "<td>" . $row['Surname'] . "</td>";
               echo "<td>" . $row['role_name'] . "</td>";
               echo "<td class='link'>Edit</td>";
