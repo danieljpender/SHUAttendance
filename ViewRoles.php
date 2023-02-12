@@ -1,13 +1,30 @@
 <?php
-// Start the session
 session_start();
-$user_role = "";
-if (isset($_SESSION['role'])) {
-  $user_role = $_SESSION['role'];
+
+$server = "eam-group27.database.windows.net";
+$database = "SHUAttendance";
+$serverUsername = "eam";
+$serverPassword = "%PA55w0rd";
+
+$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
+
+if (!$connection) {
+    die("Error connecting to database: " . odbc_errormsg());
+}
+
+// Check if the user is logged in
+if (!isset($_SESSION['userid'])) {
+  header("Location: login.php");
+  exit();
 }
 
 $userid = $_SESSION['userid'];
-$role = $_SESSION['role'];
+$role = $_SESSION['rolename'];
+
+// Query the database for the events associated with the user
+$query = "SELECT * FROM [Role]
+          ORDER BY RoleName ASC";
+$result = odbc_exec($connection, $query);
 
 ?>
 <html>
@@ -22,29 +39,23 @@ $role = $_SESSION['role'];
     </header>
     <div class="main-content">
     <h1>
-  Manage Departments
+  Manage Roles
 </h1>
   <div class="container">
         <table>
             <tr>
-                <th>Department Code</th>
-                <th>Department Name</th>
-                <th>Location</th>
+                <th>Role Name</th>
                 <th>Options</th>
             </tr>
-            <tr>
-                <td>3333</td>
-                <td>3Squared Admin</td>
-                <td>Administrator</td>
-                <td class="link"><i class="fa-regular fa-pen-to-square symbol"></i>Edit<i class="fa-regular fa-trash-can symbol"></i>Delete</td>
-
-            </tr>
-            <tr>
-                <td>3334</td>
-                <td>3Squared Admin 2</td>
-                <td>Administrator</td>
-                <td class="link"><i class="fa-regular fa-pen-to-square symbol"></i>Edit<i class="fa-regular fa-trash-can symbol"></i>Delete</td>
-            </tr>
+            <?php
+ while ($row = odbc_fetch_array($result)) {
+    echo "<tr>";
+              echo "<td>" . $row['RoleName'] . "</td>";
+              echo "<td class='link'>Edit</td>";
+    echo "</tr>";
+    
+  }
+  ?>
         </table>
         <br />
         <br />
