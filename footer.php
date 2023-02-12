@@ -1,4 +1,5 @@
-            <footer class="forge-footer p-2 pl-3 bg-light shadow">
+<div class="footer">
+<footer class="forge-footer p-2 pl-3 bg-light shadow">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
                         <img src="https://cdn.3sq.app/assets/products/general/images/RailSmart-by-3Squared.svg" alt="RailSmartLogo" class="my-1 mr-1 forge-footer-logo" />
@@ -15,3 +16,4 @@
                         </div>
                     </div>
             </footer>
+</div>
