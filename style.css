@@ -763,11 +763,17 @@ input[type=text], input[type=password], input[type=email], input[type=tel], inpu
 
 label {
     width: 180px;
-    margin-right: 1em;
+    margin-bottom: 0.5rem;
     font-size: 16px;
-    display: inline-block;
+    display: block;
     vertical-align: top;
 }
+
+input[type="submit"] {
+    display: block;
+    margin: 1em 0;
+    width: 100%;
+  }
 
 
 /* Footer */
@@ -867,11 +873,7 @@ footer {
     text-decoration: none;
     cursor: pointer;
   }
-      label, input[type="submit"] {
-        display: block;
-        margin: 1em 0;
-        width: 100%;
-      }
+      
       input[type="text"], input[type="password"] {
         padding: 0.5em;
         font-size: 1em;
