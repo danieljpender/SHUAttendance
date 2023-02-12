@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $roleid = $_SESSION['roleid'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, t.TimetableId as timetable_id FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName,  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -98,8 +98,8 @@ $result = odbc_exec($connection, $query);
   <?php
  while ($row = odbc_fetch_array($result)) {
     echo "<tr>";
-    echo "<td>" . $row['ta.ActivityTypeName'] . "</td>";
-    echo "<td>" . $row['m.ModuleName'] . "</td>";
+    echo "<td>" . $row['ActivityTypeName'] . "</td>";
+    echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
     echo "<td>" . $row['StaffMembers'] . "</td>";
     echo "<td>" . $row['StartTime'] . " - " . $row['EndTime'] . "</td>";
