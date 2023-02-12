@@ -54,19 +54,6 @@ $result = odbc_exec($connection, $query);
   }
 
   ?>
-            <tr>
-                <td>3333</td>
-                <td>3Squared Admin</td>
-                <td>Administrator</td>
-                <td class="link"><i class="fa-regular fa-pen-to-square symbol"></i>Edit<i class="fa-regular fa-trash-can symbol"></i>Delete</td>
-
-            </tr>
-            <tr>
-                <td>3334</td>
-                <td>3Squared Admin 2</td>
-                <td>Administrator</td>
-                <td class="link"><i class="fa-regular fa-pen-to-square symbol"></i>Edit<i class="fa-regular fa-trash-can symbol"></i>Delete</td>
-            </tr>
         </table>
         <br />
         <br />
