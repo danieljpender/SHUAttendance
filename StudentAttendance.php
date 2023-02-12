@@ -36,7 +36,7 @@ $role = $_SESSION['role'];
   <h1>
   Student Attendance Records
 </h1>
-<form action="" method="post" class="mb-2">
+<form action="StudentAttendance.php" method="post" class="mb-2">
       <label for="department">Department:</label>
       <select name="department" id="department" onchange="showModule()">
         <option value="">Select a Department</option>
