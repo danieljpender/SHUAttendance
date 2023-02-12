@@ -63,6 +63,7 @@ $role = $_SESSION['role'];
         ?>
         </select>
       </div>
+      <input type="submit" name="submit" style="display:none">
       <script>
   function showModule() {
     var department = document.getElementById("department").value;
