@@ -40,7 +40,7 @@ echo "First name: " . $_SESSION["firstname"] . "<br>";
 echo "Surname: " . $_SESSION["surname"] . "<br>";
 echo "User ID: " . $_SESSION["userid"] . "<br>";
 echo "Role: " . $_SESSION["rolename"] . "<br>";
-echo "TimetableId: " . $row['eventid'] . "<br>";
+echo "TimetableId: " . $row['TimetableId'] . "<br>";
 echo "TimetableId: " . $result['eventid'] . "<br>";
 
 ?>
