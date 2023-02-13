@@ -148,6 +148,9 @@ if (isset($_POST['submitCode'])) {
   $timetableid = $row['timetableid'];
   $updateQuery = "UPDATE Timetable SET [Code] = '$code' WHERE TimetableId = '$timetableid'";
   odbc_exec($connection, $updateQuery);
+  var_dump($code);
+  var_dump($timetableid);
+  var_dump($updateQuery);
   closeModal();
 }
 ?>
