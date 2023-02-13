@@ -40,8 +40,6 @@ echo "First name: " . $_SESSION["firstname"] . "<br>";
 echo "Surname: " . $_SESSION["surname"] . "<br>";
 echo "User ID: " . $_SESSION["userid"] . "<br>";
 echo "Role: " . $_SESSION["rolename"] . "<br>";
-echo "TimetableId: " . $row['TimetableId'] . "<br>";
-echo "TimetableId: " . $result['eventid'] . "<br>";
 
 ?>
 <html>
@@ -142,6 +140,7 @@ echo "TimetableId: " . $result['eventid'] . "<br>";
 
 
 <?php
+while ($row = odbc_fetch_array($result)) {
 if (isset($_POST['submitCode'])) {
   $code = $_POST['timetablecode'];
   $timetableid = $row['eventid'];
@@ -151,6 +150,7 @@ if (isset($_POST['submitCode'])) {
   var_dump($timetableid);
   var_dump($updateQuery);
   closeModal();
+}
 }
 ?>
 <!-- Modal -->
