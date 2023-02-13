@@ -132,7 +132,7 @@ echo '<div id="myModal" class="modal">';
 echo '<div class="modal-content">';
 echo ' <span class="close-btn" onclick="closeModal()">&times;</span>';
 echo ' <form action="" method="post">';
-echo '   <input  type="text" name="timetableId" value="">';
+echo '   <input  type="text" name="timetableId" value="">' . $row['timetableId'];
 echo '   <input type="text" name="timetablecode" placeholder="Enter code">';
 echo '  <input type="submit" name="submitCode" value="Submit">';
 echo ' </form>';
