@@ -95,6 +95,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   <div class="container">
 <table>
   <tr>
+    <th>TimetableId</th>
     <th>Type</th>
     <th>Module</th>
     <th>Location</th>
