@@ -132,7 +132,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 document.querySelectorAll('.set-code-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var timetableId = this.closest('tr').getAttribute('data-timetable-id');
-    document.querySelector('#eventid').value = timetableId;
+    document.querySelector('#timetable_id').value = timetableId;
     document.querySelector('.modal').style.display = "block";
   });
 });
@@ -147,7 +147,7 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
     <span class="close-btn">&times;</span>
     <form action="submit_code.php" method="post">
       <input type="text" name="code" placeholder="Enter code">
-      <input type="text" id="eventid" value="">
+      <input type="text" id="timetable_id" value="">
       <input type="submit" value="Submit">
     </form>
   </div>
