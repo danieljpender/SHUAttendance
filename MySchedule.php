@@ -153,7 +153,7 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <form action="MySchedule.php" method="post">
-  <input type="hidden" name="timetableid" value="">
+  <input type="text" name="timetableid" value="">
   <input type="text" name="code" value="">
   <input type="submit" name="submit" value="Submit">
 </form>
