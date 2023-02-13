@@ -146,7 +146,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     <form action="MySchedule.php" method="post">
       <label for="code">Enter Code:</label>
       <input type="text" id="code" name="code">
-      <input type="text" id="timetable_id" name="timetable_id" value="">
+      <input type="text" name="timetable_id" value="<?php echo $timetableid; ?>" readonly>
       <input type="submit" value="Submit">
     </form>
   </div>
