@@ -118,7 +118,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     }
     echo "<td>";
     if ($role == 'Admin') {
-      echo "<button class='set-code-btn'>Set Code</button>";
+      echo "<button onclick='openModal({$row['timetableid']})'>Set Code</button>";
       echo "<a href='view_attendance.php?eventid=" . $row['timetableid'] . "'>View Attendance</a>";
     } else if ($role == 'Student') {
       echo "<button class='set-code-btn'>Enter Code</button>";
@@ -140,16 +140,15 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
 
 </script> -->
 
-<script>
+<!-- <script>
   $(".set-code-btn").click(function() {
   var timetableId = $(this).parent().parent().data("timetableid");
   $("input[name='timetableid']").val(timetableId);
 });
 
-</script>
+</script> -->
   <!-- The modal -->
-<div id="modal" class="modal">
-  <!-- Modal content -->
+<!-- <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <form action="MySchedule.php" method="post">
@@ -158,9 +157,9 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
   <input type="submit" name="submit" value="Submit">
 </form>
   </div>
-</div>
+</div> -->
 
-<?php
+<!-- <?php
 if (isset($_POST['submit'])) {
   $timetableId = $_POST['timetableid'];
   $code = $_POST['code'];
@@ -173,9 +172,9 @@ if (isset($_POST['submit'])) {
   }
 }
 
-?>
+?> -->
 
-<script>
+<!-- <script>
 // Get the modal
 var modal = document.getElementById("modal");
 
@@ -203,13 +202,45 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 };
-</script>
+</script> -->
 
 </table>
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>Enter Code</h2>
+    <input type="text" id="code" required>
+    <button onclick="submitCode({timetableId})">Submit</button>
+  </div>
+</div>
 </div>
 </div>
 <?php include 'footer.php'; ?>
 </div>
+<script>
+  function openModal() {
+    document.getElementById("myModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+
+  function submitCode(timetableId) {
+    const code = document.getElementById("code").value;
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "update-code.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        closeModal();
+        location.reload();
+      }
+    };
+    xhr.send(`timetableId=${timetableId}&code=${code}`);
+  }
+</script>
 </body>
 </html>
 <?php
