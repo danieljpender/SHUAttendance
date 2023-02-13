@@ -142,7 +142,7 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
 
 <script>
   $(".set-code-btn").click(function() {
-  var timetableId = $(this).parent().parent().data("timetable-id");
+  var timetableId = $(this).parent().parent().data("timetableid");
   $("input[name='timetableid']").val(timetableId);
 });
 
@@ -162,7 +162,7 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
 
 <?php
 if (isset($_POST['submit'])) {
-  $timetableId = $_POST['timetableId'];
+  $timetableId = $_POST['timetableid'];
   $code = $_POST['code'];
 
   $updateQuery = "UPDATE Timetable SET Code='$code' WHERE TimetableId = '$timetableId'";
