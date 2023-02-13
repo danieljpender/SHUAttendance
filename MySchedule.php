@@ -24,7 +24,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableId, t.[code] as timetablecode  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableid, t.[code] as timetablecode  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -109,9 +109,9 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-  $timetableid = $row['timetableId'];
+  $timetableid = $row['timetableid'];
   echo "<tr>";
-  echo "<td>" . $row['timetableId'] . "</td>";
+  echo "<td>" . $row['timetableid'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -121,7 +121,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
       echo "<td>" . $row['timetablecode'] . "</td>";
     }
     if ($role == 'Admin') {
-      echo "<td><button onclick='openModal()'>Set Code</button></td>";    
+      echo "<td><button class='set-code-btn'>Set Code</button></td>";    
       echo "<td><a>View Attendance</a></td>";
     } else if ($role == 'Student') {
       echo "<td><button>Enter Code</button></td>";
@@ -166,7 +166,7 @@ if (isset($_POST['code']) && isset($_POST['timetableid'])) {
 var modal = document.getElementById("myModal");
 
 // Get the buttons that trigger the modal
-var btns = document.querySelectorAll(".set-code-btn");
+var btns = document.querySelectorAll("set-code-btn");
 
 // Loop through the buttons and add event listeners to them
 btns.forEach(function(btn) {
