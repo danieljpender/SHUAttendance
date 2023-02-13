@@ -165,7 +165,7 @@ if (isset($_POST['submit'])) {
   $timetableId = $_POST['timetableId'];
   $code = $_POST['code'];
 
-  $updateQuery = "UPDATE Timetable SET Code='$code' WHERE TimetableId=$timetableId";
+  $updateQuery = "UPDATE Timetable SET Code='$code' WHERE TimetableId = '$timetableId'";
   $updateResult = odbc_exec($connection, $updateQuery);
 
   if (!$updateResult) {
