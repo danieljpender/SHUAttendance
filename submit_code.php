@@ -22,7 +22,7 @@ echo "Code: " . $code . " TimetableId: " . $eventid;
 
 // Insert the data into the database
 $query = "UPDATE Timetable
-          SET Code = '$code'
+          SET [Code] = '$code'
           WHERE TimetableId = '$eventid'";
 odbc_exec($connection, $query);
 
