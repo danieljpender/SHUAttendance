@@ -156,7 +156,7 @@ if (isset($_POST['submitCode'])) {
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
     <form action="" method="post">
-      <input  type="text" name="timetableId" value="">
+      <input  type="text" name="timetableId" value="<?php echo $row['timetableId']; ?>">
       <input type="text" name="timetablecode" placeholder="Enter code">
       <input type="submit" name="submitCode" value="Submit">
     </form>
