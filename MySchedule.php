@@ -127,6 +127,17 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     }
     echo "</td>";
     echo "</tr>";
+
+echo '<div id="myModal" class="modal">';
+echo '<div class="modal-content">';
+echo ' <span class="close-btn" onclick="closeModal()">&times;</span>';
+echo ' <form action="" method="post">';
+echo '   <input  type="text" name="timetableId" value="'<?php echo $row['timetableId']; ?>'">';
+echo '   <input type="text" name="timetablecode" placeholder="Enter code">';
+echo '  <input type="submit" name="submitCode" value="Submit">';
+echo ' </form>';
+echo '</div>';
+echo '</div>';
   }
 
   ?>
@@ -151,18 +162,7 @@ if (isset($_POST['submitCode'])) {
   closeModal();
 }
 ?>
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <!-- Modal Content -->
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <form action="" method="post">
-      <input  type="text" name="timetableId" value="">
-      <input type="text" name="timetablecode" placeholder="Enter code">
-      <input type="submit" name="submitCode" value="Submit">
-    </form>
-  </div>
-</div>
+
 <script>
   function openModal() {
     document.getElementById("myModal").style.display = "block";
