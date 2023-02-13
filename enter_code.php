@@ -14,8 +14,8 @@ if (!$connection) {
 
 if (isset($_POST['eventid']) && isset($_POST['code']) && isset($_POST['usereventid'])) {
   
-    $usereventid = $_POST['usereventid'];
-    $eventid = $_POST['eventid'];
+    $usereventid = $_POST['id'];
+    $eventid = $_POST['timetable_id'];
   $code = $_POST['code'];
   $userid = $_SESSION['userid'];
 
