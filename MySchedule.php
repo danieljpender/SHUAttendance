@@ -24,7 +24,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId, t.[code] as timetablecode  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t.[code] as timetablecode  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -109,9 +109,9 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-  $timetableid = $row['timetableid'];
+  $timetableid = $row['timetable_id'];
   echo "<tr>";
-  echo "<td>" . $row['timetableid'] . "</td>";
+  echo "<td>" . $row['timetable_id'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -121,7 +121,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
       echo "<td>" . $row['timetablecode'] . "</td>";
     }
     if ($role == 'Admin') {
-      echo "<td><button class='set-code-btn'>Set Code</button></td>";    
+      echo "<td><button onclick='openModal()'>Set Code</button></td>";    
       echo "<td><a>View Attendance</a></td>";
     } else if ($role == 'Student') {
       echo "<td><button>Enter Code</button></td>";
@@ -146,15 +146,15 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     <form action="MySchedule.php" method="post">
       <label for="code">Enter Code:</label>
       <input type="text" id="code" name="code">
-      <input type="hidden" id="timetableid" name="timetableid" value="">
+      <input type="hidden" id="timetable_id" name="timetable_id" value="">
       <input type="submit" value="Submit">
     </form>
   </div>
 </div>
 <?php
-if (isset($_POST['code']) && isset($_POST['timetableid'])) {
+if (isset($_POST['code']) && isset($_POST['timetable_id'])) {
   $code = $_POST['code'];
-  $timetableid = $_POST['timetableid'];
+  $timetableid = $_POST['timetable_id'];
 
   // Update the code in the database using the timetableid
   $query = "UPDATE Timetable SET [code] = '$code' WHERE TimetableId = '$timetableid'";
@@ -165,6 +165,9 @@ var_dump($query);
 }
 ?>
 <script>
+  function openModal() {
+    document.getElementById("myModal").style.display = "block";
+  }
 // Get the modal
 var modal = document.getElementById("myModal");
 
