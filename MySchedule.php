@@ -106,7 +106,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-    echo "<tr>";
+  echo "<tr data-timetable-id='{$row['timetable_id']}'>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -129,12 +129,14 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   ?>
 
 <script>
-  document.querySelectorAll('.set-code-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      document.querySelector('#eventid').value = this.closest('tr').querySelector('td:first-child').textContent;
-      document.querySelector('.modal').style.display = "block";
-    });
+document.querySelectorAll('.set-code-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var timetableId = this.closest('tr').getAttribute('data-timetable-id');
+    document.querySelector('#eventid').value = timetableId;
+    document.querySelector('.modal').style.display = "block";
   });
+});
+
 </script>
 
 
