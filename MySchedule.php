@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableid  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -107,7 +107,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-  echo "<tr data-timetable-id='{$row['timetable_id']}'>";
+  echo "<tr data-timetable-id='{$row['timetableid']}'>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -119,7 +119,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     echo "<td>";
     if ($role == 'Admin') {
       echo "<button class='set-code-btn'>Set Code</button>";
-      echo "<a href='view_attendance.php?eventid=" . $row['timetable_id'] . "'>View Attendance</a>";
+      echo "<a href='view_attendance.php?eventid=" . $row['timetableid'] . "'>View Attendance</a>";
     } else if ($role == 'Student') {
       echo "<button class='set-code-btn'>Enter Code</button>";
     }
@@ -143,7 +143,7 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
 <script>
   $(".set-code-btn").click(function() {
   var timetableId = $(this).parent().parent().data("timetable-id");
-  $("input[name='timetableId']").val(timetableId);
+  $("input[name='timetableid']").val(timetableId);
 });
 
 </script>
@@ -153,7 +153,7 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
   <div class="modal-content">
     <span class="close-btn">&times;</span>
     <form action="MySchedule.php" method="post">
-  <input type="hidden" name="timetableId" value="">
+  <input type="hidden" name="timetableid" value="">
   <input type="text" name="code" value="">
   <input type="submit" name="submit" value="Submit">
 </form>
