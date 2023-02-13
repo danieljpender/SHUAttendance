@@ -190,8 +190,6 @@ window.onclick = function(event) {
   }
 };
 </script> -->
-
-</table>
 <!-- Modal -->
 <div id="myModal" class="modal">
   <div class="modal-content">
@@ -201,6 +199,8 @@ window.onclick = function(event) {
     <button onclick="submitCode({timetableId})">Submit</button>
   </div>
 </div>
+</table>
+
 </div>
 </div>
 <?php include 'footer.php'; ?>
