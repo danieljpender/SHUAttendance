@@ -15,14 +15,15 @@ if (!$connection) {
 
 // Get the data from the form
 $code = $_POST['code'];
-$eventid = $_POST['timetable_id'];
+$eventid = $_POST['eventid'];
 
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Code: " . $code . " TimetableId: " . $eventid;
 
 // Insert the data into the database
-$query = "UPDATE Timetable (Code)
-          VALUES ('$code'";
+$query = "UPDATE Timetable
+          SET Code = '$code'
+          WHERE TimetableId = '$eventid'";
 odbc_exec($connection, $query);
 
 // Redirect the user back to the main page
