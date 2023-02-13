@@ -33,6 +33,12 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableId, t.
 echo "Query: " . $query . "<br>";
 $result = odbc_exec($connection, $query);
 
+while ($row = odbc_fetch_array($result)) {
+  if (is_array($row) && isset($row['timetableId'])) {
+    // Code that accesses $row['timetableId']
+  }
+}
+
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Username: " . $_SESSION["username"] . "<br>";
 echo "First name: " . $_SESSION["firstname"] . "<br>";
