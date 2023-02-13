@@ -24,7 +24,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as eventid, t.[code] as timetablecode  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableId, t.[code] as timetablecode  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -109,8 +109,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-  echo "<tr>";
-    $timetableid = $row['eventid'];
+  echo "<tr data-timetable-id='{$row['timetableId']}'>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -142,7 +141,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 <?php
 if (isset($_POST['submitCode'])) {
   $code = $_POST['timetablecode'];
-  $timetableid = $row['eventid'];
+  $timetableid = $row['timetableId'];
   $updateQuery = "UPDATE Timetable SET [Code] = '$code' WHERE TimetableId = '$timetableid'";
   odbc_exec($connection, $updateQuery);
   var_dump($code);
@@ -157,6 +156,7 @@ if (isset($_POST['submitCode'])) {
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
     <form action="" method="post">
+      <input  type="text" name="timetableId" value="">
       <input type="text" name="timetablecode" placeholder="Enter code">
       <input type="submit" name="submitCode" value="Submit">
     </form>
