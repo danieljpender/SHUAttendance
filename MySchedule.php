@@ -32,7 +32,10 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as eventid, t.[cod
           AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
 echo "Query: " . $query . "<br>";
 $result = odbc_exec($connection, $query);
-var_dump($result);
+
+while ($row = odbc_fetch_array($result)) {
+  $timetableid = $row['eventid'];
+}
 
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Username: " . $_SESSION["username"] . "<br>";
@@ -140,7 +143,6 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 
 
 <?php
-while ($row = odbc_fetch_array($result)) {
 if (isset($_POST['submitCode'])) {
   $code = $_POST['timetablecode'];
   $timetableid = $row['eventid'];
@@ -150,7 +152,6 @@ if (isset($_POST['submitCode'])) {
   var_dump($timetableid);
   var_dump($updateQuery);
   closeModal();
-}
 }
 ?>
 <!-- Modal -->
