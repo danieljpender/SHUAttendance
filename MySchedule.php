@@ -22,18 +22,14 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableid  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableId  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE ut.UserId= '$userid'
           AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
 $result = odbc_exec($connection, $query);
-if (!$result) {
-  echo "Query failed: " . odbc_errormsg();
-} else {
-  echo "Query executed successfully";
-}
+var_dump($result)
 
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Username: " . $_SESSION["username"] . "<br>";
@@ -121,7 +117,6 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     if ($role == 'Admin') {
       echo "<td>" . $row['code'] . "</td>";
     }
-    echo "<td>";
     if ($role == 'Admin') {
       echo "<td><button onclick='openModal()'>Set Code</button></td>";    
       echo "<td><a>View Attendance</a></td>";
@@ -145,7 +140,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 <?php
 if (isset($_POST['submitCode'])) {
   $code = $_POST['code'];
-  $timetableid = $row['timetableid'];
+  $timetableid = $row['timetableId'];
   $updateQuery = "UPDATE Timetable SET [Code] = '$code' WHERE TimetableId = '$timetableid'";
   odbc_exec($connection, $updateQuery);
   var_dump($code);
