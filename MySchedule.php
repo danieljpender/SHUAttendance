@@ -135,16 +135,17 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 </div>
 <?php include 'footer.php'; ?>
 </div>
-<script>
-  function openModal() {
-    document.getElementById("myModal").style.display = "block";
-  }
 
-  function closeModal() {
-    document.getElementById("myModal").style.display = "none";
-  }
-</script>
 
+<?php
+if (isset($_POST['submitCode'])) {
+  $code = $_POST['code'];
+  $timetableid = $row['timetableid'];
+  $updateQuery = "UPDATE Timetable SET [Code] = '$code' WHERE TimetableId = '$timetableid'";
+  odbc_exec($connection, $updateQuery);
+  closeModal();
+}
+?>
 <!-- Modal -->
 <div id="myModal" class="modal">
   <!-- Modal Content -->
@@ -156,15 +157,15 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     </form>
   </div>
 </div>
-<?php
-if (isset($_POST['submitCode'])) {
-  $code = $_POST['code'];
-  $timetableid = $row['timetableid'];
-  $updateQuery = "UPDATE Timetable SET Code = '$code' WHERE TimetableId = '$timetableid'";
-  odbc_exec($connection, $updateQuery);
-  closeModal();
-}
-?>
+<script>
+  function openModal() {
+    document.getElementById("myModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+</script>
 </body>
 </html>
 <?php
