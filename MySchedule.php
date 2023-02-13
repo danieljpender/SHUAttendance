@@ -128,7 +128,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 
   ?>
 
-<script>
+<!-- <script>
 document.querySelectorAll('.set-code-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var timetableId = this.closest('tr').getAttribute('data-timetable-id');
@@ -137,21 +137,42 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
   });
 });
 
+</script> -->
+
+<script>
+  $(".set-code-btn").click(function() {
+  var timetableId = $(this).parent().parent().data("timetable-id");
+  $("input[name='timetableId']").val(timetableId);
+});
+
 </script>
-
-
   <!-- The modal -->
 <div id="modal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close-btn">&times;</span>
-    <form action="submit_code.php" method="post">
-      <input type="text" name="code" placeholder="Enter code">
-      <input type="text" id="timetable_id" value="">
-      <input type="submit" value="Submit">
-    </form>
+    <form action="MySchedule.php" method="post">
+  <input type="hidden" name="timetableId" value="">
+  <input type="text" name="code" value="">
+  <input type="submit" name="submit" value="Submit">
+</form>
   </div>
 </div>
+
+<?php
+if (isset($_POST['submit'])) {
+  $timetableId = $_POST['timetableId'];
+  $code = $_POST['code'];
+
+  $updateQuery = "UPDATE Timetable SET Code='$code' WHERE TimetableId=$timetableId";
+  $updateResult = odbc_exec($connection, $updateQuery);
+
+  if (!$updateResult) {
+    die("Error updating code: " . odbc_errormsg());
+  }
+}
+
+?>
 
 <script>
 // Get the modal
