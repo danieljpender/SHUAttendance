@@ -29,7 +29,7 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableId  FR
           WHERE ut.UserId= '$userid'
           AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
 $result = odbc_exec($connection, $query);
-var_dump($result)
+var_dump($result);
 
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Username: " . $_SESSION["username"] . "<br>";
