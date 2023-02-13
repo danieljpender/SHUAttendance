@@ -109,10 +109,8 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-    if (is_array($row) && isset($row['timetableId'])) {
-      // Code that accesses $row['timetableId']
-  echo "<tr data-timetable-id='{$row['timetableId']}'>";
-}
+  echo "<tr>";
+  echo "<td>" . $row['timetableId'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
