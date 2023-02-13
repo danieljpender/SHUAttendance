@@ -43,6 +43,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
+    <script src="jquery-3.6.3.min.js"></script>
   </head>
   <style>
   .modal {
