@@ -24,7 +24,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableId  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as eventid, t.[code] as timetablecode  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -117,7 +117,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     echo "<td>" . $row['StaffMembers'] . "</td>";
     echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
     if ($role == 'Admin') {
-      echo "<td>" . $row['code'] . "</td>";
+      echo "<td>" . $row['timetablecode'] . "</td>";
     }
     if ($role == 'Admin') {
       echo "<td><button onclick='openModal()'>Set Code</button></td>";    
@@ -141,8 +141,8 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 
 <?php
 if (isset($_POST['submitCode'])) {
-  $code = $_POST['code'];
-  $timetableid = $row['timetableId'];
+  $code = $_POST['timetablecode'];
+  $timetableid = $row['eventid'];
   $updateQuery = "UPDATE Timetable SET [Code] = '$code' WHERE TimetableId = '$timetableid'";
   odbc_exec($connection, $updateQuery);
   var_dump($code);
@@ -157,7 +157,7 @@ if (isset($_POST['submitCode'])) {
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
     <form action="" method="post">
-      <input type="text" name="code" placeholder="Enter code">
+      <input type="text" name="timetablecode" placeholder="Enter code">
       <input type="submit" name="submitCode" value="Submit">
     </form>
   </div>
