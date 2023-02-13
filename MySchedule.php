@@ -159,6 +159,9 @@ if (isset($_POST['code']) && isset($_POST['timetableid'])) {
   // Update the code in the database using the timetableid
   $query = "UPDATE Timetable SET [code] = '$code' WHERE TimetableId = '$timetableid'";
   odbc_exec($connection, $query);
+ var_dump($code);
+var_dump($timetableid);
+var_dump($query);
 }
 ?>
 <script>
