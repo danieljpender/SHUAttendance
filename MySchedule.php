@@ -29,6 +29,11 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetableid  FR
           WHERE ut.UserId= '$userid'
           AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
 $result = odbc_exec($connection, $query);
+if (!$result) {
+  echo "Query failed: " . odbc_errormsg();
+} else {
+  echo "Query executed successfully";
+}
 
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Username: " . $_SESSION["username"] . "<br>";
@@ -119,9 +124,9 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     echo "<td>";
     if ($role == 'Admin') {
       echo "<td><button onclick='openModal()'>Set Code</button></td>";    
-      echo "<a>View Attendance</a>";
+      echo "<td><a>View Attendance</a></td>";
     } else if ($role == 'Student') {
-      echo "<button>Enter Code</button>";
+      echo "<td><button>Enter Code</button></td>";
     }
     echo "</td>";
     echo "</tr>";
