@@ -128,8 +128,70 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   }
 
   ?>
+
+<!-- <script>
+document.querySelectorAll('.set-code-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var timetableId = this.closest('tr').getAttribute('data-timetable-id');
+    document.querySelector('#timetable_id').value = timetableId;
+    document.querySelector('.modal').style.display = "block";
+  });
+});
+
+</script> -->
+
+<!-- <script>
+  $(".set-code-btn").click(function() {
+  var timetableId = $(this).parent().parent().data("timetableid");
+  $("input[name='timetableid']").val(timetableId);
+});
+
+</script> -->
+  <!-- The modal -->
+<!-- <div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <form action="MySchedule.php" method="post">
+  <input type="text" name="timetableid" value="">
+  <input type="text" name="code" value="">
+  <input type="submit" name="submit" value="Submit">
+</form>
+  </div>
+</div> -->
+
+<!--  -->
+
+<!-- <script>
+// Get the modal
+var modal = document.getElementById("modal");
+
+// Get the button that opens the modal
+var btns = document.getElementsByClassName("set-code-btn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close-btn")[0];
+
+// Loop through all buttons and bind the click event
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    modal.style.display = "block";
+  });
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+</script> -->
 <!-- Modal -->
-<div id="myModal" class="modal" style="display:block">
+<div id="myModal" class="modal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
     <h2>Enter Code</h2>
