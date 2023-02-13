@@ -17,11 +17,12 @@ if (!$connection) {
 $code = $_POST['code'];
 $eventid = $_POST['event_id'];
 
-echo "Code: " . $code . " EventId: " . $eventid;
+echo "Session data: " . var_dump($_SESSION) . "<br>";
+echo "Code: " . $code . " TimetableId: " . $eventid;
 
 // Insert the data into the database
-$query = "INSERT INTO ScheduledEventCode (ScheduledEventCodeId, Code, EventId, DateCreated)
-          VALUES (NEWID(), '$code', '$eventid', GETDATE())";
+$query = "UPDATE Timetable (Code)
+          VALUES ('$code'";
 odbc_exec($connection, $query);
 
 // Redirect the user back to the main page

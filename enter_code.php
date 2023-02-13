@@ -20,12 +20,14 @@ if (isset($_POST['eventid']) && isset($_POST['code']) && isset($_POST['userevent
   $userid = $_SESSION['userid'];
 
   // Check if the code is correct
-  $query = "SELECT * FROM ScheduledEventCode WHERE EventId='$eventid' AND Code='$code'";
+  $query = "SELECT *, u.UserTimetableId as user_timetableid FROM Timetable t
+            JOIN UserTimetable ut ON ut.ModuleId = t.ModuleId
+            WHERE TimetableId='$eventid' AND Code='$code'";
   $result = odbc_exec($connection, $query);
   if (odbc_num_rows($result) > 0) {
     // Insert the attendance record
-    $query = "INSERT INTO UserEventAttendance (UserEventAttendanceId, UserEventId, DateAttended, Attended) 
-                VALUES (NEWID(), '$usereventid', '$userid', '$eventid')";
+    $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserTimetableId, TimetableId, DateCreated) 
+                VALUES (NEWID(), '$usereventid', user_timetableid, '$eventid', GETUTCDATE())";
     odbc_exec($connection, $query);
     header("Location: myschedule.php");
     exit();

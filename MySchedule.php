@@ -22,7 +22,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -117,7 +117,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     }
     echo "<td>";
     if ($role == 'Admin') {
-      echo "<button class='set-code-btn'>Set Code</button> | ";
+      echo "<button class='set-code-btn'>Set Code</button>";
       echo "<a href='view_attendance.php?eventid=" . $row['timetable_id'] . "'>View Attendance</a>";
     } else if ($role == 'Student') {
       echo "<button class='set-code-btn'>Enter Code</button>";
