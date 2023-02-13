@@ -15,7 +15,7 @@ if (!$connection) {
 
 // Get the data from the form
 $code = $_POST['code'];
-$eventid = $_POST['event_id'];
+$eventid = $_POST['timetable_id'];
 
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Code: " . $code . " TimetableId: " . $eventid;
