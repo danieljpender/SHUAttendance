@@ -112,7 +112,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
  while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   echo "<tr>";
-  echo "<td>" . $row['timetable_id'] . "</td>";
+  echo "<tr id='row_$timetableid' class='table-row'>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -152,6 +152,20 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     </form>
   </div>
 </div>
+<script>
+// get all the table rows
+const tableRows = document.querySelectorAll('.table-row');
+
+// add an event listener to each row
+tableRows.forEach(row => {
+  row.addEventListener('click', event => {
+    // get the timetable_id of the clicked row
+    const timetableId = event.target.parentNode.id.split('_')[1];
+    // update the value of the input field with the timetable_id
+    document.querySelector('#timetable_id').value = timetableId;
+  });
+});
+</script>
 <?php
 if (isset($_POST['code']) && isset($_POST['timetable_id'])) {
   $code = $_POST['code'];
