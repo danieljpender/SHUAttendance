@@ -107,7 +107,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
-  echo "<tr data-timetable-id='{$row['timetableid']}'>";
+  echo "<tr>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
@@ -118,25 +118,17 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     }
     echo "<td>";
     if ($role == 'Admin') {
-      echo "<button onclick='openModal({$row['timetableid']})'>Set Code</button>";
-      echo "<a href='view_attendance.php?eventid=" . $row['timetableid'] . "'>View Attendance</a>";
+      echo "<td><button onclick='openModal()'>Set Code</button></td>";    
+      echo "<a>View Attendance</a>";
     } else if ($role == 'Student') {
-      echo "<button class='set-code-btn'>Enter Code</button>";
+      echo "<button>Enter Code</button>";
     }
     echo "</td>";
     echo "</tr>";
   }
 
   ?>
-<!-- Modal -->
-<div id="myModal" class="modal" style="display:block">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h2>Enter Code</h2>
-    <input type="text" id="code" required>
-    <button onclick="submitCode({timetableId})">Submit</button>
-  </div>
-</div>
+
 </table>
 
 </div>
@@ -151,21 +143,28 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   function closeModal() {
     document.getElementById("myModal").style.display = "none";
   }
-
-  function submitCode(timetableId) {
-    const code = document.getElementById("code").value;
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "update-code.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-        closeModal();
-        location.reload();
-      }
-    };
-    xhr.send(`timetableId=${timetableId}&code=${code}`);
-  }
 </script>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal Content -->
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <form action="" method="post">
+      <input type="text" name="code" placeholder="Enter code">
+      <input type="submit" name="submitCode" value="Submit">
+    </form>
+  </div>
+</div>
+<?php
+if (isset($_POST['submitCode'])) {
+  $code = $_POST['code'];
+  $timetableid = $row['timetableid'];
+  $updateQuery = "UPDATE Timetable SET Code = '$code' WHERE TimetableId = '$timetableid'";
+  odbc_exec($connection, $updateQuery);
+  closeModal();
+}
+?>
 </body>
 </html>
 <?php
