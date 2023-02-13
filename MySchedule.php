@@ -159,20 +159,7 @@ document.querySelectorAll('.set-code-btn').forEach(function(btn) {
   </div>
 </div> -->
 
-<!-- <?php
-if (isset($_POST['submit'])) {
-  $timetableId = $_POST['timetableid'];
-  $code = $_POST['code'];
-
-  $updateQuery = "UPDATE Timetable SET Code='$code' WHERE TimetableId = '$timetableId'";
-  $updateResult = odbc_exec($connection, $updateQuery);
-
-  if (!$updateResult) {
-    die("Error updating code: " . odbc_errormsg());
-  }
-}
-
-?> -->
+<!--  -->
 
 <!-- <script>
 // Get the modal
