@@ -30,6 +30,7 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as eventid, t.[cod
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE ut.UserId= '$userid'
           AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
+echo "Query: " . $query . "<br>";
 $result = odbc_exec($connection, $query);
 var_dump($result);
 
@@ -46,7 +47,6 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
-    <script src="jquery-3.6.3.min.js"></script>
   </head>
   <style>
   .modal {
