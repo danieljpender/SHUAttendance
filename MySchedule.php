@@ -33,10 +33,6 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as eventid, t.[cod
 echo "Query: " . $query . "<br>";
 $result = odbc_exec($connection, $query);
 
-while ($row = odbc_fetch_array($result)) {
-  $timetableid = $row['eventid'];
-}
-
 echo "Session data: " . var_dump($_SESSION) . "<br>";
 echo "Username: " . $_SESSION["username"] . "<br>";
 echo "First name: " . $_SESSION["firstname"] . "<br>";
@@ -114,6 +110,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   <?php
  while ($row = odbc_fetch_array($result)) {
   echo "<tr>";
+    $timetableid = $row['eventid'];
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
