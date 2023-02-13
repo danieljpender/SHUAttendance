@@ -139,38 +139,62 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
 <?php include 'footer.php'; ?>
 </div>
 
-
-<?php
-if (isset($_POST['submitCode'])) {
-  $code = $_POST['timetablecode'];
-  $timetableid = $row['timetableId'];
-  $updateQuery = "UPDATE Timetable SET [Code] = '$code' WHERE TimetableId = '$timetableid'";
-  odbc_exec($connection, $updateQuery);
-  var_dump($code);
-  var_dump($timetableid);
-  var_dump($updateQuery);
-  closeModal();
-}
-?>
-<!-- Modal -->
+<!-- Modal HTML -->
 <div id="myModal" class="modal">
-  <!-- Modal Content -->
   <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <form action="" method="post">
-      <input type="text" name="timetablecode" placeholder="Enter code">
-      <input type="submit" name="submitCode" value="Submit">
+    <span class="close-btn">&times;</span>
+    <form action="MySchedule.php" method="post">
+      <label for="code">Enter Code:</label>
+      <input type="text" id="code" name="code">
+      <input type="hidden" id="timetableid" name="timetableid" value="">
+      <input type="submit" value="Submit">
     </form>
   </div>
 </div>
-<script>
-  function openModal() {
-    document.getElementById("myModal").style.display = "block";
-  }
+<?php
+if (isset($_POST['code']) && isset($_POST['timetableid'])) {
+  $code = $_POST['code'];
+  $timetableid = $_POST['timetableid'];
 
-  function closeModal() {
-    document.getElementById("myModal").style.display = "none";
+  // Update the code in the database using the timetableid
+  $query = "UPDATE Timetable SET [code] = '$code' WHERE TimetableId = '$timetableid'";
+  odbc_exec($connection, $query);
+}
+?>
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the buttons that trigger the modal
+var btns = document.querySelectorAll(".set-code-btn");
+
+// Loop through the buttons and add event listeners to them
+btns.forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    modal.style.display = "block";
+
+    // Get the timetableid for the row
+    var timetableid = this.dataset.timetableid;
+
+    // Set the value of the hidden input in the modal form
+    document.getElementById("timetableid").value = timetableid;
+  });
+});
+
+// Get the close button in the modal
+var closeBtn = document.querySelector(".close-btn");
+
+// Add an event listener to the close button
+closeBtn.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+
+// Add an event listener to the window to close the modal if the user clicks outside of it
+window.addEventListener("click", function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
   }
+});
 </script>
 </body>
 </html>
