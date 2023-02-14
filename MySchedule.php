@@ -1,7 +1,7 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 $server = "eam-group27.database.windows.net";
 $database = "SHUAttendance";
@@ -30,15 +30,15 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE ut.UserId= '$userid'
           AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
-echo "Query: " . $query . "<br>";
+// echo "Query: " . $query . "<br>";
 $result = odbc_exec($connection, $query);
 
-echo "Session data: " . var_dump($_SESSION) . "<br>";
-echo "Username: " . $_SESSION["username"] . "<br>";
-echo "First name: " . $_SESSION["firstname"] . "<br>";
-echo "Surname: " . $_SESSION["surname"] . "<br>";
-echo "User ID: " . $_SESSION["userid"] . "<br>";
-echo "Role: " . $_SESSION["rolename"] . "<br>";
+// echo "Session data: " . var_dump($_SESSION) . "<br>";
+// echo "Username: " . $_SESSION["username"] . "<br>";
+// echo "First name: " . $_SESSION["firstname"] . "<br>";
+// echo "Surname: " . $_SESSION["surname"] . "<br>";
+// echo "User ID: " . $_SESSION["userid"] . "<br>";
+// echo "Role: " . $_SESSION["rolename"] . "<br>";
 
 ?>
 <html>
@@ -165,9 +165,9 @@ if (isset($_POST['code']) && isset($_POST['timetable_id'])) {
   // Update the code in the database using the timetableid
   $query = "UPDATE Timetable SET [code] = '$code' WHERE TimetableId = '$timetableid'";
   odbc_exec($connection, $query);
- var_dump($code);
-var_dump($timetableid);
-var_dump($query);
+//  var_dump($code);
+// var_dump($timetableid);
+// var_dump($query);
 }
 ?>
 
