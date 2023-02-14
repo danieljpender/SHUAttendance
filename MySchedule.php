@@ -71,7 +71,7 @@ $result = odbc_exec($connection, $query);
  while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   echo "<tr id='row_$timetableid'>";
-  echo "<input type='hidden' name='timetable_id' value='$timetableid'>";
+  echo "<input type='text' name='timetable_id' value='$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
