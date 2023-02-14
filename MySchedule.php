@@ -67,34 +67,33 @@ $result = odbc_exec($connection, $query);
     }
     ?>
   </tr>
-  <?php
- while ($row = odbc_fetch_array($result)) {
+<?php
+while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   echo "<tr id='row_$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
-    echo "<td>" . $row['ActivityTypeName'] . "</td>";
-    echo "<td>" . $row['ModuleName'] . "</td>";
-    echo "<td>" . $row['Location'] . "</td>";
-    echo "<td>" . $row['StaffMembers'] . "</td>";
-    echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
-    if ($role == 'Admin') {
-      echo "<td>" . $row['timetablecode'] . "</td>";
-    }
-    if ($role == 'Admin') {
-      echo "<td><button onclick='generateCode($timetableid)'>Set Code</button></td>"; 
-      echo "<td><a>View Attendance</a></td>";
-    } else if ($role == 'Student') {
-      echo "<td><button>Enter Code</button></td>";
-    }
-    echo "</td>";
-    echo "</tr>";
-     // Move the form inside the while loop
+  echo "<td>" . $row['ActivityTypeName'] . "</td>";
+  echo "<td>" . $row['ModuleName'] . "</td>";
+  echo "<td>" . $row['Location'] . "</td>";
+  echo "<td>" . $row['StaffMembers'] . "</td>";
+  echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
+  if ($role == 'Admin') {
+    echo "<td>" . $row['timetablecode'] . "</td>";
+  }
+  if ($role == 'Admin') {
+    echo "<td><button onclick='generateCode($timetableid)'>Set Code</button></td>"; 
+    echo "<td><a>View Attendance</a></td>";
+  } else if ($role == 'Student') {
+    echo "<td><button>Enter Code</button></td>";
+  }
+  echo "</tr>";
+
+  // Move the form inside the while loop
   echo "<form id='codeForm_$timetableid' method='POST' action='set-code.php'>";
   echo "<input type='hidden' name='timetable_id' value='$timetableid'>";
   echo "</form>";
-  }
-
-  ?>
+}
+?>
 
 </table>
 </div>
