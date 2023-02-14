@@ -112,6 +112,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
  while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   echo "<tr id='row-$timetableid'>";
+  echo "<td>" . $row['timetable_id'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
     echo "<td>" . $row['Location'] . "</td>";
