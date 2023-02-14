@@ -62,8 +62,8 @@ $role = $_SESSION['role'];
   Student Attendance Records
 </h1>
 <form action="StudentAttendance.php" method="post" class="mb-2">
-  <label for="department">Department:</label>
-  <select class="dropdown-menu dropdown-menu.show" name="department" id="department" onchange="showModule()">
+  <label for="department">Department</label>
+  <select class="dropdown-menu-box" name="department" id="department" onchange="showModule()">
     <option value="">Select a Department</option>
     <?php
       $query = "SELECT * FROM Department";
@@ -74,8 +74,8 @@ $role = $_SESSION['role'];
     ?>
   </select>
   <div id="module-container" style="display:none">
-    <label for="module">Module:</label>
-    <select name="module" id="module" onchange="showAttendanceTable()">
+    <label for="module">Module</label>
+    <select class="dropdown-menu-box" name="module" id="module" onchange="showAttendanceTable()">
       <option value="">Select a Module</option>
       <?php
         if (isset($_POST['department'])) {

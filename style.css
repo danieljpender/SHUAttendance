@@ -892,3 +892,22 @@ footer {
 
       }
       
+      .dropdown-box {
+        position: absolute;
+        z-index: 1000;
+        float: left;
+        min-width: 10rem;
+        padding: 0.5rem 0;
+        margin: 0.125rem 0 0;
+        font-size: 0.875rem;
+        color: #141414;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d6d6d6;
+        border-radius: 0.25rem;
+    }
+    
+    
+      }
