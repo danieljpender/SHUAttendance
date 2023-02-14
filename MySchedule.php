@@ -102,11 +102,15 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
     <th>Staff Member</th>
     <th>Time</th>
     <?php
-    if ($role == 'Admin') {
+    if ($role == 'Admin' or $role == 'Staff') {
       echo "<th>Code</th>";
+      echo "<th>Set Code</th>";
+      echo "<th>View Attendance</th>";
+    }
+    else if $role == 'Student') {
+      echo "<th>Enter Code</th>";
     }
     ?>
-    <th>Action</th>
   </tr>
   <?php
  while ($row = odbc_fetch_array($result)) {
