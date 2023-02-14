@@ -171,7 +171,7 @@ var_dump($query);
 // get all the table rows
 
 
-const rows = document.querySelectorAll('tr[id^="row-"]');
+const rows = document.querySelectorAll('tr[id^="row_"]');
 rows.forEach(row => {
   row.addEventListener('click', e => {
     const timetableid = row.id.split('_')[1];
