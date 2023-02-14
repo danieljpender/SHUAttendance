@@ -111,7 +111,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
   <?php
  while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
-  echo "<tr id='row-$timetableid'>";
+  echo "<tr id='row_$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
@@ -174,7 +174,7 @@ var_dump($query);
 const rows = document.querySelectorAll('tr[id^="row-"]');
 rows.forEach(row => {
   row.addEventListener('click', e => {
-    const timetableid = row.id.split('-')[1];
+    const timetableid = row.id.split('_')[1];
     document.querySelector('input[name="timetable_id"]').value = timetableid;
   });
 });
