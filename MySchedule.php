@@ -100,19 +100,18 @@ $result = odbc_exec($connection, $query);
 </div>
 <?php include 'footer.php'; ?>
 </div>
-// add this JavaScript function at the bottom of the file
 <script>
-function generateCode(timetableid) {
+function generateCode(timetable_id) {
   var code = Math.floor(Math.random() * 9000) + 1000;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("row_" + timetableid).innerHTML = this.responseText;
+      document.getElementById("row_" + timetable_id).innerHTML = this.responseText;
     }
   };
   xhttp.open("POST", "set-code.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("timetable_id=" + timetableid + "&code=" + code);
+  xhttp.send("timetable_id=" + timetable_id + "&code=" + code);
 }
 </script>
 </body>
