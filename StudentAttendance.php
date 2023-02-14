@@ -63,7 +63,7 @@ $role = $_SESSION['role'];
 </h1>
 <form action="StudentAttendance.php" method="post" class="mb-2">
   <label for="department">Department:</label>
-  <select name="department" id="department" onchange="showModule()">
+  <select class="dropdown-menu dropdown-menu.show" name="department" id="department" onchange="showModule()">
     <option value="">Select a Department</option>
     <?php
       $query = "SELECT * FROM Department";
