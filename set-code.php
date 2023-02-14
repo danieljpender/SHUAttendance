@@ -12,8 +12,8 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$timetableid = $_GET['timetableid'];
-$code = $_GET['code'];
+$timetableid = $_POST['timetable_id'];
+$code = $_POST['code'];
 
 $query = "UPDATE Timetable SET [code] = $code WHERE TimetableId = $timetableid";
 $result = odbc_exec($connection, $query);

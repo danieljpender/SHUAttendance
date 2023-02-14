@@ -71,7 +71,6 @@ $result = odbc_exec($connection, $query);
  while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   echo "<tr id='row_$timetableid'>";
-  echo "<input type='text' name='timetable_id' value='$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
@@ -94,6 +93,9 @@ $result = odbc_exec($connection, $query);
   ?>
 
 </table>
+<form id='codeForm_$timetableid' method='POST' action='set-code.php'>
+  <input type='hidden' name='timetable_id' value='$timetableid'>
+</form>
 </div>
 </div>
 <?php include 'footer.php'; ?>
@@ -108,8 +110,9 @@ function generateCode(timetableid) {
       document.getElementById("row_" + timetableid).innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "set-code.php?timetableid=" + timetableid + "&code=" + code, true);
-  xhttp.send();
+  xhttp.open("POST", "set-code.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("timetable_id=" + timetableid + "&code=" + code);
 }
 </script>
 </body>
