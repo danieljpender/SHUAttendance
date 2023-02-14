@@ -19,5 +19,4 @@ $query = "UPDATE Timetable SET [code] = $code WHERE TimetableId = $timetableid";
 $result = odbc_exec($connection, $query);
 
 echo "<td>$code</td>";
-echo "<td><a>View Attendance</a></td>";
 ?>
