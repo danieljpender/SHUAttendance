@@ -107,7 +107,7 @@ echo "Role: " . $_SESSION["rolename"] . "<br>";
       echo "<th>Set Code</th>";
       echo "<th>View Attendance</th>";
     }
-    else if $role == 'Student') {
+    else if ($role == 'Student') {
       echo "<th>Enter Code</th>";
     }
     ?>
