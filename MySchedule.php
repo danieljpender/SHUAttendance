@@ -88,14 +88,15 @@ $result = odbc_exec($connection, $query);
     }
     echo "</td>";
     echo "</tr>";
+     // Move the form inside the while loop
+  echo "<form id='codeForm_$timetableid' method='POST' action='set-code.php'>";
+  echo "<input type='hidden' name='timetable_id' value='$timetableid'>";
+  echo "</form>";
   }
 
   ?>
 
 </table>
-<form id='codeForm_$timetableid' method='POST' action='set-code.php'>
-  <input type='hidden' name='timetable_id' value='$timetableid'>
-</form>
 </div>
 </div>
 <?php include 'footer.php'; ?>
