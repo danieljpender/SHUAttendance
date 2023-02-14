@@ -46,6 +46,19 @@ $result = odbc_exec($connection, $query);
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
+    <script>
+function setCode(timetableId) {
+  var code = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit code
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("row_" + timetableId).innerHTML = this.responseText; // Update the row with the new code
+    }
+  };
+  xhr.open("GET", "set-code.php?timetable_id=" + timetableId + "&code=" + code, true); // Call set-code.php with timetable_id and code as parameters
+  xhr.send();
+}
+</script>
   </head>
   <style>
   .modal {
@@ -126,7 +139,7 @@ $result = odbc_exec($connection, $query);
       echo "<td>" . $row['timetablecode'] . "</td>";
     }
     if ($role == 'Admin') {
-      echo "<td><button onclick='openModal()'>Set Code</button></td>";    
+      echo "<td><button onclick='setCode(" . $row['timetable_id'] . ")'>Set Code</button></td>";   
       echo "<td><a>View Attendance</a></td>";
     } else if ($role == 'Student') {
       echo "<td><button>Enter Code</button></td>";
