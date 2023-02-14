@@ -12,11 +12,12 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$timetable_id = $_GET["timetable_id"];
-$code = $_GET["code"];
+$timetableid = $_GET['timetableid'];
+$code = $_GET['code'];
 
-$query = "UPDATE Timetable SET [code] = '$code' WHERE TimetableId = '$timetable_id'";
+$query = "UPDATE Timetable SET [code] = $code WHERE TimetableId = $timetableid";
 $result = odbc_exec($connection, $query);
 
-echo $code; // Return the code to the JavaScript function
+echo "<td>$code</td>";
+echo "<td><a>View Attendance</a></td>";
 ?>

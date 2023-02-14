@@ -71,6 +71,7 @@ $result = odbc_exec($connection, $query);
  while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   echo "<tr id='row_$timetableid'>";
+  echo "<input type='hidden' name='timetable_id' value='$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
     echo "<td>" . $row['ActivityTypeName'] . "</td>";
     echo "<td>" . $row['ModuleName'] . "</td>";
@@ -81,7 +82,7 @@ $result = odbc_exec($connection, $query);
       echo "<td>" . $row['timetablecode'] . "</td>";
     }
     if ($role == 'Admin') {
-      echo "<td><button>Set Code</button></td>";   
+      echo "<td><button onclick='generateCode($timetableid)'>Set Code</button></td>"; 
       echo "<td><a>View Attendance</a></td>";
     } else if ($role == 'Student') {
       echo "<td><button>Enter Code</button></td>";
@@ -97,6 +98,20 @@ $result = odbc_exec($connection, $query);
 </div>
 <?php include 'footer.php'; ?>
 </div>
+// add this JavaScript function at the bottom of the file
+<script>
+function generateCode(timetableid) {
+  var code = Math.floor(Math.random() * 9000) + 1000;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("row_" + timetableid).innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "set-code.php?timetableid=" + timetableid + "&code=" + code, true);
+  xhttp.send();
+}
+</script>
 </body>
 </html>
 <?php
