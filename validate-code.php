@@ -14,37 +14,24 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-// Check if the user is logged in
-if (!isset($_SESSION['userid'])) {
-  header("Location: login.php");
-  exit();
-}
-
 $timetableid = $_POST['timetableid'];
-$code = $_POST['code'];
+$enteredcode = $_POST['enteredcode'];
 
-// Query the database for the timetable with the specified timetableid and code
-$query = "SELECT * FROM Timetable WHERE TimetableId='$timetableid' AND [code]='$code'";
+$query = "SELECT COUNT(*) AS code_count FROM AttendanceCode WHERE TimetableId = '$timetableid' AND Code = '$enteredcode'";
+echo "Query: $query<br>";
+
 $result = odbc_exec($connection, $query);
-
-if (odbc_num_rows($result) > 0) {
-  // Code is valid, update the attendance for the user and timetable
-  $userid = $_SESSION['userid'];
-
-  $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, DateCreated) VALUES (NEWID(), '$userid', '$timetableid', GETDATE())";
-  $result = odbc_exec($connection, $query);
-
-  if ($result) {
-    // Attendance has been recorded successfully
-    echo "success";
-  } else {
-    // Failed to record attendance
-    echo "error";
-  }
-} else {
-  // Code is invalid
-  echo "invalid";
+if (!$result) {
+    die("Error executing query: " . odbc_errormsg());
 }
 
-odbc_close($connection);
-?>
+$row = odbc_fetch_array($result);
+$codeCount = $row['code_count'];
+
+echo "Code count: $codeCount<br>";
+
+if ($codeCount == 1) {
+    echo "valid";
+} else {
+    echo "invalid";
+}
