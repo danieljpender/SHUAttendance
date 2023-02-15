@@ -12,11 +12,19 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-$timetableid = $_POST['timetable_id'];
-$code = $_POST['code'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $timetable_id = $_POST['timetable_id'];
+  $code = $_POST['code'];
 
-$query = "UPDATE Timetable SET [code] = $code WHERE TimetableId = $timetableid";
-$result = odbc_exec($connection, $query);
+  $query = "UPDATE Timetable SET [code] = $code WHERE TimetableId = $timetable_id";
+  $result = odbc_exec($connection, $query);
 
-echo "<td>$code</td>";
+  if ($result) {
+    echo "Code updated successfully";
+  } else {
+    echo "Error updating code: " . odbc_errormsg();
+  }
+}
+
+odbc_close($connection);
 ?>
