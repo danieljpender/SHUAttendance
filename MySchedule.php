@@ -38,6 +38,23 @@ $result = odbc_exec($connection, $query);
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
+    <script>
+function generateCode(timetableid) {
+  fetch('generate_code.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: 'timetableid=' + timetableid
+  })
+  .then(response => response.text())
+  .then(data => {
+    var codeCell = document.querySelector('#code_' + timetableid);
+    codeCell.innerHTML = data;
+  });
+}
+</script>
+
   </head>
   <body>
     <header>
@@ -82,12 +99,11 @@ while ($row = odbc_fetch_array($result)) {
     echo "<td><button>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
-    echo "<td><button>Enter Code</button></td>";
+    echo "<td><button onclick='generateCode($timetableid)'>Generate Code</button></td>";
   }
   echo "</tr>";
 }
 ?>
-
 </table>
 </div>
 </div>
