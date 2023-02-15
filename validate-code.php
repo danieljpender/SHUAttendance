@@ -21,7 +21,7 @@ if (!isset($_SESSION['userid'])) {
 }
 
 $timetableid = $_POST['timetableid'];
-$code = $_POST['enteredcode'];
+$code = $_POST['code'];
 
 // Query the database for the timetable with the specified timetableid and code
 $query = "SELECT * FROM Timetable WHERE TimetableId='$timetableid' AND [code]='$code'";
