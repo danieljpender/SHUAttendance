@@ -119,12 +119,12 @@ $('input[id^="codeinput_"]').keypress(function(event) {
   if (event.which == 13) { // If Enter key is pressed
     event.preventDefault();
     var timetableid = $(this).attr('id').split('_')[1];
-    var code = $(this).val();
+    var enteredcode = $(this).val();
 
     $.ajax({
       url: 'validate-code.php',
       type: 'POST',
-      data: { timetableid: timetableid, code: code },
+      data: { timetableid: timetableid, enteredcode: enteredcode },
       success: function(data) {
         if (data == "valid") {
           alert("Code is valid.");
