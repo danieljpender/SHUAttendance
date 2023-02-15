@@ -102,6 +102,7 @@ while ($row = odbc_fetch_array($result)) {
 </div>
 <script>
 function generateCode(timetable_id) {
+  console.log("Generating code for timetable id: ", timetable_id);
   var code = Math.floor(Math.random() * 9000) + 1000;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
