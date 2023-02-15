@@ -80,10 +80,10 @@ while ($row = odbc_fetch_array($result)) {
   echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
-echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
-echo "<td><a>View Attendance</a></td>";
+    echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
+    echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
-    echo "<td><button onclick='generateCode($timetableid)'>Generate Code</button></td>";
+    echo "<td><button>Enter Code</button></td>";
   }
   echo "</tr>";
 }
