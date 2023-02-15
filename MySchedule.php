@@ -108,34 +108,33 @@ $(document).ready(function() {
       }
     });
   });
-});
-</script>
-<script>
+
   $('button[id^="entercode_"]').click(function() {
-  var timetableid = $(this).attr('id').split('_')[1];
-  $('#codeinput_' + timetableid).show();
-});
-$('input[id^="codeinput_"]').keypress(function(event) {
-  if (event.which == 13) { // If Enter key is pressed
-    event.preventDefault();
     var timetableid = $(this).attr('id').split('_')[1];
-    var enteredcode = $(this).val();
+    $('#codeinput_' + timetableid).show();
+  });
 
-    $.ajax({
-      url: 'validate-code.php',
-      type: 'POST',
-      data: { timetableid: timetableid, enteredcode: enteredcode },
-      success: function(data) {
-        if (data == "valid") {
-          alert("Code is valid.");
-        } else {
-          alert("Code is invalid.");
+  $('input[id^="codeinput_"]').keypress(function(event) {
+    if (event.which == 13) { // If Enter key is pressed
+      event.preventDefault();
+      var timetableid = $(this).attr('id').split('_')[1];
+      var enteredcode = $(this).val();
+
+      $.ajax({
+        url: 'validate-code.php',
+        type: 'POST',
+        data: { timetableid: timetableid, enteredcode: enteredcode },
+        success: function(data) {
+          if (data == "valid") {
+            alert("Code is valid.");
+          } else {
+            alert("Code is invalid.");
+          }
         }
-      }
-    });
-  }
+      });
+    }
+  });
 });
-
   </script>
 </body>
 </html>
