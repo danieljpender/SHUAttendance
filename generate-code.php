@@ -14,7 +14,7 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-if (isset($_POST['timetableid'])) {
+if (isset($_POST['timetable_id'])) {
   $timetableid = $_POST['timetable_id'];
   $code = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
