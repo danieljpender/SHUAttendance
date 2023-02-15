@@ -11,14 +11,18 @@ $serverPassword = "%PA55w0rd";
 $connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
 
 if (!$connection) {
-  die("Error connecting to database: " . odbc_errormsg());
+    die("Error connecting to database: " . odbc_errormsg());
 }
 
-$timetableid = $_POST['timetableid'];
-$code = rand(1000,9999);
+if (isset($_POST['timetableid'])) {
+  $timetableid = $_POST['timetableid'];
+  $code = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
-$query = "UPDATE Timetable SET [code]='$code' WHERE TimetableId='$timetableid'";
-$result = odbc_exec($connection, $query);
+  $update_query = "UPDATE Timetable SET [code] = '$code' WHERE TimetableId = $timetableid";
+  odbc_exec($connection, $update_query);
+
+  echo $code;
+}
 
 odbc_close($connection);
 ?>

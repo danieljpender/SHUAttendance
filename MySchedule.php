@@ -38,23 +38,6 @@ $result = odbc_exec($connection, $query);
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
-    <script>
-function generateCode(timetableid) {
-  fetch('generate_code.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: 'timetableid=' + timetableid
-  })
-  .then(response => response.text())
-  .then(data => {
-    var codeCell = document.querySelector('#code_' + timetableid);
-    codeCell.innerHTML = data;
-  });
-}
-</script>
-
   </head>
   <body>
     <header>
@@ -96,8 +79,8 @@ while ($row = odbc_fetch_array($result)) {
   echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
-    echo "<td><button>Generate Code</button></td>"; 
-    echo "<td><a>View Attendance</a></td>";
+echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
+echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
     echo "<td><button onclick='generateCode($timetableid)'>Generate Code</button></td>";
   }
@@ -109,6 +92,23 @@ while ($row = odbc_fetch_array($result)) {
 </div>
 <?php include 'footer.php'; ?>
 </div>
+<script>
+$(document).ready(function() {
+  $('button[id^="generate_"]').click(function() {
+    var timetableid = $(this).attr('id').split('_')[1];
+
+    $.ajax({
+      url: 'generate-code.php',
+      type: 'POST',
+      data: { timetableid: timetableid },
+      success: function(data) {
+        $('#code_' + timetableid).text(data);
+      }
+    });
+  });
+});
+</script>
+
 </body>
 </html>
 <?php
