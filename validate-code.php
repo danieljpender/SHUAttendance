@@ -20,8 +20,9 @@ if (!isset($_SESSION['userid'])) {
   exit();
 }
 
-$timetableid = $_POST['timetableid'];
-$code = $_POST['enteredcode'];
+if (isset($_POST['timetableid'])) {
+    $timetableid = $_POST['timetableid'];
+    $code = $_POST['enteredcode'];
 
 // Query the database for the timetable with the specified timetableid and code
 $query = "SELECT * FROM Timetable WHERE TimetableId='$timetableid' AND [code]=$code";
@@ -46,6 +47,6 @@ if (odbc_num_rows($result) > 0) {
   // Code is invalid
   echo "invalid";
 }
-
+}
 odbc_close($connection);
 ?>
