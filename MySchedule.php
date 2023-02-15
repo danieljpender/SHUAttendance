@@ -107,7 +107,7 @@ function generateCode(timetable_id) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("code_" + timetable_id).innerHTML = code;
+      document.getElementById("code_" + timetable_id).innerHTML = this.responseText;
     }
   };
   xhttp.open("POST", "set-code.php", true);
