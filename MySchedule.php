@@ -79,17 +79,12 @@ while ($row = odbc_fetch_array($result)) {
   echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
-    echo "<td>" . "<button onclick='generateCode($timetableid)'>Set Code</button>" . "</td>"; 
+    echo "<td><button>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
     echo "<td><button>Enter Code</button></td>";
   }
   echo "</tr>";
-
-  // Move the form inside the while loop
-  echo "<form id='codeForm_$timetableid' method='POST' action='set-code.php'>";
-  echo "<input type='hidden' name='timetable_id' value='$timetableid'>";
-  echo "</form>";
 }
 ?>
 
@@ -98,21 +93,6 @@ while ($row = odbc_fetch_array($result)) {
 </div>
 <?php include 'footer.php'; ?>
 </div>
-<script>
-function generateCode(timetable_id) {
-  console.log("Generating code for timetable id: ", timetable_id);
-  var code = Math.floor(Math.random() * 9000) + 1000;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("code_" + timetable_id).innerHTML = this.responseText;
-    }
-  };
-  xhttp.open("POST", "set-code.php", true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("timetable_id=" + timetable_id + "&code=" + code);
-}
-</script>
 </body>
 </html>
 <?php
