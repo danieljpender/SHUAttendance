@@ -15,10 +15,10 @@ if (!$connection) {
 }
 
 if (isset($_POST['timetableid'])) {
-  $timetableid = $_POST['timetableid'];
+  $timetableid = $_POST['timetable_id'];
   $code = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
-  $update_query = "UPDATE Timetable SET [code] = '$code' WHERE TimetableId = $timetableid";
+  $update_query = "UPDATE Timetable SET [code] = $code WHERE TimetableId = '$timetableid'";
   odbc_exec($connection, $update_query);
 
   echo $code;
