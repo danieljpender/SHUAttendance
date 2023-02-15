@@ -83,8 +83,9 @@ while ($row = odbc_fetch_array($result)) {
     echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
-    echo "<td><button>Enter Code</button></td>";
-  }
+    echo "<td><button id='entercode_$timetableid'>Enter Code</button></td>";
+    echo "<td><input type='text' id='codeinput_$timetableid' style='display:none;'></td>";
+  }  
   echo "</tr>";
 }
 ?>
@@ -109,7 +110,33 @@ $(document).ready(function() {
   });
 });
 </script>
+<script>
+  $('button[id^="entercode_"]').click(function() {
+  var timetableid = $(this).attr('id').split('_')[1];
+  $('#codeinput_' + timetableid).show();
+});
+$('input[id^="codeinput_"]').keypress(function(event) {
+  if (event.which == 13) { // If Enter key is pressed
+    event.preventDefault();
+    var timetableid = $(this).attr('id').split('_')[1];
+    var enteredcode = $(this).val();
 
+    $.ajax({
+      url: 'validate-code.php',
+      type: 'POST',
+      data: { timetableid: timetableid, enteredcode: enteredcode },
+      success: function(data) {
+        if (data == "valid") {
+          alert("Code is valid.");
+        } else {
+          alert("Code is invalid.");
+        }
+      }
+    });
+  }
+});
+
+  </script>
 </body>
 </html>
 <?php
