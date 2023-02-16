@@ -964,8 +964,7 @@ footer {
       }
 
       .modal-content h2 {
-        font-size: 1rem;
-        margin-block-end: 0;
+        font-size: 1.5rem;
       }
 
       .modal-content h3 {
@@ -974,3 +973,13 @@ footer {
         color: #141414;
         font-weight: 500;
       }
+
+      .modal-content ul {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-block-start: 1rem;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 0px!important;
+    }
