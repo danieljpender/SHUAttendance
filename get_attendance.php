@@ -24,11 +24,11 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Check if timetableid is provided
-if (!isset($_GET['timetableid'])) {
+if (!isset($_POST['timetableid'])) {
   die("Error: Timetable ID not provided.");
 }
 
-$timetableid = $_GET['timetableid'];
+$timetableid = $_POST['timetableid'];
 
 // Query the database for the enrolled students in the event
 $query = "SELECT u.UserId, u.FirstName, u.LastName, 
