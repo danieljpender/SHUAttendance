@@ -19,7 +19,7 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
   $code = $_POST['code'];
 
   // Query the database to check if the code is valid
-  $query = "SELECT * FROM Timetable WHERE TimetableId = '$timetableid' AND [code] = '$code'";
+  $query = "SELECT TimetableId, [code] FROM Timetable WHERE TimetableId = '$timetableid' AND [code] = '$code'";
   $result = odbc_exec($connection, $query);
 
   if (odbc_num_rows($result) == 1) {
