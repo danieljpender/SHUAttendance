@@ -93,7 +93,7 @@ while ($row = odbc_fetch_array($result)) {
     if ($attendance_recorded) {
       echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
     } else {
-      echo "<td><button>Enter Code</button></td>";
+      echo "<td><button class='enter-code-btn'>Enter Code</button></td>";
     }
   }  
   echo "</tr>";
@@ -226,6 +226,15 @@ $(document).ready(function() {
   });
   });
   </script>
+  <script>
+  $(document).ready(function() {
+    // Prevent event-modal from opening when clicking enter code button
+    $('.enter-code-btn').click(function(event) {
+      event.stopPropagation();
+    });
+  });
+</script>
+
 </body>
 </html>
 <?php
