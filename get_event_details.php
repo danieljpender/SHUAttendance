@@ -21,11 +21,11 @@ if (!isset($_SESSION['userid'])) {
 }
 
 // Check if the timetable id has been provided
-if (!isset($_GET['timetableid'])) {
+if (!isset($_POST['timetableid'])) {
   die("Timetable id not provided");
 }
 
-$timetableid = $_GET['timetableid'];
+$timetableid = $_POST['timetableid'];
 
 // Query the database for the event details
 $query = "SELECT t.Title as title, t.[Description] as description, t.Location as location, t.StaffMembers as staff_members, m.ModuleName as module_name, ta.ActivityTypeName as activity_type_name, t.StartTime as start_time, t.EndTime as end_time FROM Timetable t
