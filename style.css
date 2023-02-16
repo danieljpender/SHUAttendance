@@ -468,6 +468,11 @@ li a, .dropbtn {
     text-decoration: none;
 }
 
+.modal-content li {
+    list-style-type: none;
+    display: block;
+  }
+
 .dropbtn-user {
     display: inline-block;
     color: #fff;
