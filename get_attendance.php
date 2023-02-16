@@ -32,6 +32,7 @@ $query = "SELECT u.UserId, u.FirstName, u.LastName,
                  CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
           FROM UserTimetable ut
           JOIN [Users] u ON u.UserId = ut.UserId
+          JOIN Timetable ON t.ModuleId=ut.ModuleId
           LEFT JOIN UserAttendanceHistory a ON a.UserId = u.UserId AND a.TimetableId = ut.TimetableId
           WHERE ut.TimetableId = '$timetableid'";
 $result = odbc_exec($connection, $query);
