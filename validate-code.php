@@ -30,8 +30,6 @@ $query = "SELECT * FROM Timetable WHERE TimetableId='$timetableid' AND [code]=$c
 $result = odbc_exec($connection, $query);
 echo "Query: $query<br>";
 
-}
-
 if (odbc_num_rows($result) > 0) {
   // Code is valid, update the attendance for the user and timetable
   $userid = $_SESSION['userid'];
@@ -51,5 +49,6 @@ if (odbc_num_rows($result) > 0) {
   echo "invalid";
 }
 
+}
 odbc_close($connection);
 ?>
