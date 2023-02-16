@@ -250,7 +250,37 @@ $(document).ready(function() {
     });
   });
 </script>
-
+<script>
+  $(document).ready(function() {
+    $('.view-attendance-btn').click(function() {
+      var timetableid = $(this).data('timetableid');
+      $.ajax({
+        url: 'get_attendance.php',
+        type: 'POST',
+        data: {timetableid: timetableid},
+        dataType: 'json',
+        success: function(data) {
+          var rows = '';
+          for (var i = 0; i < data.length; i++) {
+            rows += '<tr><td>' + data[i].Name + '</td><td>' + (data[i].Attended == 1 ? 'Yes' : 'No') + '</td></tr>';
+          }
+          $('#attendance-table').html(rows);
+          $('#attendance-modal').show();
+        }
+      });
+    });
+  
+    $('.close').click(function() {
+      $('.modal').hide();
+    });
+  
+    $(window).click(function(e) {
+      if (e.target.className == 'modal') {
+        $('.modal').hide();
+      }
+    });
+  });
+</script>
 </body>
 </html>
 <?php
