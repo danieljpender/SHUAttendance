@@ -137,7 +137,8 @@ $(document).ready(function() {
   // Add an event listener to each row to open the modal
   $("tr").click(function() {
     // Get the timetable id from the row id
-    var timetableid = this.id.replace("row_", "");
+    var timetableid = $(this).closest('tr').attr('id').split('_')[1];
+    $('#timetable-id').val(timetableid);
     // Retrieve the event details from the database using an AJAX request
     $.ajax({
       type: "POST",
