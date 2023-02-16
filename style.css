@@ -468,11 +468,6 @@ li a, .dropbtn {
     text-decoration: none;
 }
 
-.modal-content li {
-    list-style-type: none;
-    display: block;
-  }
-
 .dropbtn-user {
     display: inline-block;
     color: #fff;
@@ -953,4 +948,29 @@ footer {
         color: black;
         text-decoration: none;
         cursor: pointer;
+      }
+
+      /*Modal Content*/
+      .modal-content li {
+        list-style-type: none;
+        display: block;
+      }
+
+      .modal-content h1 {
+        margin-top: 0;
+        padding-bottom: 0;
+        margin-block-start: 0;
+        margin-block-end: 0;
+      }
+
+      .modal-content h2 {
+        font-size: 1rem;
+        margin-block-end: 0;
+      }
+
+      .modal-content h3 {
+        font-size: 1rem;
+        margin-block-end: 0;
+        color: #141414;
+        font-weight: 500;
       }
