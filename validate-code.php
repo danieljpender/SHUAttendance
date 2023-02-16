@@ -11,42 +11,25 @@ $serverPassword = "%PA55w0rd";
 $connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
 
 if (!$connection) {
-    die("Error connecting to database: " . odbc_errormsg());
+  die("Error connecting to database: " . odbc_errormsg());
 }
 
-// Check if the user is logged in
-if (!isset($_SESSION['userid'])) {
-    header("Location: login.php");
-    exit();
-}
+if (isset($_POST['timetableid']) && isset($_POST['code'])) {
+  $timetableid = $_POST['timetableid'];
+  $code = $_POST['code'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $code = $_POST['code'];
-    $timetableid = $_POST['timetableid'];
+  // Query the database to check if the code is valid
+  $query = "SELECT * FROM Timetable WHERE TimetableId = '$timetableid' AND [code] = '$code'";
+  $result = odbc_exec($connection, $query);
+
+  if (odbc_num_rows($result) == 1) {
+    // Code is valid, update the attendance record for the user and the event
     $userid = $_SESSION['userid'];
-
-    
-var_dump($_POST);
-
-    $query = "SELECT * FROM Timetable WHERE TimetableId = '$timetableid' AND code = '$code'";
-    $result = odbc_exec($connection, $query);
-
-    if (odbc_num_rows($result) == 1) {
-        $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, CreatedDate) VALUES (NEWID(), '$userid', '$timetableid', GETDATE())";
-        $result = odbc_exec($connection, $query);
-        echo "Query: $query<br>";
-
-        if ($result) {
-            echo "success";
-        } else {
-            echo "error";
-        }
-    } else {
-        echo "invalid";
-    }
-} else {
-    echo "invalid method";
+    $query = "INSERT INTO AttendanceRecord (UserId, TimetableId) VALUES ('$userid', '$timetableid')";
+    odbc_exec($connection, $query);
+    echo 'success';
+  } else {
+    // Code is invalid
+    echo 'failure';
+  }
 }
-
-odbc_close($connection);
-?>
