@@ -156,7 +156,7 @@ $(document).ready(function() {
         $("#event-location").text(data.location_name);
         $("#event-locations").text(data.location_name);
         $("#event-staff").text(data.staff_members);
-        $("#event-date").text(data.start_date);
+        $("#event-date").text(data.event_date);
         $("#event-time").text(data.start_time);
         $("#event-name").text(data.activity_name);
         // Show the modal
