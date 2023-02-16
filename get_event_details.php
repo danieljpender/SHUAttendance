@@ -45,7 +45,7 @@ $event = array(
     "description" => $row['Description'],
     "module_code" => $row['ModuleCode'],
     "activity_name" => $row['ActivityName'],
-    "event_date" => date("l, j M Y", strtotime($row['StartDate']));
+    "event_date" => date("l, j M Y", strtotime($row['StartDate'])),
 );
 
 echo json_encode($event);
