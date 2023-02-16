@@ -152,7 +152,7 @@ $(document).ready(function() {
         $("#event-description").text(data.description);
         $("#event-module").text(data.module);
         $("#event-modulecode").text(data.module_code);
-        $("#event-type").text(data.type_name);
+        $("#event-type").text(data.activity_type);
         $("#event-location").text(data.location_name);
         $("#event-staff").text(data.staff_members);
         $("#event-date").text(data.start_date);
