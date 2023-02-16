@@ -120,8 +120,8 @@ while ($row = odbc_fetch_array($result)) {
 <div id="event-modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2 id="event-module"></h2>
-    <p id="event-description"></p>
+    <h2 id="event-description"></h2>
+    <p id="event-location"></p>
     <ul>
       <li><strong>Module:</strong> <span id="event-module"></span></li>
       <li><strong>Type:</strong> <span id="event-type"></span></li>
@@ -146,6 +146,7 @@ $(document).ready(function() {
       dataType: "json",
       success: function(data) {
         // Update the modal with the event details
+        $("#event-description").text(data.description);
         $("#event-module").text(data.module);
         $("#event-type").text(data.type);
         $("#event-location").text(data.location);
