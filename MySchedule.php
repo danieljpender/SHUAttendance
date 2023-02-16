@@ -151,7 +151,7 @@ $(document).ready(function() {
         // Update the modal with the event details
         $("#event-description").text(data.description);
         $("#event-module").text(data.module);
-        $("#event-type").text(data.type);
+        $("#event-type").text(data.type_name);
         $("#event-location").text(data.location_name);
         $("#event-staff").text(data.staff_members);
         $("#event-date").text(data.start_date);

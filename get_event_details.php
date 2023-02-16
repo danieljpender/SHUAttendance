@@ -20,7 +20,9 @@ if (!isset($_POST['timetableid'])) {
 
 $timetableid = $_POST['timetableid'];
 
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t.[code] as timetablecode, t.Location as location_name
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, 
+                t.[code] as timetablecode, t.Location as location_name,
+                ta.ActivityTypeName as type_name
           FROM Timetable t
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -35,7 +37,7 @@ $row = odbc_fetch_array($result);
 $event = array(
     "timetable_id" => $row['timetable_id'],
     "module" => $row['ModuleName'],
-    "activity_type" => $row['ActivityTypeName'],
+    "activity_type" => $row['type_name'],
     "location_name" => $row['Location'],
     "staff_members" => $row['StaffMembers'],
     "start_time" => date("H:i", strtotime($row['StartTime'])),
