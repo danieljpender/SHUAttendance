@@ -14,45 +14,34 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-// Check if the user is logged in
-if (!isset($_SESSION['userid'])) {
-  header("Location: login.php");
-  exit();
-}
-
-// Check if the timetable id has been provided
-if (!isset($_POST['timetableid'])) {
-  die("Timetable id not provided");
-}
-
 $timetableid = $_POST['timetableid'];
 
-// Query the database for the event details
-$query = "SELECT t.Title as title, t.[Description] as description, t.Location as location, t.StaffMembers as staff_members, m.ModuleName as module_name, ta.ActivityTypeName as activity_type_name, t.StartTime as start_time, t.EndTime as end_time FROM Timetable t
-          JOIN Module m ON m.ModuleId = t.ModuleId
-          JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
-          WHERE t.TimetableId = '$timetableid'";
+// Query the database for the event details associated with the given timetable id
+$query = "SELECT m.ModuleName as module, t.StartTime as start_time, t.EndTime as end_time, t.Location as location, ta.ActivityTypeName as type, CONCAT(u.FirstName, ' ', u.LastName) as staff_member 
+FROM Timetable t 
+JOIN Module m ON t.ModuleId = m.ModuleId 
+JOIN ActivityType ta ON t.TypeId = ta.ActivityTypeId 
+JOIN UserTimetable ut ON t.ModuleId = ut.ModuleId 
+JOIN [User] u ON m.StaffId = u.UserId 
+WHERE t.TimetableId = '$timetableid' 
+AND ut.UserId = '" . $_SESSION['userid'] . "'";
 $result = odbc_exec($connection, $query);
 
 if (!$result) {
-  die("Error retrieving event details: " . odbc_errormsg());
+    die("Error retrieving event details: " . odbc_errormsg());
 }
 
 $row = odbc_fetch_array($result);
 
-// Create an associative array of the event details
-$event_details = array(
-  "title" => $row['title'],
-  "description" => $row['description'],
-  "location" => $row['location'],
-  "staff_members" => $row['staff_members'],
-  "module_name" => $row['module_name'],
-  "activity_type_name" => $row['activity_type_name'],
-  "start_time" => $row['start_time'],
-  "end_time" => $row['end_time']
+// Prepare the response as a JSON object
+$response = array(
+    'module' => $row['module'],
+    'start_time' => $row['start_time'],
+    'end_time' => $row['end_time'],
+    'location' => $row['location'],
+    'type' => $row['type'],
+    'staff_member' => $row['staff_member']
 );
 
-// Encode the event details as a JSON object and return it
-header("Content-Type: application/json");
-echo json_encode($event_details);
+echo json_encode($response);
 ?>
