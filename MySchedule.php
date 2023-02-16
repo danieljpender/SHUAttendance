@@ -253,7 +253,7 @@ $(document).ready(function() {
 <script>
   $(document).ready(function() {
     $('.view-attendance-btn').click(function() {
-      var timetableid = $(this).data('timetableid');
+      var timetableid = $(this).attr('id').split('_')[1];
       $.ajax({
         url: 'get_attendance.php',
         type: 'POST',
