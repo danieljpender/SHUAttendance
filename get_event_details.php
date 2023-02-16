@@ -14,11 +14,11 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-if (!isset($_GET['timetableid'])) {
+if (!isset($_POST['timetableid'])) {
     die("Error: no timetable ID provided");
 }
 
-$timetableid = $_GET['timetableid'];
+$timetableid = $_POST['timetableid'];
 
 $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t.[code] as timetablecode
           FROM Timetable t
