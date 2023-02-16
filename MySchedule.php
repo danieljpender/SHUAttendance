@@ -71,7 +71,7 @@ $result = odbc_exec($connection, $query);
 <?php
 while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
-  echo "<tr id='row_$timetableid'>";
+  echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
   echo "<td>" . $row['ActivityTypeName'] . "</td>";
   echo "<td>" . $row['ModuleName'] . "</td>";
@@ -145,6 +145,8 @@ $(document).ready(function() {
         if (data == 'success') {
           alert('Code validated successfully!');
           $('#code-modal').css('display', 'none');
+          $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
+        $('.close').click();
         } else {
           alert('Invalid code! Please try again.');
         }
