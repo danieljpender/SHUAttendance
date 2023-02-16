@@ -33,7 +33,6 @@ if (!$result) {
 
 $row = odbc_fetch_array($result);
 $event = array(
-    "description" => $row['description'],
     "timetable_id" => $row['timetable_id'],
     "module" => $row['ModuleName'],
     "activity_type" => $row['ActivityTypeName'],
