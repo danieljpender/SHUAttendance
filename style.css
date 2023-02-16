@@ -969,6 +969,7 @@ footer {
 
       .modal-content h3 {
         font-size: 1rem;
+        margin-block-start: 0;
         margin-block-end: 0;
         color: #141414;
         font-weight: 500;
