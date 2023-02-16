@@ -128,7 +128,7 @@ while ($row = odbc_fetch_array($result)) {
       <li><strong>Activity name:</strong> <span id="event-type"></span></li>
       <li><strong>Module code:</strong> <span id="event-modulecode"></span></li>
       <li><strong>Module description:</strong> <span id="event-module"></span></li>
-      <li><strong>Location(s):</strong> <span id="event-location"></span></li>
+      <li><strong>Location(s):</strong> <span id="event-locations"></span></li>
       <li><strong>Staff Member(s):</strong> <span id="event-staff"></span></li>
       <li><strong>Date:</strong> <span id="event-date"></span></li>
       <li><strong>Time:</strong> <span id="event-time"></span></li>
@@ -154,6 +154,7 @@ $(document).ready(function() {
         $("#event-modulecode").text(data.module_code);
         $("#event-type").text(data.activity_type);
         $("#event-location").text(data.location_name);
+        $("#event-locations").text(data.location_name);
         $("#event-staff").text(data.staff_members);
         $("#event-date").text(data.start_date);
         $("#event-time").text(data.start_time);
