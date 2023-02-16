@@ -149,7 +149,7 @@ $(document).ready(function() {
         $("#event-description").text(data.description);
         $("#event-module").text(data.module);
         $("#event-type").text(data.type);
-        $("#event-location").text(data.location);
+        $("#event-location").text(data.location_name);
         $("#event-staff").text(data.staff_member);
         $("#event-date").text(data.start_date);
         $("#event-time").text(data.start_time);
