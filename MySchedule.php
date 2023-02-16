@@ -125,7 +125,7 @@ while ($row = odbc_fetch_array($result)) {
     <h3 id="event-date"></h3>
     <ul>
       <li><strong>Type:</strong> <span id="event-type"></span></li>
-      <li><strong>Activity name:</strong> <span id="event-type"></span></li>
+      <li><strong>Activity name:</strong> <span id="event-name"></span></li>
       <li><strong>Module code:</strong> <span id="event-modulecode"></span></li>
       <li><strong>Module description:</strong> <span id="event-module"></span></li>
       <li><strong>Location(s):</strong> <span id="event-locations"></span></li>
@@ -158,6 +158,7 @@ $(document).ready(function() {
         $("#event-staff").text(data.staff_members);
         $("#event-date").text(data.start_date);
         $("#event-time").text(data.start_time);
+        $("#event-name").text(data.activity_name);
         // Show the modal
         $("#event-modal").show();
       }
