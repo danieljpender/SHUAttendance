@@ -69,15 +69,8 @@ $result = odbc_exec($connection, $query);
     ?>
   </tr>
 <?php
-$attendance_history = array();
-
 while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
-  $attendance_query = "SELECT * FROM UserAttendanceHistory WHERE TimetableId = '$timetableid' AND UserId = '$userid'";
-  $attendance_result = odbc_exec($connection, $attendance_query);
-  $attendance_recorded = (odbc_num_rows($attendance_result) > 0);
-  $attendance_history[$timetableid] = $attendance_result;
-
   echo "<tr id='row_$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
   echo "<td>" . $row['ActivityTypeName'] . "</td>";
@@ -85,17 +78,24 @@ while ($row = odbc_fetch_array($result)) {
   echo "<td>" . $row['Location'] . "</td>";
   echo "<td>" . $row['StaffMembers'] . "</td>";
   echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
+  
+  // Check if attendance has been recorded for this event
+  $query2 = "SELECT COUNT(*) as count FROM UserAttendanceHistory WHERE UserId='$userid' AND TimetableId='$timetableid'";
+  $result2 = odbc_exec($connection, $query2);
+  $row2 = odbc_fetch_array($result2);
+  $attendance_recorded = $row2['count'] > 0;
+  
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
     echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
-    if (empty($attendance_history[$timetableid])) {
-      echo "<td><button>Enter Code</button></td>";
+    if ($attendance_recorded) {
+      echo "<td><button disabled>Attendance Recorded</button></td>";
     } else {
-      echo "<td>Attendance Recorded</td>";
+      echo "<td><button>Enter Code</button></td>";
     }
-  }
+  }  
   echo "</tr>";
 }
 ?>
@@ -145,8 +145,6 @@ $(document).ready(function() {
         if (data == 'success') {
           alert('Code validated successfully!');
           $('#code-modal').css('display', 'none');
-          $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
-        $('.close').click();
         } else {
           alert('Invalid code! Please try again.');
         }
