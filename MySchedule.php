@@ -125,6 +125,9 @@ $(document).ready(function() {
         type: 'POST',
         data: { timetableid: timetableid, enteredcode: enteredcode },
         success: function(data) {
+  var resultCell = $('#result_' + timetableid); // select the <td> element
+  resultCell.html(data); // set the contents of the <td> element to the response text
+
           if (data == "valid") {
             alert("Code is valid.");
           } else {
