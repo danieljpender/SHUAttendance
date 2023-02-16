@@ -137,8 +137,7 @@ $(document).ready(function() {
   // Add an event listener to each row to open the modal
   $("tr").click(function() {
     // Get the timetable id from the row id
-    var timetableid = $(this).closest('tr').attr('id').split('_')[1];
-    $('#timetable-id').val(timetableid);
+    var timetableid = this.id.replace("row_", "");
     // Retrieve the event details from the database using an AJAX request
     $.ajax({
       type: "POST",
@@ -158,13 +157,13 @@ $(document).ready(function() {
         $("#event-modal").show();
       }
     });
-  });
-   // Add an event listener to the modal close button
+  }); 
+  // Add an event listener to the modal close button
  $('.close').click(function() {
     $('#event-modal').css('display', 'none');
-  });
 });
 
+  });
 </script>
 <script>
 $(document).ready(function() {
