@@ -213,6 +213,7 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
   $('button[id^="generate_"]').click(function() {
+    event.preventDefault();
     var timetableid = $(this).attr('id').split('_')[1];
 
     $.ajax({
