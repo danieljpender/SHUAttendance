@@ -19,9 +19,9 @@ if (!isset($_SESSION['userid'])) {
   header("Location: login.php");
   exit();
 }
-
-$timetableid = $_POST['timetableid'];
-$code = $_POST['enteredcode'];
+if(isset($_POST['timetableid']) && isset($_POST['enteredcode'])) {
+    $timetableid = $_POST['timetableid'];
+    $code = $_POST['enteredcode'];
 
 var_dump($_POST);
 
@@ -29,6 +29,8 @@ var_dump($_POST);
 $query = "SELECT * FROM Timetable WHERE TimetableId='$timetableid' AND [code]=$code";
 $result = odbc_exec($connection, $query);
 echo "Query: $query<br>";
+
+}
 
 if (odbc_num_rows($result) > 0) {
   // Code is valid, update the attendance for the user and timetable
