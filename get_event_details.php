@@ -22,7 +22,7 @@ $timetableid = $_POST['timetableid'];
 
 $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, 
                 t.[code] as timetablecode, t.Location as location_name,
-                ta.ActivityTypeName as type_name
+                ta.ActivityTypeName as type_name, t.StartDate as event_date
           FROM Timetable t
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -45,6 +45,7 @@ $event = array(
     "description" => $row['Description'],
     "module_code" => $row['ModuleCode'],
     "activity_name" => $row['ActivityName'],
+    "event_date" => $row['event_date'],
 );
 
 echo json_encode($event);
