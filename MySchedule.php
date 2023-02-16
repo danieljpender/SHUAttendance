@@ -83,6 +83,22 @@ while ($row = odbc_fetch_array($result)) {
     echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
+    $userid = $_SESSION['userid'];
+    $attendanceRecorded = false; // initialize to false
+    $query = "SELECT COUNT(*) FROM UserAttendanceHistory WHERE userId = '$userId' AND eventId = '$timetableId'";
+    $result = mysqli_query($conn, $query);
+if ($result) {
+    $row = mysqli_fetch_row($result);
+    if ($row[0] > 0) {
+        $attendanceRecorded = true;
+    }
+}
+// Set the button text based on whether attendance has been recorded or not
+if ($attendanceRecorded) {
+  echo '<button class="btn btn-success" disabled>Attendance recorded</button>';
+} else {
+  echo '<button class="btn btn-primary">Enter Code</button>';
+}
     echo "<td><button>Enter Code</button></td>";
   }  
   echo "</tr>";
