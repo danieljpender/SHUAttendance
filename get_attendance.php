@@ -25,9 +25,6 @@ $role = $_SESSION['rolename'];
 
 // Check if timetableid is provided
 if (!isset($_POST['timetableid'])) {
-  die("Error: Timetable ID not provided.");
-}
-
 $timetableid = $_POST['timetableid'];
 
 // Query the database for the enrolled students in the event
@@ -51,4 +48,6 @@ while ($row = odbc_fetch_array($result)) {
   echo '</tr>';
 }
 echo '</table>';
+
+}
 ?>
