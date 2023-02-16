@@ -97,7 +97,7 @@ while ($row = odbc_fetch_array($result)) {
 <div id="code-modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <form id="code-form">
+    <form id="code-form" method="POST">
       <label for="code-input">Enter Code:</label>
       <input type="text" id="code-input" name="code">
       <input type="hidden" id="timetable-id" name="timetableid">
