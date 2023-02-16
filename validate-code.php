@@ -23,6 +23,8 @@ if (!isset($_SESSION['userid'])) {
 $timetableid = $_POST['timetableid'];
 $code = $_POST['enteredcode'];
 
+var_dump($_POST);
+
 // Query the database for the timetable with the specified timetableid and code
 $query = "SELECT * FROM Timetable WHERE TimetableId='$timetableid' AND [code]=$code";
 $result = odbc_exec($connection, $query);
