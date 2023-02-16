@@ -24,17 +24,17 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Check if timetableid is provided
-if (!isset($_POST['timetableid'])) {
-$timetableid = $_POST['timetableid'];
+if (isset($_POST['timetableid'])) {
+    $timetableid = $_POST['timetableid'];
 
 // Query the database for the enrolled students in the event
-$query = "SELECT u.UserId, u.FirstName, u.LastName, 
+$query = "SELECT u.UserId, u.FirstName, u.Surname, 
                  CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
           FROM UserTimetable ut
           JOIN [Users] u ON u.UserId = ut.UserId
-          JOIN Timetable ON t.ModuleId=ut.ModuleId
-          LEFT JOIN UserAttendanceHistory a ON a.UserId = u.UserId AND a.TimetableId = ut.TimetableId
-          WHERE ut.TimetableId = '$timetableid'";
+          JOIN Timetable t ON t.ModuleId=ut.ModuleId
+          LEFT JOIN UserAttendanceHistory a ON a.UserId = ut.UserId
+          WHERE t.TimetableId = '$timetableid'";
 $result = odbc_exec($connection, $query);
 echo $query;
 echo $result;
