@@ -120,7 +120,7 @@ while ($row = odbc_fetch_array($result)) {
 <div id="event-modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2 id="event-title"></h2>
+    <h2 id="event-module"></h2>
     <p id="event-description"></p>
     <ul>
       <li><strong>Module:</strong> <span id="event-module"></span></li>
