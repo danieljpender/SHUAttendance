@@ -38,7 +38,8 @@ $query = "SELECT u.UserId, u.FirstName, u.LastName,
           LEFT JOIN UserAttendanceHistory a ON a.UserId = u.UserId AND a.TimetableId = ut.TimetableId
           WHERE ut.TimetableId = '$timetableid'";
 $result = odbc_exec($connection, $query);
-
+echo $query;
+echo $result;
 // Generate the attendance table
 echo '<table>';
 echo '<tr><th>User ID</th><th>Name</th><th>Email</th><th>Attended</th></tr>';
