@@ -125,7 +125,7 @@ $(document).ready(function() {
         type: 'POST',
         data: { timetableid: timetableid, enteredcode: enteredcode },
         success: function(data) {
-          if (data == "valid") {
+          if (data == "success") {
             alert("Code is valid.");
           } else {
             alert("Code is invalid.");
