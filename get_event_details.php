@@ -14,35 +14,33 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-if (isset($_POST['timetableid'])) {
-$timetableid = $_POST['timetableid'];
+if (!isset($_GET['timetableid'])) {
+    die("Error: no timetable ID provided");
+}
 
-// Query the database for the event details associated with the given timetable id
-$query = "SELECT m.ModuleName as module, t.StartDate as start_date, t.StartTime as start_time, t.EndTime as end_time, t.Location as location, ta.ActivityTypeName, t.StaffMembers as staff_member as type
-FROM Timetable t 
-JOIN Module m ON t.ModuleId = m.ModuleId 
-JOIN ActivityType ta ON t.TypeId = ta.ActivityTypeId 
-WHERE t.TimetableId = '$timetableid' 
-AND ut.UserId = '" . $_SESSION['userid'] . "'";
+$timetableid = $_GET['timetableid'];
+
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t.[code] as timetablecode
+          FROM Timetable t
+          JOIN Module m ON m.ModuleId = t.ModuleId
+          JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
+          WHERE t.TimetableId = '$timetableid'";
 $result = odbc_exec($connection, $query);
 
 if (!$result) {
-    die("Error retrieving event details: " . odbc_errormsg());
+    die("Error: " . odbc_errormsg());
 }
 
 $row = odbc_fetch_array($result);
-
-// Prepare the response as a JSON object
-$response = array(
-    'module' => $row['module'],
-    'start_date' => $row['start_date'],
-    'start_time' => $row['start_time'],
-    'end_time' => $row['end_time'],
-    'location' => $row['location'],
-    'type' => $row['type'],
-    'staff_member' => $row['staff_member']
+$event = array(
+    "timetable_id" => $row['timetable_id'],
+    "module" => $row['ModuleName'],
+    "activity_type" => $row['ActivityTypeName'],
+    "location" => $row['Location'],
+    "staff_members" => $row['StaffMembers'],
+    "start_time" => date("H:i", strtotime($row['StartTime'])),
+    "end_time" => date("H:i", strtotime($row['EndTime'])),
 );
 
-echo json_encode($response);
-}
+echo json_encode($event);
 ?>

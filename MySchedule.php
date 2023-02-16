@@ -146,7 +146,6 @@ $(document).ready(function() {
       dataType: "json",
       success: function(data) {
         // Update the modal with the event details
-        $("#event-title").text(data.title);
         $("#event-module").text(data.module);
         $("#event-type").text(data.type);
         $("#event-location").text(data.location);
