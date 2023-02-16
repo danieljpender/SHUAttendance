@@ -40,6 +40,7 @@ $event = array(
     "staff_members" => $row['StaffMembers'],
     "start_time" => date("H:i", strtotime($row['StartTime'])),
     "end_time" => date("H:i", strtotime($row['EndTime'])),
+    "description" => $row['Description'],
 );
 
 echo json_encode($event);
