@@ -100,7 +100,7 @@ while ($row = odbc_fetch_array($result)) {
     <form id="code-form" method="POST">
       <label for="code-input">Enter Code:</label>
       <input type="text" id="code-input" name="code">
-      <input type="hidden" id="timetable-id" name="timetableid">
+      <input type="text" id="timetable-id" name="timetableid">
       <input type="submit" value="Submit">
     </form>
   </div>
