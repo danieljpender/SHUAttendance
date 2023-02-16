@@ -16,39 +16,33 @@ if (!$connection) {
 
 // Check if the user is logged in
 if (!isset($_SESSION['userid'])) {
-  header("Location: login.php");
-  exit();
+    header("Location: login.php");
+    exit();
 }
-if(isset($_POST['timetableid']) && isset($_POST['enteredcode'])) {
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $code = $_POST['code'];
     $timetableid = $_POST['timetableid'];
-    $code = $_POST['enteredcode'];
+    $userid = $_SESSION['userid'];
 
-var_dump($_POST);
+    $query = "SELECT * FROM Timetable WHERE TimetableId = '$timetableid' AND code = '$code'";
+    $result = odbc_exec($connection, $query);
 
-// Query the database for the timetable with the specified timetableid and code
-$query = "SELECT * FROM Timetable WHERE TimetableId='$timetableid' AND [code]=$code";
-$result = odbc_exec($connection, $query);
-echo "Query: $query<br>";
+    if (odbc_num_rows($result) == 1) {
+        $query = "INSERT INTO UserAttendanceHistory (UserId, TimetableId, AttendanceDate) VALUES ('$userid', '$timetableid', GETDATE())";
+        $result = odbc_exec($connection, $query);
 
-if (odbc_num_rows($result) > 0) {
-  // Code is valid, update the attendance for the user and timetable
-  $userid = $_SESSION['userid'];
-
-  $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, DateCreated) VALUES (NEWID(), '$userid', '$timetableid', GETDATE())";
-  $result = odbc_exec($connection, $query);
-
-  if ($result) {
-    // Attendance has been recorded successfully
-    echo "success";
-  } else {
-    // Failed to record attendance
-    echo "error";
-  }
+        if ($result) {
+            echo "success";
+        } else {
+            echo "error";
+        }
+    } else {
+        echo "invalid";
+    }
 } else {
-  // Code is invalid
-  echo "invalid";
+    echo "invalid method";
 }
 
-}
 odbc_close($connection);
 ?>
