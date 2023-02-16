@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = odbc_exec($connection, $query);
 
     if (odbc_num_rows($result) == 1) {
-        $query = "INSERT INTO UserAttendanceHistory (UserId, TimetableId, AttendanceDate) VALUES ('$userid', '$timetableid', GETDATE())";
+        $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, CreatedDate) VALUES (NEWID(), '$userid', '$timetableid', GETDATE())";
         $result = odbc_exec($connection, $query);
 
         if ($result) {
