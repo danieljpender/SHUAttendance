@@ -88,12 +88,12 @@ while ($row = odbc_fetch_array($result)) {
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
     echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
-    echo "<td><a>View Attendance</a></td>";
+    echo "<td><button class='view-attendance-btn' data-timetableid='$timetableid'>View Attendance</button></td>";
   } else if ($role == 'Student') {
     if ($attendance_recorded) {
       echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
     } else {
-      echo "<td><button class='enter-code-btn'>Enter Code</button></td>";
+      echo "<td><button class='enter-code-btn' data-timetableid='$timetableid'>Enter Code</button></td>";
     }
   }  
   echo "</tr>";
@@ -116,6 +116,7 @@ while ($row = odbc_fetch_array($result)) {
     </form>
   </div>
 </div>
+
 <!-- Event Information Modal -->
 <div id="event-modal" class="modal">
   <div class="modal-content">
@@ -134,6 +135,21 @@ while ($row = odbc_fetch_array($result)) {
     </ul>
   </div>
 </div>
+
+<!-- View Attendance Modal -->
+<div id="attendance-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <table>
+      <tr>
+        <th>Student</th>
+        <th>Attendance</th>
+      </tr>
+      <tbody id="attendance-table"></tbody>
+    </table>
+  </div>
+</div>
+
 <script>
 $(document).ready(function() {
   // Add an event listener to each row to open the modal
@@ -213,7 +229,6 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
   $('button[id^="generate_"]').click(function() {
-    event.preventDefault();
     var timetableid = $(this).attr('id').split('_')[1];
 
     $.ajax({
