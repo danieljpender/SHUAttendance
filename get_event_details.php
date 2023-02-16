@@ -18,7 +18,7 @@ if (isset($_POST['timetableid'])) {
 $timetableid = $_POST['timetableid'];
 
 // Query the database for the event details associated with the given timetable id
-$query = "SELECT m.ModuleName as module, t.StartTime as start_time, t.EndTime as end_time, t.Location as location, ta.ActivityTypeName, t.StaffMembers as staff_member as type
+$query = "SELECT m.ModuleName as module, t.StartDate as start_date, t.StartTime as start_time, t.EndTime as end_time, t.Location as location, ta.ActivityTypeName, t.StaffMembers as staff_member as type
 FROM Timetable t 
 JOIN Module m ON t.ModuleId = m.ModuleId 
 JOIN ActivityType ta ON t.TypeId = ta.ActivityTypeId 
@@ -35,6 +35,7 @@ $row = odbc_fetch_array($result);
 // Prepare the response as a JSON object
 $response = array(
     'module' => $row['module'],
+    'start_date' => $row['start_date'],
     'start_time' => $row['start_time'],
     'end_time' => $row['end_time'],
     'location' => $row['location'],

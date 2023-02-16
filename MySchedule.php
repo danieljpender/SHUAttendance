@@ -136,30 +136,33 @@ while ($row = odbc_fetch_array($result)) {
 $(document).ready(function() {
   // Add an event listener to each row to open the modal
   $("tr").click(function() {
-    // // Get the timetable id from the row id
-    // var timetableid = this.id.replace("row_", "");
-    // // Retrieve the event details from the database using an AJAX request
-    // $.ajax({
-    //   type: "POST",
-    //   url: "get_event_details.php",
-    //   data: {timetableid: timetableid},
-    //   dataType: "json",
-    //   success: function(data) {
-    //     // Update the modal with the event details
-    //     $("#event-title").text(data.title);
-    //     $("#event-description").text(data.description);
-    //     $("#event-module").text(data.module);
-    //     $("#event-type").text(data.type);
-    //     $("#event-location").text(data.location);
-    //     $("#event-staff").text(data.staff);
-    //     $("#event-date").text(data.date);
-    //     $("#event-time").text(data.time);
+    // Get the timetable id from the row id
+    var timetableid = this.id.replace("row_", "");
+    // Retrieve the event details from the database using an AJAX request
+    $.ajax({
+      type: "POST",
+      url: "get_event_details.php",
+      data: {timetableid: timetableid},
+      dataType: "json",
+      success: function(data) {
+        // Update the modal with the event details
+        $("#event-title").text(data.title);
+        $("#event-module").text(data.module);
+        $("#event-type").text(data.type);
+        $("#event-location").text(data.location);
+        $("#event-staff").text(data.staff_member);
+        $("#event-date").text(data.start_date);
+        $("#event-time").text(data.start_time);
         // Show the modal
         $("#event-modal").show();
       }
-    );
+    });
+  });
 });
-// });
+ // Add an event listener to the modal close button
+ $('.close').click(function() {
+    $('#event-modal').css('display', 'none');
+  });
 </script>
 <script>
 $(document).ready(function() {
