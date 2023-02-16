@@ -69,8 +69,15 @@ $result = odbc_exec($connection, $query);
     ?>
   </tr>
 <?php
+$attendance_history = array();
+
 while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
+  $attendance_query = "SELECT * FROM UserAttendanceHistory WHERE TimetableId = '$timetableid' AND UserId = '$userid'";
+  $attendance_result = odbc_exec($connection, $attendance_query);
+  $attendance_recorded = (odbc_num_rows($attendance_result) > 0);
+  $attendance_history[$timetableid] = $attendance_result;
+
   echo "<tr id='row_$timetableid'>";
   echo "<td>" . $row['timetable_id'] . "</td>";
   echo "<td>" . $row['ActivityTypeName'] . "</td>";
@@ -83,24 +90,12 @@ while ($row = odbc_fetch_array($result)) {
     echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
-    $userid = $_SESSION['userid'];
-    $attendanceRecorded = false; // initialize to false
-    $query = "SELECT COUNT(*) FROM UserAttendanceHistory WHERE userId = '$userId' AND eventId = '$timetableId'";
-    $result = mysqli_query($conn, $query);
-if ($result) {
-    $row = mysqli_fetch_row($result);
-    if ($row[0] > 0) {
-        $attendanceRecorded = true;
+    if (empty($attendance_history[$timetableid])) {
+      echo "<td><button>Enter Code</button></td>";
+    } else {
+      echo "<td>Attendance Recorded</td>";
     }
-}
-// Set the button text based on whether attendance has been recorded or not
-if ($attendanceRecorded) {
-  echo '<button class="btn btn-success" disabled>Attendance recorded</button>';
-} else {
-  echo '<button class="btn btn-primary">Enter Code</button>';
-}
-    echo "<td><button>Enter Code</button></td>";
-  }  
+  }
   echo "</tr>";
 }
 ?>
