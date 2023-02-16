@@ -25,12 +25,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $timetableid = $_POST['timetableid'];
     $userid = $_SESSION['userid'];
 
+    
+var_dump($_POST);
+
     $query = "SELECT * FROM Timetable WHERE TimetableId = '$timetableid' AND code = '$code'";
     $result = odbc_exec($connection, $query);
 
     if (odbc_num_rows($result) == 1) {
         $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, CreatedDate) VALUES (NEWID(), '$userid', '$timetableid', GETDATE())";
         $result = odbc_exec($connection, $query);
+        echo "Query: $query<br>";
 
         if ($result) {
             echo "success";
