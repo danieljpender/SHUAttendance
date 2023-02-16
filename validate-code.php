@@ -50,5 +50,10 @@ if (odbc_num_rows($result) > 0) {
 }
 
 }
+
+else {
+    var_dump($_POST);
+    echo "Query: $query<br>";
+}
 odbc_close($connection);
 ?>
