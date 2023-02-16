@@ -159,11 +159,12 @@ $(document).ready(function() {
       }
     });
   });
-});
- // Add an event listener to the modal close button
+   // Add an event listener to the modal close button
  $('.close').click(function() {
     $('#event-modal').css('display', 'none');
   });
+});
+
 </script>
 <script>
 $(document).ready(function() {
