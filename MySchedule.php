@@ -131,8 +131,6 @@ while ($row = odbc_fetch_array($result)) {
       <li><strong>Module description:</strong> <span id="event-module"></span></li>
       <li><strong>Location(s):</strong> <span id="event-locations"></span></li>
       <li><strong>Staff Member(s):</strong> <span id="event-staff"></span></li>
-      <li><strong>Date:</strong> <span id="event-date"></span></li>
-      <li><strong>Time:</strong> <span id="event-time"></span></li>
     </ul>
   </div>
 </div>
