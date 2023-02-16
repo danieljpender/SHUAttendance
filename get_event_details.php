@@ -43,6 +43,7 @@ $event = array(
     "start_time" => date("H:i", strtotime($row['StartTime'])),
     "end_time" => date("H:i", strtotime($row['EndTime'])),
     "description" => $row['Description'],
+    "module_code" => $row['ModuleCode'],
 );
 
 echo json_encode($event);
