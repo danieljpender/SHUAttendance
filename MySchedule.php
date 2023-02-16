@@ -83,13 +83,38 @@ while ($row = odbc_fetch_array($result)) {
     echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
-    echo "<td><button id='entercode_$timetableid'>Enter Code</button></td>";
-    echo "<td><input type='text' id='codeinput_$timetableid' style='display:none;'></td>";
+    echo "<td><button class='enter-code-button' data-toggle='modal' data-target='#enter-code-modal' data-timetable-id='$timetableid'>Enter Code</button></td>";
   }  
   echo "</tr>";
 }
 ?>
 </table>
+<!-- Modal -->
+<div class="modal fade" id="enter-code-modal" tabindex="-1" role="dialog" aria-labelledby="enter-code-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="enter-code-modal-label">Enter Code</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="enter-code-form">
+          <div class="form-group">
+            <label for="code-input">Code:</label>
+            <input type="text" class="form-control" id="code-input" name="code">
+          </div>
+          <input type="hidden" id="timetable-id-input" name="timetable_id">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="submit-code-button">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 <?php include 'footer.php'; ?>
@@ -109,35 +134,30 @@ $(document).ready(function() {
     });
   });
 
-  $('button[id^="entercode_"]').click(function() {
-    var timetableid = $(this).attr('id').split('_')[1];
-    $('#codeinput_' + timetableid).show();
+  $('.enter-code-button').click(function() {
+    var timetableid = $(this).data('timetable-id');
+    $('#timetable-id-input').val(timetableid);
   });
 
-  $('input[id^="codeinput_"]').keypress(function(event) {
-    if (event.which == 13) { // If Enter key is pressed
-      event.preventDefault();
-      var timetableid = $(this).attr('id').split('_')[1];
-      var enteredcode = $(this).val();
+  $('#submit-code-button').click(function() {
+    var code = $('#code-input').val();
+    var timetableid = $('#timetable-id-input').val();
 
-      $.ajax({
-        url: 'validate-code.php',
-        type: 'POST',
-        data: { timetableid: timetableid, enteredcode: enteredcode },
-        success: function(data) {
-  var resultCell = $('#result_' + timetableid); // select the <td> element
-  resultCell.html(data); // set the contents of the <td> element to the response text
-
-          if (data == "valid") {
-            alert("Code is valid.");
-          } else {
-            alert("Code is invalid.");
+    $.ajax({
+      url: 'validate-code.php',
+      type: 'POST',
+      data: { code: code, timetableid: timetableid },
+      success: function(data) {
+        if (data == 'true') {
+          alert('Code is valid');
+        } else {
+          alert("Code is invalid.");
           }
         }
       });
+    });
     }
-  });
-});
+  )
   </script>
 </body>
 </html>
