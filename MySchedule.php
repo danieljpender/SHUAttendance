@@ -157,9 +157,9 @@ $(document).ready(function() {
         // Show the modal
         $("#event-modal").show();
       }
-    });
-  });
+    );
 });
+// });
 </script>
 <script>
 $(document).ready(function() {
