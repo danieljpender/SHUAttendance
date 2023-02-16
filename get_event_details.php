@@ -14,8 +14,8 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-if (isset($_GET['timetableid'])) {
-$timetableid = $_GET['timetableid'];
+if (isset($_POST['timetableid'])) {
+$timetableid = $_POST['timetableid'];
 
 // Query the database for the event details associated with the given timetable id
 $query = "SELECT m.ModuleName as module, t.StartDate as start_date, t.StartTime as start_time, t.EndTime as end_time, t.Location as location, ta.ActivityTypeName, t.StaffMembers as staff_member as type
