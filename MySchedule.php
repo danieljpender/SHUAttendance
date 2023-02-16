@@ -83,42 +83,65 @@ while ($row = odbc_fetch_array($result)) {
     echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
-    echo "<td><button class='enter-code-button' data-toggle='modal' data-target='#enter-code-modal' data-timetable-id='$timetableid'>Enter Code</button></td>";
+    echo "<td><button>Enter Code</button></td>";
   }  
   echo "</tr>";
 }
 ?>
 </table>
-<!-- Modal -->
-<div class="modal fade" id="enter-code-modal" tabindex="-1" role="dialog" aria-labelledby="enter-code-modal-label" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="enter-code-modal-label">Enter Code</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form id="enter-code-form">
-          <div class="form-group">
-            <label for="code-input">Code:</label>
-            <input type="text" class="form-control" id="code-input" name="code">
-          </div>
-          <input type="hidden" id="timetable-id-input" name="timetable_id">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="submit-code-button">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 </div>
 <?php include 'footer.php'; ?>
 </div>
+<!-- Add the following modal at the end of the body -->
+<div id="code-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form id="code-form">
+      <label for="code-input">Enter Code:</label>
+      <input type="text" id="code-input" name="code">
+      <input type="hidden" id="timetable-id" name="timetableid">
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  // Add an event listener to the 'Enter Code' button
+  $('button:contains("Enter Code")').click(function() {
+    var timetableid = $(this).closest('tr').attr('id').split('_')[1];
+    $('#timetable-id').val(timetableid);
+    $('#code-modal').css('display', 'block');
+  });
+
+  // Add an event listener to the modal close button
+  $('.close').click(function() {
+    $('#code-modal').css('display', 'none');
+  });
+
+  // Add an event listener to the code form submit button
+  $('#code-form').submit(function(event) {
+    event.preventDefault();
+    var timetableid = $('#timetable-id').val();
+    var code = $('#code-input').val();
+
+    // Send an AJAX request to the server to validate the code
+    $.ajax({
+      url: 'validate-code.php',
+      type: 'POST',
+      data: { timetableid: timetableid, code: code },
+      success: function(data) {
+        if (data == 'success') {
+          alert('Code validated successfully!');
+          $('#code-modal').css('display', 'none');
+        } else {
+          alert('Invalid code! Please try again.');
+        }
+      }
+    });
+  });
+});
+</script>
 <script>
 $(document).ready(function() {
   $('button[id^="generate_"]').click(function() {
@@ -133,31 +156,7 @@ $(document).ready(function() {
       }
     });
   });
-
-  $('.enter-code-button').click(function() {
-    var timetableid = $(this).data('timetable-id');
-    $('#timetable-id-input').val(timetableid);
   });
-
-  $('#submit-code-button').click(function() {
-    var code = $('#code-input').val();
-    var timetableid = $('#timetable-id-input').val();
-
-    $.ajax({
-      url: 'validate-code.php',
-      type: 'POST',
-      data: { code: code, timetableid: timetableid },
-      success: function(data) {
-        if (data == 'true') {
-          alert('Code is valid');
-        } else {
-          alert("Code is invalid.");
-          }
-        }
-      });
-    });
-    }
-  )
   </script>
 </body>
 </html>
