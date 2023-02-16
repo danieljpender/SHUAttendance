@@ -14,15 +14,14 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
+if (isset($_POST['timetableid'])) {
 $timetableid = $_POST['timetableid'];
 
 // Query the database for the event details associated with the given timetable id
-$query = "SELECT m.ModuleName as module, t.StartTime as start_time, t.EndTime as end_time, t.Location as location, ta.ActivityTypeName as type, CONCAT(u.FirstName, ' ', u.LastName) as staff_member 
+$query = "SELECT m.ModuleName as module, t.StartTime as start_time, t.EndTime as end_time, t.Location as location, ta.ActivityTypeName, t.StaffMembers as staff_member as type
 FROM Timetable t 
 JOIN Module m ON t.ModuleId = m.ModuleId 
 JOIN ActivityType ta ON t.TypeId = ta.ActivityTypeId 
-JOIN UserTimetable ut ON t.ModuleId = ut.ModuleId 
-JOIN [User] u ON m.StaffId = u.UserId 
 WHERE t.TimetableId = '$timetableid' 
 AND ut.UserId = '" . $_SESSION['userid'] . "'";
 $result = odbc_exec($connection, $query);
@@ -44,4 +43,5 @@ $response = array(
 );
 
 echo json_encode($response);
+}
 ?>
