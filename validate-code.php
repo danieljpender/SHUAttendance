@@ -25,7 +25,7 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
   if (odbc_num_rows($result) == 1) {
     // Code is valid, update the attendance record for the user and the event
     $userid = $_SESSION['userid'];
-    $query = "INSERT INTO AttendanceRecord (UserId, TimetableId) VALUES ('$userid', '$timetableid')";
+    $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, DateCreated) VALUES (NEWID(), '$userid', '$timetableid', GETUTCDATE())";
     odbc_exec($connection, $query);
     echo 'success';
   } else {
