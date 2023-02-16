@@ -123,7 +123,7 @@ while ($row = odbc_fetch_array($result)) {
     <h1 id="event-description"></h1>
     <h2 id="event-location"></h2>
     <h3 id="event-date"></h3>
-    <h3>from</h3><h3 id="event-starttime">to<h3 id="event-endtime"></h3></h3>
+    <h3>From <span id="event-starttime"></span> to <span id="event-endtime"></span></h3>
     <ul>
       <li><strong>Type:</strong> <span id="event-type"></span></li>
       <li><strong>Activity name:</strong> <span id="event-name"></span></li>
