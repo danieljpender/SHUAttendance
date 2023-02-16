@@ -51,7 +51,7 @@ $result = odbc_exec($connection, $query);
   <div class="container">
 <table>
   <tr>
-    <th>TimetableId</th>
+    <th style="display:none;">TimetableId</th>
     <th>Type</th>
     <th>Module</th>
     <th>Location</th>
@@ -72,7 +72,7 @@ $result = odbc_exec($connection, $query);
 while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
-  echo "<td>" . $row['timetable_id'] . "</td>";
+  echo "<td  style='display:none;''>" . $row['timetable_id'] . "</td>";
   echo "<td>" . $row['ActivityTypeName'] . "</td>";
   echo "<td>" . $row['ModuleName'] . "</td>";
   echo "<td>" . $row['Location'] . "</td>";
@@ -111,7 +111,7 @@ while ($row = odbc_fetch_array($result)) {
     <form id="code-form" method="POST">
       <label for="code-input">Enter Code:</label>
       <input type="text" id="code-input" name="code">
-      <input type="text" id="timetable-id" name="timetableid">
+      <input type="hidden" id="timetable-id" name="timetableid">
       <input type="submit" value="Submit">
     </form>
   </div>
