@@ -91,7 +91,7 @@ while ($row = odbc_fetch_array($result)) {
     echo "<td><a>View Attendance</a></td>";
   } else if ($role == 'Student') {
     if ($attendance_recorded) {
-      echo "<td><button disabled>Attendance Recorded</button></td>";
+      echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
     } else {
       echo "<td><button>Enter Code</button></td>";
     }
