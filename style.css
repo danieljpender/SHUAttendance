@@ -985,3 +985,14 @@ footer {
         padding-inline-start: 0px!important;
         color: #141414;
     }
+
+    .modal-content input[type="submit"] {
+        display: inline-block;
+        color: #fff;
+        background-color: #0077c8;
+        border-color: #0077c8;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        padding: 10px;
+        cursor: pointer;
+    }
