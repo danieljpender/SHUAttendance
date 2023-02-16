@@ -891,6 +891,11 @@ footer {
         cursor: pointer;
 
       }
+
+      button:disabled {
+        opacity: .65;
+      }
+
       
       .dropdown-box {
         position: absolute;
