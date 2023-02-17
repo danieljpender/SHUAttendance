@@ -60,7 +60,7 @@ $result = odbc_exec($connection, $query);
     <?php
     if ($role == 'Admin' or $role == 'Staff') {
       echo "<th>Code</th>";
-      echo "<th>Set Code</th>";
+      echo "<th>Generate Code</th>";
       echo "<th>View Attendance</th>";
     }
     else if ($role == 'Student') {
