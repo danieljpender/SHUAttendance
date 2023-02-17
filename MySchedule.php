@@ -88,7 +88,7 @@ while ($row = odbc_fetch_array($result)) {
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
     echo "<td><button class='generate-code-btn' id='generate_$timetableid'>Generate Code</button></td>"; 
-    echo "<button class='view-attendance-btn' data-timetableid='$timetableid' onclick='viewAttendanceModal($timetableid)'>View Attendance</button>";
+    echo "<td><button class='view-attendance-btn' data-timetableid='$timetableid' onclick='viewAttendanceModal($timetableid)'>View Attendance</button></td>";
   } else if ($role == 'Student') {
     if ($attendance_recorded) {
       echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
