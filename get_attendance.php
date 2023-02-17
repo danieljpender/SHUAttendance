@@ -15,16 +15,23 @@ if (!isset($_POST['timetableid'])) {
 }
 $timetableid = $_POST['timetableid'];
 
+echo $timetableid;
 // Get the students enrolled in the timetabled event
 $query = "SELECT * FROM UserTimetable ut 
           JOIN Timetable t ON t.ModuleId=ut.ModuleId
           WHERE t.TimetableId='$timetableid'";
 $result = odbc_exec($connection, $query);
 
+echo $query;
+echo $result;
+
 // Get the attendance of each student for the timetabled event
 $query2 = "SELECT * FROM UserAttendanceHistory
           WHERE TimetableId='$timetableid'";
 $result2 = odbc_exec($connection, $query2);
+
+echo $query2;
+echo $result2;
 
 // Create the table header
 echo "<tr>";
