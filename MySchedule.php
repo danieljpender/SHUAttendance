@@ -270,7 +270,7 @@ $(document).ready(function() {
     });
      // Add an event listener to the modal close button
   $('.close').click(function() {
-    $('#code-modal').css('display', 'none');
+    $('#attendance-modal').css('display', 'none');
   });
   });
 </script>
