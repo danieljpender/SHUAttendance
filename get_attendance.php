@@ -19,9 +19,8 @@ if (!isset($_POST['timetableid'])) {
 }
 $timetableid = $_POST['timetableid'];
 
-echo $timetableid;
 // Get the students enrolled in the timetabled event
-$query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, 
+$query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, u.Email,
 CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
 FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
@@ -39,7 +38,7 @@ while ($row = odbc_fetch_array($result)) {
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
-  echo '<td>' . '</td>';
+  echo '<td>' . $row['Email'] . '</td>';
   echo '<td>' . $row['Attended'] . '</td>';
   echo '</tr>';
 }
