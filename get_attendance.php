@@ -27,11 +27,10 @@ FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
 LEFT JOIN UserAttendanceHistory a ON a.UserId = ut.UserId
-WHERE t.TimetableId = '$timetableid'";
+WHERE t.TimetableId = '$timetableid'
+AND u.RoleId = '17B1CDAC-93F8-4A5F-A5CD-907272094140'";
 $result = odbc_exec($connection, $query);
 
-echo $query;
-echo $result;
 
 // Generate the attendance table
 echo '<table>';
@@ -133,6 +132,4 @@ echo '</table>';
 // echo '</table>';
 
 // }
-// ?>
-
-?>
+ ?>
