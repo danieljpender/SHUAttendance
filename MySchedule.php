@@ -251,6 +251,9 @@ $(document).ready(function() {
     $('.generate-code-btn').click(function(event) {
       event.stopPropagation();
     });
+    $('.view-attendance-btn').click(function(event) {
+      event.stopPropagation();
+    });
   });
 </script>
 <script>
