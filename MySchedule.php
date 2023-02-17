@@ -71,6 +71,11 @@ $result = odbc_exec($connection, $query);
 <?php
 while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
+  $event_end_time = strtotime($row['EndDate'] . ' ' . $row['EndTime']);
+  $now = time();
+  $code_disabled = $role == 'Admin' && $now > $event_end_time;
+  $enter_code_disabled = $role == 'Student' && $now > $event_end_time;
+
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
   echo "<td  style='display:none;''>" . $row['timetable_id'] . "</td>";
   echo "<td>" . $row['ActivityTypeName'] . "</td>";
@@ -85,15 +90,15 @@ while ($row = odbc_fetch_array($result)) {
   $row2 = odbc_fetch_array($result2);
   $attendance_recorded = $row2['count'] > 0;
   
-  if ($role == 'Admin') {
+ if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
-    echo "<td><button class='generate-code-btn' id='generate_$timetableid'>Generate Code</button></td>"; 
+    echo "<td><button class='generate-code-btn' id='generate_$timetableid' " . ($code_disabled ? 'disabled' : '') . ">Generate Code</button></td>"; 
     echo "<td><button class='view-attendance-btn' data-timetableid='$timetableid' id='attendance_$timetableid'>View Attendance</button></td>";
   } else if ($role == 'Student') {
     if ($attendance_recorded) {
       echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
     } else {
-      echo "<td><button class='enter-code-btn' data-timetableid='$timetableid'>Enter Code</button></td>";
+      echo "<td><button class='enter-code-btn' data-timetableid='$timetableid' " . ($enter_code_disabled ? 'disabled' : '') . ">Enter Code</button></td>";
     }
   }  
   echo "</tr>";
