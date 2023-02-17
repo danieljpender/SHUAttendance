@@ -87,7 +87,7 @@ while ($row = odbc_fetch_array($result)) {
   
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
-    echo "<td><button id='generate_$timetableid'>Generate Code</button></td>"; 
+    echo "<td><button class='generate-code-btn' id='generate_$timetableid'>Generate Code</button></td>"; 
     echo "<td><button class='view-attendance-btn' data-timetableid='$timetableid'>View Attendance</button></td>";
   } else if ($role == 'Student') {
     if ($attendance_recorded) {
@@ -248,12 +248,15 @@ $(document).ready(function() {
     $('.enter-code-btn').click(function(event) {
       event.stopPropagation();
     });
+    $('.generate-code-btn').click(function(event) {
+      event.stopPropagation();
+    });
   });
 </script>
 <script>
   $(document).ready(function() {
     $('.view-attendance-btn').click(function() {
-      var timetableid = $(this).attr('id').split('_')[1];
+      var timetableid = $(this).data('timetableid');
       $.ajax({
         url: 'get_attendance.php',
         type: 'POST',
