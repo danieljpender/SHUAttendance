@@ -268,34 +268,12 @@ $(document).ready(function() {
     $('#attendance-modal').css('display', 'block');
   });
 
-  $.ajax({
-      type: "POST",
-      url: "get_attendance.php",
-      data: {timetableid: timetableid},
-      dataType: "json",
-      success: function(data) {
-        var tr = document.createElement("tr");
-        var firstnameTd = document.createElement("td");
-        var lastnameTd = document.createElement("td");
-        var attendanceStatusTd = document.createElement("td");
-        
-        firstnameTd.innerHTML = row.firstname;
-        lastnameTd.innerHTML = row.lastname;
-        attendanceStatusTd.innerHTML = row.attendancestatus;
-        
-        tr.appendChild(firstnameTd);
-        tr.appendChild(lastnameTd);
-        tr.appendChild(attendanceStatusTd);
-        
-        tableBody.appendChild(tr);
-    },
- }); 
-}); 
+
   // Add an event listener to the modal close button
  $('.close').click(function() {
     $('#event-modal').css('display', 'none');
 });
-
+ }); 
 
 // function viewAttendanceModal(timetableid) {
 //   var modal = document.getElementById("attendance-modal");
