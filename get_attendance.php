@@ -35,11 +35,12 @@ echo $result;
 
 // Generate the attendance table
 echo '<table>';
-echo '<tr><th>User ID</th><th>Name</th><th>Email</th><th>Attended</th></tr>';
+echo '<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Attended</th></tr>';
 while ($row = odbc_fetch_array($result)) {
   echo '<tr>';
-  echo '<td>' . $row['UserId'] . '</td>';
-  echo '<td>' . $row['FirstName'] . ' ' . $row['LastName'] . '</td>';
+  echo '<td>' . $row['StudentId'] . '</td>';
+  echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
+  echo '<td>' . '</td>';
   echo '<td>' . $row['Attended'] . '</td>';
   echo '</tr>';
 }
