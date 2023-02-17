@@ -21,7 +21,7 @@ $timetableid = $_POST['timetableid'];
 
 echo $timetableid;
 // Get the students enrolled in the timetabled event
-$query = "SELECT u.UserId, u.FirstName, u.Surname, 
+$query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, 
 CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
 FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
