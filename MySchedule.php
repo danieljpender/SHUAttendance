@@ -136,22 +136,15 @@ while ($row = odbc_fetch_array($result)) {
   </div>
 </div>
 
-<!-- Attendance Information Modal -->
+<!-- Attendance Modal -->
 <div id="attendance-modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h1>Attendance Information</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Attendance Status</th>
-</tr>
-</thead>
-</table>
+    <h1>Attendance</h1>
+    <table id="attendance-modal-body"></table>
   </div>
 </div>
+
 
 <script>
 $(document).ready(function() {
@@ -262,56 +255,19 @@ $(document).ready(function() {
 
 <script>
   $(document).ready(function() {
-  // Add an event listener to the 'Enter Code' button
-  $('button:contains("View Attendance")').click(function() {
-    var timetableid = this.id.replace("row_", "");
-    $('#attendance-modal').css('display', 'block');
+    $('.view-attendance-btn').click(function() {
+      var timetableid = $(this).data('timetableid');
+      $.ajax({
+        url: 'get_attendance.php',
+        type: 'POST',
+        data: { timetableid: timetableid },
+        success: function(data) {
+          $('#attendance-modal-body').html(data);
+          $('#attendance-modal').show();
+        }
+      });
+    });
   });
-
-
-  // Add an event listener to the modal close button
- $('.close').click(function() {
-    $('#event-modal').css('display', 'none');
-});
- }); 
-
-// function viewAttendanceModal(timetableid) {
-//   var modal = document.getElementById("attendance-modal");
-//   var tableBody = modal.querySelector("table tbody");
-//   tableBody.innerHTML = "";
-//   modal.style.display = "block";
-  
-//   $.ajax({
-//     type: "POST",
-//     url: "get_attendance.php",
-//     data: { timetableid: timetableid },
-//     dataType: "json",
-//     success: function(data) {
-//       data.forEach(function(row) {
-    //     var tr = document.createElement("tr");
-    //     var usernameTd = document.createElement("td");
-    //     var firstnameTd = document.createElement("td");
-    //     var lastnameTd = document.createElement("td");
-    //     var attendanceStatusTd = document.createElement("td");
-        
-    //     usernameTd.innerHTML = row.username;
-    //     firstnameTd.innerHTML = row.firstname;
-    //     lastnameTd.innerHTML = row.lastname;
-    //     attendanceStatusTd.innerHTML = row.attendancestatus;
-        
-    //     tr.appendChild(usernameTd);
-    //     tr.appendChild(firstnameTd);
-    //     tr.appendChild(lastnameTd);
-    //     tr.appendChild(attendanceStatusTd);
-        
-    //     tableBody.appendChild(tr);
-    //   });
-    // },
-//     error: function(jqXHR, textStatus, errorThrown) {
-//       alert("Error: " + textStatus + " - " + errorThrown);
-//     }
-//   });
-// }
 </script>
 
 </body>
