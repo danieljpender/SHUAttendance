@@ -14,10 +14,10 @@ if (!$connection) {
   die("Error connecting to database: " . odbc_errormsg());
 }
 
-if (!isset($_POST['timetableid'])) {
+if (!isset($_GET['timetableid'])) {
   die("Error: no timetable ID provided");
 }
-$timetableid = $_POST['timetableid'];
+$timetableid = $_GET['timetableid'];
 
 echo $timetableid;
 // Get the students enrolled in the timetabled event
