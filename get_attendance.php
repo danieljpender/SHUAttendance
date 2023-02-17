@@ -18,9 +18,13 @@ if (!$connection) {
 
 $timetableid = $_POST['timetableid'];
 
-$query = "SELECT u.Username, u.FirstName, u.LastName, uah.AttendanceStatus FROM UserAttendanceHistory uah
-          JOIN [User] u ON u.UserId = uah.UserId
-          WHERE uah.TimetableId = '$timetableid'";
+$query = $query = "SELECT u.UserId, u.FirstName, u.Surname, 
+CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
+FROM UserTimetable ut
+JOIN [Users] u ON u.UserId = ut.UserId
+JOIN Timetable t ON t.ModuleId=ut.ModuleId
+LEFT JOIN UserAttendanceHistory a ON a.UserId = ut.UserId
+WHERE t.TimetableId = '$timetableid'";
 $result = odbc_exec($connection, $query);
 
 $data = array();
@@ -30,7 +34,7 @@ while ($row = odbc_fetch_array($result)) {
     'username' => $row['Username'],
     'firstname' => $row['FirstName'],
     'lastname' => $row['LastName'],
-    'attendancestatus' => $row['AttendanceStatus']
+    'attendancestatus' => $row['Attended']
   );
 }
 
