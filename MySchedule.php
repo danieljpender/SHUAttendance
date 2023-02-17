@@ -256,7 +256,8 @@ $(document).ready(function() {
 <script>
   $(document).ready(function() {
     $('.view-attendance-btn').click(function() {
-      var timetableid = this.id.replace("attendance_", "");
+      var timetableid = $(this).closest('tr').attr('id').split('_')[1];
+    $('#timetable-id').val(timetableid);
       $.ajax({
         url: 'get_attendance.php',
         type: 'POST',
