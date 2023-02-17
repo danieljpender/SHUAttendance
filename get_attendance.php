@@ -1,4 +1,6 @@
 <?php
+// get_attendance.php
+
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -14,41 +16,23 @@ if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
 }
 
-// Check if the user is logged in
-if (!isset($_SESSION['userid'])) {
-  header("Location: login.php");
-  exit();
-}
+$timetableid = $_POST['timetableid'];
 
-$userid = $_SESSION['userid'];
-$role = $_SESSION['rolename'];
-
-// Check if timetableid is provided
-if (isset($_POST['timetableid'])) {
-    $timetableid = $_POST['timetableid'];
-
-// Query the database for the enrolled students in the event
-$query = "SELECT u.UserId, u.FirstName, u.Surname, 
-                 CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
-          FROM UserTimetable ut
-          JOIN [Users] u ON u.UserId = ut.UserId
-          JOIN Timetable t ON t.ModuleId=ut.ModuleId
-          LEFT JOIN UserAttendanceHistory a ON a.UserId = ut.UserId
-          WHERE t.TimetableId = '$timetableid'";
+$query = "SELECT u.Username, u.FirstName, u.LastName, uah.AttendanceStatus FROM UserAttendanceHistory uah
+          JOIN [User] u ON u.UserId = uah.UserId
+          WHERE uah.TimetableId = '$timetableid'";
 $result = odbc_exec($connection, $query);
-echo $query;
-echo $result;
-// Generate the attendance table
-echo '<table>';
-echo '<tr><th>User ID</th><th>Name</th><th>Email</th><th>Attended</th></tr>';
-while ($row = odbc_fetch_array($result)) {
-  echo '<tr>';
-  echo '<td>' . $row['UserId'] . '</td>';
-  echo '<td>' . $row['FirstName'] . ' ' . $row['LastName'] . '</td>';
-  echo '<td>' . $row['Attended'] . '</td>';
-  echo '</tr>';
-}
-echo '</table>';
 
+$data = array();
+
+while ($row = odbc_fetch_array($result)) {
+  $data[] = array(
+    'username' => $row['Username'],
+    'firstname' => $row['FirstName'],
+    'lastname' => $row['LastName'],
+    'attendancestatus' => $row['AttendanceStatus']
+  );
 }
+
+echo json_encode($data);
 ?>

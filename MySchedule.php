@@ -88,7 +88,7 @@ while ($row = odbc_fetch_array($result)) {
   if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
     echo "<td><button class='generate-code-btn' id='generate_$timetableid'>Generate Code</button></td>"; 
-    echo "<td><button class='view-attendance-btn' data-timetableid='$timetableid'>View Attendance</button></td>";
+    echo "<button class='view-attendance-btn' data-timetableid='$timetableid' onclick='viewAttendanceModal($timetableid)'>View Attendance</button>";
   } else if ($role == 'Student') {
     if ($attendance_recorded) {
       echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
@@ -136,17 +136,21 @@ while ($row = odbc_fetch_array($result)) {
   </div>
 </div>
 
-<!-- View Attendance Modal -->
+<!-- Attendance Information Modal -->
 <div id="attendance-modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
+    <h1>Attendance Information</h1>
     <table>
-      <tr>
-        <th>Student</th>
-        <th>Attendance</th>
-      </tr>
-      <tbody id="attendance-table"></tbody>
-    </table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Attendance Status</th>
+</tr>
+</thead>
+</table>
   </div>
 </div>
 
@@ -256,37 +260,47 @@ $(document).ready(function() {
     });
   });
 </script>
+
 <script>
-  $(document).ready(function() {
-    $('.view-attendance-btn').click(function() {
-      var timetableid = $(this).data('timetableid');
-      $.ajax({
-        url: 'get_attendance.php',
-        type: 'POST',
-        data: {timetableid: timetableid},
-        dataType: 'json',
-        success: function(data) {
-          var rows = '';
-          for (var i = 0; i < data.length; i++) {
-            rows += '<tr><td>' + data[i].Name + '</td><td>' + (data[i].Attended == 1 ? 'Yes' : 'No') + '</td></tr>';
-          }
-          $('#attendance-table').html(rows);
-          $('#attendance-modal').show();
-        }
+function viewAttendanceModal(timetableid) {
+  var modal = document.getElementById("attendance-modal");
+  var tableBody = modal.querySelector("table tbody");
+  tableBody.innerHTML = "";
+  modal.style.display = "block";
+  
+  $.ajax({
+    type: "POST",
+    url: "get_attendance.php",
+    data: { timetableid: timetableid },
+    dataType: "json",
+    success: function(data) {
+      data.forEach(function(row) {
+        var tr = document.createElement("tr");
+        var usernameTd = document.createElement("td");
+        var firstnameTd = document.createElement("td");
+        var lastnameTd = document.createElement("td");
+        var attendanceStatusTd = document.createElement("td");
+        
+        usernameTd.innerHTML = row.username;
+        firstnameTd.innerHTML = row.firstname;
+        lastnameTd.innerHTML = row.lastname;
+        attendanceStatusTd.innerHTML = row.attendancestatus;
+        
+        tr.appendChild(usernameTd);
+        tr.appendChild(firstnameTd);
+        tr.appendChild(lastnameTd);
+        tr.appendChild(attendanceStatusTd);
+        
+        tableBody.appendChild(tr);
       });
-    });
-  
-    $('.close').click(function() {
-      $('.modal').hide();
-    });
-  
-    $(window).click(function(e) {
-      if (e.target.className == 'modal') {
-        $('.modal').hide();
-      }
-    });
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      alert("Error: " + textStatus + " - " + errorThrown);
+    }
   });
+}
 </script>
+
 </body>
 </html>
 <?php
