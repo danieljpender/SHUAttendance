@@ -22,6 +22,7 @@ $timetableid = $_POST['timetableid'];
 echo $timetableid;
 // Get the students enrolled in the timetabled event
 $query = "SELECT * FROM UserTimetable ut 
+          JOIN Users u ON u.UserId=ut.UserId
           JOIN Timetable t ON t.ModuleId=ut.ModuleId
           WHERE t.TimetableId='$timetableid'";
 $result = odbc_exec($connection, $query);
