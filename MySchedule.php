@@ -262,43 +262,52 @@ $(document).ready(function() {
 </script>
 
 <script>
-function viewAttendanceModal(timetableid) {
-  var modal = document.getElementById("attendance-modal");
-  var tableBody = modal.querySelector("table tbody");
-  tableBody.innerHTML = "";
-  modal.style.display = "block";
-  
-  $.ajax({
-    type: "POST",
-    url: "get_attendance.php",
-    data: { timetableid: timetableid },
-    dataType: "json",
-    success: function(data) {
-      data.forEach(function(row) {
-        var tr = document.createElement("tr");
-        var usernameTd = document.createElement("td");
-        var firstnameTd = document.createElement("td");
-        var lastnameTd = document.createElement("td");
-        var attendanceStatusTd = document.createElement("td");
-        
-        usernameTd.innerHTML = row.username;
-        firstnameTd.innerHTML = row.firstname;
-        lastnameTd.innerHTML = row.lastname;
-        attendanceStatusTd.innerHTML = row.attendancestatus;
-        
-        tr.appendChild(usernameTd);
-        tr.appendChild(firstnameTd);
-        tr.appendChild(lastnameTd);
-        tr.appendChild(attendanceStatusTd);
-        
-        tableBody.appendChild(tr);
-      });
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-      alert("Error: " + textStatus + " - " + errorThrown);
-    }
+  $(document).ready(function() {
+  // Add an event listener to the 'Enter Code' button
+  $('button:contains("View Attendance")').click(function() {
+    var timetableid = this.id.replace("row_", "");
+    $('#attendance-modal').css('display', 'block');
   });
-}
+});
+
+
+// function viewAttendanceModal(timetableid) {
+//   var modal = document.getElementById("attendance-modal");
+//   var tableBody = modal.querySelector("table tbody");
+//   tableBody.innerHTML = "";
+//   modal.style.display = "block";
+  
+//   $.ajax({
+//     type: "POST",
+//     url: "get_attendance.php",
+//     data: { timetableid: timetableid },
+//     dataType: "json",
+//     success: function(data) {
+//       data.forEach(function(row) {
+//         var tr = document.createElement("tr");
+//         var usernameTd = document.createElement("td");
+//         var firstnameTd = document.createElement("td");
+//         var lastnameTd = document.createElement("td");
+//         var attendanceStatusTd = document.createElement("td");
+        
+//         usernameTd.innerHTML = row.username;
+//         firstnameTd.innerHTML = row.firstname;
+//         lastnameTd.innerHTML = row.lastname;
+//         attendanceStatusTd.innerHTML = row.attendancestatus;
+        
+//         tr.appendChild(usernameTd);
+//         tr.appendChild(firstnameTd);
+//         tr.appendChild(lastnameTd);
+//         tr.appendChild(attendanceStatusTd);
+        
+//         tableBody.appendChild(tr);
+//       });
+//     },
+//     error: function(jqXHR, textStatus, errorThrown) {
+//       alert("Error: " + textStatus + " - " + errorThrown);
+//     }
+//   });
+// }
 </script>
 
 </body>
