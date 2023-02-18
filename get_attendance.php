@@ -25,7 +25,7 @@ CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
 FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
-LEFT JOIN UserAttendanceHistory a ON a.UserId = ut.UserId
+LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId
 WHERE t.TimetableId = '$timetableid'
 AND u.RoleId = '17B1CDAC-93F8-4A5F-A5CD-907272094140'";
 $result = odbc_exec($connection, $query);
