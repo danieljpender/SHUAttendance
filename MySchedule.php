@@ -29,7 +29,8 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE ut.UserId= '$userid'
-          AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())";
+          -- AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())
+          ";
 $result = odbc_exec($connection, $query);
 
 ?>
@@ -73,7 +74,7 @@ while ($row = odbc_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   $event_end_time = strtotime($row['EndDate'] . ' ' . $row['EndTime']);
   $now = time();
-  $code_disabled = $role == 'Admin' && $now > $event_end_time;
+  // $code_disabled = $role == 'Admin' && $now > $event_end_time;
   $enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
@@ -240,7 +241,8 @@ $(document).ready(function() {
         $('#code_' + timetableid).text(data);
       }
     });
-  });
+    $(this).prop('disabled', true);
+});
   });
   </script>
   <script>
