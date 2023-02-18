@@ -78,6 +78,8 @@ while ($row = odbc_fetch_array($result)) {
   $code_disabled = $row['timetablecode'] !== NULL;
   $no_register = $row['timetablecode'] == NULL && $now > $event_end_time;
  // $enter_code_disabled = $role == 'Student' && $now > $event_end_time;
+echo $now;
+echo $end_time;
 
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
   echo "<td  style='display:none;''>" . $row['timetable_id'] . "</td>";
