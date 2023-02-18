@@ -65,7 +65,8 @@ $result = odbc_exec($connection, $query);
       echo "<th>View Attendance</th>";
     }
     else if ($role == 'Student') {
-      echo "<th>Enter Code</th>";
+      echo "<th>Record Attendance</th>";
+      echo "<th>Record Absence</th>";
     }
     ?>
   </tr>
@@ -112,6 +113,7 @@ while ($row = odbc_fetch_array($result)) {
       } else {
         echo "<td><button class='enter-code-btn' data-timetableid='$timetableid'>Enter Code</button></td>";
       }
+      echo "<td><button>Record Absence</button></td>";
   }  
   echo "</tr>";
 }
