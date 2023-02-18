@@ -76,7 +76,7 @@ while ($row = odbc_fetch_array($result)) {
   $current_datetime = strtotime('now');
   $event_has_ended = $end_datetime < $current_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
-  $no_register = $row['timetablecode'] == NULL && $now > $event_end_time;
+  $no_register = $row['timetablecode'] == NULL && $end_datetime < $current_datetime;
  // $enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
@@ -102,6 +102,8 @@ while ($row = odbc_fetch_array($result)) {
         echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
       } else if ($event_has_ended) {
         echo "<td><button disabled='disabled'>Event Ended</button></td>";
+      } else if ($no_register) {
+        echo "<td><button disabled='disabled'>Register Not Taken</button></td>";
       } else {
         echo "<td><button class='enter-code-btn' data-timetableid='$timetableid'>Enter Code</button></td>";
       }
