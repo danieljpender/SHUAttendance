@@ -95,7 +95,12 @@ while ($row = odbc_fetch_array($result)) {
   
  if ($role == 'Admin') {
     echo "<td id='code_$timetableid'>" . $row['timetablecode'] . "</td>";
+    if ($no_register) {
+      echo "<td><button disabled='disabled'>Register Not Taken</button></td>";
+    }
+    else {
     echo "<td><button class='generate-code-btn' id='generate_$timetableid' " . ($code_disabled ? 'disabled' : '') . ">Generate Code</button></td>"; 
+    }
     echo "<td><button class='view-attendance-btn' data-timetableid='$timetableid' id='attendance_$timetableid'>View Attendance</button></td>";
   } else if ($role == 'Student') {
       if ($attendance_recorded) {
