@@ -38,7 +38,7 @@ if ($conn === false) {
 
 $sql = "SELECT [userid], [firstname], [surname], u.RoleId, r.rolename as rolename FROM [users] u
         JOIN [Role] r ON r.RoleId = u.RoleId
-        WHERE username='$username' AND password='$password'";
+        WHERE username='$username'";
 $result = sqlsrv_query($conn, $sql);
 
 if (!$result) {
