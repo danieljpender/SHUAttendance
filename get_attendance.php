@@ -45,6 +45,12 @@ $result = sqlsrv_query($connection, $query);
 echo '<table>';
 echo '<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Attended</th><th>Email Student</th></tr>';
 while ($row = sqlsrv_fetch_array($result)) {
+  $subject = '';
+  $body = '';
+  if ($row['Attended'] == 'No') {
+    $subject = 'Reminder: Attendance for '.$timetableid;
+    $body = 'Dear '.$row['FirstName'].'%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20session%20on%20'.date('H:i', strtotime($row['StartTime'])).'%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record?%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards,\n[Your%20Name]\';
+   }
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
