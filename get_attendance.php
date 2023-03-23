@@ -49,8 +49,8 @@ while ($row = sqlsrv_fetch_array($result)) {
   $body = 'Dear '.$row['FirstName'];
   if ($row['Attended'] == 'No') {
     $subject = $row['Description'].' - Attendance';
-    $body = 'Dear '.$row['FirstName'].'%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20session%20on%20'.date('H:i', strtotime($row['StartTime'])).'%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record?%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards,\n[Your%20Name]\'';
-   }
+    $body = 'Dear '.$row['FirstName'].'%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20session%20on%20'.date('H:i', strtotime($row['StartTime'])).'%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record%3F%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards%2C%0A%5BYour%20Name%5D';
+  }
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
