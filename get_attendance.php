@@ -50,15 +50,15 @@ while ($row = sqlsrv_fetch_array($result)) {
 if ($row['Attended'] == 'No') {
   $subject = $row['Description'].' - Attendance';
   $body = 'Dear '.$row['FirstName']."\r\n\r\n".'I just wanted to check with you regarding your attendance record for the session on '.date('H:i', strtotime($row['StartTime'])).' at [time]. Did you face any issues in accessing the event or submitting your attendance record?'."\r\n\r\n".'Thank you for your cooperation.'."\r\n\r\n".'Regards,'."\r\n".'[Your Name]';
-  $body = urlencode($body);
+
 }
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
   echo '<td>' . $row['Email'] . '</td>';
   echo '<td>' . $row['Attended'] . '</td>';
-  echo '<td><a href="mailto:'.$row['Email'].'?subject='.urlencode($subject).'&body='.urlencode($body).'">Email Student</a></td>';
-  echo '</tr>';
+  echo '<td><a href="mailto:'.$row['Email'].'?subject='.urlencode($subject).'&body='.$body.'">Email Student</a></td>';
+echo '</tr>';
 }
 echo '</table>';
 
