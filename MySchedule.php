@@ -105,13 +105,6 @@ $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
   $query2 = "SELECT COUNT(*) as count FROM UserAttendanceHistory WHERE UserId='$userid' AND TimetableId='$timetableid'";
   $result2 = sqlsrv_query($connection, $query2);
   $row2 = sqlsrv_fetch_array($result2);
-  if ($result2 === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
-$row2 = sqlsrv_fetch_array($result2);
-if ($row2 === null) {
-    die("No rows returned from query");
-}
   $attendance_recorded = $row2['count'] > 0;
   
  if ($role == 'Admin') {
