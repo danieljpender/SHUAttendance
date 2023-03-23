@@ -85,7 +85,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   $startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
 
 $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
-  $end_datetime = strtotime($row['EndDate']);
+$end_datetime = $row['EndDate']->getTimestamp();
   $current_datetime = strtotime('now');
   $event_has_ended = $end_datetime < $current_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
