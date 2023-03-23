@@ -36,7 +36,7 @@ JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
 LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId
 WHERE t.TimetableId = '$timetableid'
-AND u.RoleId = '17B1CDAC-93F8-4A5F-A5CD-907272094140'";
+AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
 echo "SQL query: $query<br>"; // printing the SQL query for debugging purposes
 $result = sqlsrv_query($connection, $query);
 
