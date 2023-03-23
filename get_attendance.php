@@ -29,7 +29,7 @@ if (!isset($_POST['timetableid'])) {
 $timetableid = $_POST['timetableid'];
 
 // Get the students enrolled in the timetabled event
-$query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, u.Email,
+$query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, u.Email, t.Description
 CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended
 FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
@@ -45,10 +45,10 @@ $result = sqlsrv_query($connection, $query);
 echo '<table>';
 echo '<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Attended</th><th>Email Student</th></tr>';
 while ($row = sqlsrv_fetch_array($result)) {
-  $subject = '';
-  $body = '';
+  $subject = $row['Description'];
+  $body = 'Dear '.$row['FirstName'];
   if ($row['Attended'] == 'No') {
-    $subject = 'Reminder: Attendance for '.$timetableid;
+    $subject = $row['Description'].' - Attendance';
     $body = 'Dear '.$row['FirstName'].'%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20session%20on%20'.date('H:i', strtotime($row['StartTime'])).'%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record?%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards,\n[Your%20Name]\'';
    }
   echo '<tr>';
@@ -56,7 +56,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
   echo '<td>' . $row['Email'] . '</td>';
   echo '<td>' . $row['Attended'] . '</td>';
-  echo '<td><button onclick="location.href=\'mailto:' . $row['Email'] . '?subject=Regarding%20your%20attendance%20record%20for%20the%20event%20on%20[date]%20at%20[time]%20&body=Dear%20' . $row['FirstName'] . ',%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20event%20on%20[date]%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record?%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards,\n[Your%20Name]\'">Email Student</button></td>';
+  echo '<td><a href="mailto:'.$row['Email'].'?subject='.urlencode($subject).'&body='.urlencode($body).'">Email Student</a></td>';
   echo '</tr>';
 }
 echo '</table>';
