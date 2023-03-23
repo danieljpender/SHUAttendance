@@ -43,7 +43,7 @@ $role = $_SESSION['rolename'];
               <li><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'MySchedule.php') { echo 'nav-link-active'; } ?>" href="MySchedule.php">My Schedule</a></li>
                   <?php if ($role === "Student") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'MyAttendance.php') { echo 'nav-link-active'; } ?>" href="MyAttendance.php">My Attendance Record</a></li><?php } ?>
                   <?php if ($role === "Admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'StudentAttendance.php') { echo 'nav-link-active'; } ?>" href="StudentAttendance.php">Student Attendance Records</a></li><?php } ?>
-                  <?php if ($role === "Admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'Events.php') { echo 'nav-link-active'; } ?>" href="Events.php">Events</a></li><?php } ?>
+                  <!-- <?php if ($role === "Admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'Events.php') { echo 'nav-link-active'; } ?>" href="Events.php">Events</a></li><?php } ?> -->
                   <?php if ($role === "Admin") { ?><li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['PHP_SELF']) === 'Reporting.php') { echo 'nav-link-active'; } ?>" href="Reporting.php">Reporting</a></li><?php } ?>
                   <?php if ($role === "Admin") { ?><li class="nav-item dropdown-nav">
                       <a href="javascript:void(0)" class="dropbtn">Admin Tools</a>
