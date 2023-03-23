@@ -49,7 +49,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   $body = 'Dear '.$row['FirstName'];
 if ($row['Attended'] == 'No') {
   $subject = $row['Description'].' - Attendance';
-  $body = 'Dear '.$row['FirstName']."<br><br>".'I just wanted to check with you regarding your attendance record for the session today. Did you face any issues in accessing the event or submitting your attendance record?'.PHP_EOL . PHP_EOL .'Thank you for your cooperation.'.PHP_EOL . PHP_EOL .'Regards,'.PHP_EOL .''.$_SESSION["firstname"].'';
+  $body = 'Dear '.$row['FirstName']."%0A%0A".'I just wanted to check with you regarding your attendance record for the session today. Did you face any issues in accessing the event or submitting your attendance record?'.PHP_EOL . PHP_EOL .'Thank you for your cooperation.'.PHP_EOL . PHP_EOL .'Regards,'.PHP_EOL .''.$_SESSION["firstname"].'';
 }
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
@@ -57,6 +57,8 @@ if ($row['Attended'] == 'No') {
   echo '<td>' . $row['Email'] . '</td>';
   echo '<td>' . $row['Attended'] . '</td>';
   echo '<td><a href="mailto:'.$row['Email'].'?subject='.$subject.'&body='.$body.'">Email Student</a></td>';
+  echo '<td><button onclick="location.href=\'mailto:' . $row['Email'] . '?subject=Regarding%20your%20attendance%20record%20for%20the%20event%20on%20[date]%20at%20[time]%20&body=Dear%20' . $row['FirstName'] . ',%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20event%20on%20[date]%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record?%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards,\n[Your%20Name]\'">Email Student</button></td>';
+  
 echo '</tr>';
 }
 echo '</table>';
