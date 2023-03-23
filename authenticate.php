@@ -7,9 +7,9 @@ $password = $_POST["password"];
 $server = "tcp:eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
 $database = "SHUAttendance";
 $serverUsername = "eam";
-$serverPassword = "%Pa55w0rd";
+$serverPassword = "%PA55w0rd";
 
-$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;Encrypt=yes;TrustServerCertificate=yes;ODBC_VERIF_SERVER_CERT=0;", $serverUsername, $serverPassword);
+$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;Encrypt=yes;TrustServerCertificate=yes;", $serverUsername, $serverPassword);
 
 if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
