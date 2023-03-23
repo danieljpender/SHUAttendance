@@ -30,7 +30,7 @@ $timetableid = $_POST['timetableid'];
 
 // Get the students enrolled in the timetabled event
 $query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, u.Email,
-CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended, t.Description
+CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended, t.Description, t.StartDate, t.StartTime
 FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
@@ -49,7 +49,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   $body = 'Dear '.$row['FirstName'];
 if ($row['Attended'] == 'No') {
   $subject = $row['Description'].' - Attendance';
-  $body = 'Dear '.$row['FirstName']."\r\n\r\n".'I just wanted to check with you regarding your attendance record for the session on '.date('H:i', strtotime($row['StartTime'])).' at [time]. Did you face any issues in accessing the event or submitting your attendance record?'."\r\n\r\n".'Thank you for your cooperation.'."\r\n\r\n".'Regards,'."\r\n".'[Your Name]';
+  $body = 'Dear '.$row['FirstName']."\r\n\r\n".'I just wanted to check with you regarding your attendance record for the session on '.$row['StartDate'].' at '.date('H:i', strtotime($row['StartTime'])).'. Did you face any issues in accessing the event or submitting your attendance record?'."\r\n\r\n".'Thank you for your cooperation.'."\r\n\r\n".'Regards,'."\r\n".'[Your Name]';
 }
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
