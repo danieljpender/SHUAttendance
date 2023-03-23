@@ -38,7 +38,8 @@ if ($conn === false) {
 
 $sql = "SELECT [userid], [firstname], [surname], u.RoleId, r.rolename as rolename FROM [users] u
         JOIN [Role] r ON r.RoleId = u.RoleId
-        WHERE username='$username'";
+        WHERE username='$username' AND password='$password'";
+        echo "SQL query: $sql<br>"; // printing the SQL query for debugging purposes
 $result = sqlsrv_query($conn, $sql);
 
 if (!$result) {
@@ -59,7 +60,7 @@ if (sqlsrv_has_rows($result)) {
     echo "Invalid username or password";
 }
 
-
+sqlsrv_free_stmt($result);
 sqlsrv_close($conn);
 
 ?>
