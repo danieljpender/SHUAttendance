@@ -3,15 +3,24 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$server = "eam-group27.database.windows.net";
+$serverName = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
 $database = "SHUAttendance";
-$serverUsername = "eam";
-$serverPassword = "%PA55w0rd";
+$dbuser = "eam";
+$dbpass = "%PA55w0rd";
 
-$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
+$connOptions = array(
+    "Database" => $database,
+    "UID" => $dbuser,
+    "PWD" => $dbpass,
+    "Encrypt" => true,
+    "TrustServerCertificate" => true,
+    "LoginTimeout" => 30
+);
 
-if (!$connection) {
-  die("Error connecting to database: " . odbc_errormsg());
+$connection = sqlsrv_connect($serverName, $connOptions);
+
+if ($connection === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 if (!isset($_POST['timetableid'])) {
