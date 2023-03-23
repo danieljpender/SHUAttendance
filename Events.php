@@ -92,7 +92,7 @@ cursor: pointer;
   }
 
 $query = "SELECT * FROM dbo.Events";
-$result = sqlsrv_query($conn, $query);
+$result = sqlsrv_query($connection, $query);
 if (!$result) {
     echo "Query failed: " . sqlsrv_errormsg();
 } else {
