@@ -34,7 +34,7 @@ $role = $_SESSION['rolename'];
 // Query the database for the events associated with the user
 $query = "SELECT *, r.RoleName as role_name FROM Users u
           JOIN [Role] r ON r.RoleId = u.RoleId
-          WHERE r.RoleId <> 'B964A9EF-6635-432B-B364-2460B00D8ED1'
+          WHERE r.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'
           ORDER BY RoleName, FirstName, Surname ASC";
 $result = sqlsrv_query($connection, $query);
 
@@ -51,11 +51,12 @@ $result = sqlsrv_query($connection, $query);
     </header>
     <div class="main-content">
     <h1>
-  Manage Users
+  Manage Students
 </h1>
   <div class="container">
         <table>
             <tr>
+                <th>Student ID</th>
                 <th>Firstname</th>
                 <th>Surname</th>
                 <th>Email</th>
@@ -65,6 +66,7 @@ $result = sqlsrv_query($connection, $query);
             <?php
  while ($row = sqlsrv_fetch_array($result)) {
     echo "<tr>";
+              echo "<td>" . $row['StudentId'] . "</td>";
               echo "<td>" . $row['FirstName'] . "</td>";
               echo "<td>" . $row['Surname'] . "</td>";
               echo "<td>" . $row['Email'] . "</td>";

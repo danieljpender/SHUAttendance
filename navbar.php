@@ -54,6 +54,7 @@ $role = $_SESSION['rolename'];
                           <a href="ViewActivityTypes.php">Activity Types</a>
                           <a href="ViewRoles.php">Roles</a>
                           <a href="ViewUsers.php">Users</a>
+                          <a href="ViewUsers.php">Students</a>
                       </div>
                       
                   </li><?php } ?>
