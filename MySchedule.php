@@ -313,5 +313,5 @@ $(document).ready(function() {
 </body>
 </html>
 <?php
-sqlsrv_close($conn);
+sqlsrv_close($connection);
 ?>
