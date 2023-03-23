@@ -94,7 +94,7 @@ cursor: pointer;
 $query = "SELECT * FROM dbo.Events";
 $result = sqlsrv_query($connection, $query);
 if (!$result) {
-    echo "Query failed: " . sqlsrv_errormsg();
+    echo "Query failed: " . sqlsrv_errors();
 } else {
     echo "Query executed successfully";
 }
