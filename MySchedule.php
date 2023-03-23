@@ -83,11 +83,11 @@ $result = sqlsrv_query($connection, $query);
 <?php
 while ($row = sqlsrv_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
-  $end_datetime = strtotime(date_format($row['EndDate'], 'Y-m-d H:i:s'));
-$current_datetime = strtotime('now');
-  $event_has_ended = $end_datetime < $current_datetime;
-  $code_disabled = $row['timetablecode'] !== NULL;
-  $no_register = $row['timetablecode'] == NULL && $end_datetime < $current_datetime;
+  // $end_datetime = strtotime($row['EndDate']);
+  // $current_datetime = strtotime('now');
+  // $event_has_ended = $end_datetime < $current_datetime;
+  // $code_disabled = $row['timetablecode'] !== NULL;
+  // $no_register = $row['timetablecode'] == NULL && $end_datetime < $current_datetime;
  // $enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
