@@ -43,13 +43,14 @@ $result = sqlsrv_query($connection, $query);
 
 // Generate the attendance table
 echo '<table>';
-echo '<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Attended</th></tr>';
+echo '<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Attended</th><th>Email Student</th></tr>';
 while ($row = sqlsrv_fetch_array($result)) {
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
   echo '<td>' . $row['Email'] . '</td>';
   echo '<td>' . $row['Attended'] . '</td>';
+  echo '<td><button onclick="location.href=\'mailto:' . $row['Email'] . '?subject=Regarding%20your%20attendance%20record%20for%20the%20event%20on%20[date]%20at%20[time]%20&body=Dear%20' . $row['FirstName'] . ',%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20event%20on%20[date]%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record?%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards,\n[Your%20Name]\'">Email Student</button></td>';
   echo '</tr>';
 }
 echo '</table>';
