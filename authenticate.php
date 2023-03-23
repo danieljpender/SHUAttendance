@@ -30,9 +30,9 @@ $connOptions = array(
     "LoginTimeout" => 30
 );
 
-$conn = sqlsrv_connect($serverName, $connOptions);
+$connection = sqlsrv_connect($serverName, $connOptions);
 
-if ($conn === false) {
+if ($connection === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
