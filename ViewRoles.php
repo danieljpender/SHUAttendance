@@ -1,15 +1,25 @@
 <?php
 session_start();
 
-$server = "eam-group27.database.windows.net";
+$serverName = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
 $database = "SHUAttendance";
-$serverUsername = "eam";
-$serverPassword = "%PA55w0rd";
+$dbuser = "eam";
+$dbpass = "%PA55w0rd";
 
-$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
+$connOptions = array(
+    "Database" => $database,
+    "UID" => $dbuser,
+    "PWD" => $dbpass,
+    "MultipleActiveResultSets" => false,
+    "Encrypt" => true,
+    "TrustServerCertificate" => true,
+    "LoginTimeout" => 30
+);
 
-if (!$connection) {
-    die("Error connecting to database: " . odbc_errormsg());
+$connection = sqlsrv_connect($serverName, $connOptions);
+
+if ($connection === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 // Check if the user is logged in
@@ -24,7 +34,7 @@ $role = $_SESSION['rolename'];
 // Query the database for the events associated with the user
 $query = "SELECT * FROM [Role]
           ORDER BY RoleName ASC";
-$result = odbc_exec($connection, $query);
+$result = sqlsrv_query($connection, $query);
 
 ?>
 <html>
@@ -48,7 +58,7 @@ $result = odbc_exec($connection, $query);
                 <th>Options</th>
             </tr>
             <?php
- while ($row = odbc_fetch_array($result)) {
+ while ($row = sqlsrv_fetch_array($result)) {
     echo "<tr>";
               echo "<td>" . $row['RoleName'] . "</td>";
               echo "<td class='link'>Edit</td>";
@@ -67,5 +77,5 @@ $result = odbc_exec($connection, $query);
 </html>
 
 <?php
-odbc_close($connection);
+sqlsrv_close($connection);
 ?>
