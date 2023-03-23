@@ -17,13 +17,13 @@ $password = $_POST["password"];
 
 $serverName = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
 $database = "SHUAttendance";
-$username = "eam";
-$password = "%PA55w0rd";
+$dbuser = "eam";
+$dbpass = "%PA55w0rd";
 
 $connOptions = array(
     "Database" => $database,
-    "UID" => $username,
-    "PWD" => $password,
+    "UID" => $dbuser,
+    "PWD" => $dbpass,
     "MultipleActiveResultSets" => false,
     "Encrypt" => true,
     "TrustServerCertificate" => true,
