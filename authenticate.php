@@ -59,7 +59,7 @@ if (sqlsrv_has_rows($result)) {
     echo "Invalid username or password";
 }
 
-sqlsrv_free_stmt($result);
+
 sqlsrv_close($conn);
 
 ?>
