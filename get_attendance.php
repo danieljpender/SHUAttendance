@@ -57,7 +57,7 @@ if ($row['Attended'] == 'No') {
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
   echo '<td>' . $row['Email'] . '</td>';
   echo '<td>' . $row['Attended'] . '</td>';
-  echo '<td><a href="mailto:'.$row['Email'].'?subject='.urlencode($subject).'&body='.$body.'">Email Student</a></td>';
+  echo '<td><a href="mailto:'.$row['Email'].'?subject='.$subject.'&body='.$body.'">Email Student</a></td>';
 echo '</tr>';
 }
 echo '</table>';
