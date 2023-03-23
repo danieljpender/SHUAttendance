@@ -49,7 +49,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   $body = 'Dear '.$row['FirstName'];
 if ($row['Attended'] == 'No') {
   $subject = $row['Description'].' - Attendance';
-  $body = 'Dear '.$row['FirstName']."\r\n\r\n".'I just wanted to check with you regarding your attendance record for the session on '.$row['StartDate'].' at '.$row['StartTime'].'. Did you face any issues in accessing the event or submitting your attendance record?'."\r\n\r\n".'Thank you for your cooperation.'."\r\n\r\n".'Regards,'."\r\n".'[Your Name]';
+  $body = 'Dear '.$row['FirstName']."\r\n\r\n".'I just wanted to check with you regarding your attendance record for the session today. Did you face any issues in accessing the event or submitting your attendance record?'."\r\n\r\n".'Thank you for your cooperation.'."\r\n\r\n".'Regards,'."\r\n".''.$_SESSION["firstname"].'';
 }
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
