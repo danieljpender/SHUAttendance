@@ -9,7 +9,7 @@ $database = "SHUAttendance";
 $serverUsername = "eam";
 $serverPassword = "%PA55w0rd";
 
-$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;Encrypt=yes;TrustServerCertificate=yes;", $serverUsername, $serverPassword);
+$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;TrustServerCertificate=yes;", $serverUsername, $serverPassword);
 
 if (!$connection) {
     die("Error connecting to database: " . odbc_errormsg());
