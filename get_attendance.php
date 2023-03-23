@@ -47,10 +47,11 @@ echo '<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Attended</th><th>Ema
 while ($row = sqlsrv_fetch_array($result)) {
   $subject = $row['Description'];
   $body = 'Dear '.$row['FirstName'];
-  if ($row['Attended'] == 'No') {
-    $subject = $row['Description'].' - Attendance';
-    $body = 'Dear%20'.$row['FirstName'].'%0A%0AI%20just%20wanted%20to%20check%20with%20you%20regarding%20your%20attendance%20record%20for%20the%20session%20on%20'.date('H:i', strtotime($row['StartTime'])).'%20at%20[time].%20Did%20you%20face%20any%20issues%20in%20accessing%20the%20event%20or%20submitting%20your%20attendance%20record%3F%0A%0AThank%20you%20for%20your%20cooperation.%0A%0ARegards%2C%0A%5BYour%20Name%5D';
-  }
+if ($row['Attended'] == 'No') {
+  $subject = $row['Description'].' - Attendance';
+  $body = 'Dear '.$row['FirstName']."\r\n\r\n".'I just wanted to check with you regarding your attendance record for the session on '.date('H:i', strtotime($row['StartTime'])).' at [time]. Did you face any issues in accessing the event or submitting your attendance record?'."\r\n\r\n".'Thank you for your cooperation.'."\r\n\r\n".'Regards,'."\r\n".'[Your Name]';
+  $body = urlencode(urldecode($body));
+}
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
