@@ -4,7 +4,7 @@ session_start();
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-$server = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com";
+$server = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
 $database = "SHUAttendance";
 $serverUsername = "eam";
 $serverPassword = "%PA55w0rd";
