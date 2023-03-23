@@ -12,7 +12,6 @@ $connOptions = array(
     "Database" => $database,
     "UID" => $dbuser,
     "PWD" => $dbpass,
-    "MultipleActiveResultSets" => false,
     "Encrypt" => true,
     "TrustServerCertificate" => true,
     "LoginTimeout" => 30
