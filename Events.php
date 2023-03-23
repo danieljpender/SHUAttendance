@@ -70,21 +70,31 @@ cursor: pointer;
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  $server = "eam-group27.database.windows.net";
+  $serverName = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
   $database = "SHUAttendance";
-  $username = "eam";
-  $password = "%PA55w0rd";
-
-  $conn = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $username, $password);
-
-  if (!$conn) {
-    die("Connection failed: " . odbc_errormsg());
-}
+  $dbuser = "eam";
+  $dbpass = "%PA55w0rd";
+  
+  $connOptions = array(
+      "Database" => $database,
+      "UID" => $dbuser,
+      "PWD" => $dbpass,
+      "MultipleActiveResultSets" => false,
+      "Encrypt" => true,
+      "TrustServerCertificate" => true,
+      "LoginTimeout" => 30
+  );
+  
+  $connection = sqlsrv_connect($serverName, $connOptions);
+  
+  if ($connection === false) {
+      die(print_r(sqlsrv_errors(), true));
+  }
 
 $query = "SELECT * FROM dbo.Events";
-$result = odbc_exec($conn, $query);
+$result = sqlsrv_query($conn, $query);
 if (!$result) {
-    echo "Query failed: " . odbc_errormsg();
+    echo "Query failed: " . sqlsrv_errormsg();
 } else {
     echo "Query executed successfully";
 }
@@ -104,7 +114,7 @@ if (!$result) {
     </tr>
     <?php
       
-    while ($row = odbc_fetch_array($result)) {
+    while ($row = sqlsrv_fetch_array($result)) {
       echo "<tr>";
       echo "<td>" . $row["TYPE"] . "</td>";
       echo "<td>" . $row["Title"] . "</td>";

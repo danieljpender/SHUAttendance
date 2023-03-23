@@ -32,5 +32,5 @@ $role = $_SESSION['role'];
 </html>
 
 <?php
-odbc_close($connection);
+sqlsrv_close($connection);
 ?>

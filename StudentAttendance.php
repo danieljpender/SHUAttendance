@@ -1,15 +1,25 @@
 <?php
 session_start();
 
-$server = "eam-group27.database.windows.net";
+$serverName = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
 $database = "SHUAttendance";
-$serverUsername = "eam";
-$serverPassword = "%PA55w0rd";
+$dbuser = "eam";
+$dbpass = "%PA55w0rd";
 
-$connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;", $serverUsername, $serverPassword);
+$connOptions = array(
+    "Database" => $database,
+    "UID" => $dbuser,
+    "PWD" => $dbpass,
+    "MultipleActiveResultSets" => false,
+    "Encrypt" => true,
+    "TrustServerCertificate" => true,
+    "LoginTimeout" => 30
+);
 
-if (!$connection) {
-    die("Error connecting to database: " . odbc_errormsg());
+$connection = sqlsrv_connect($serverName, $connOptions);
+
+if ($connection === false) {
+    die(print_r(sqlsrv_errors(), true));
 }
 
 // Check if the user is logged in
@@ -67,8 +77,8 @@ $role = $_SESSION['role'];
     <option value="">Select a Department</option>
     <?php
       $query = "SELECT * FROM Department";
-      $result = odbc_exec($connection, $query);
-      while ($row = odbc_fetch_array($result)) {
+      $result = sqlsrv_query($connection, $query);
+      while ($row = sqlsrv_fetch_array($result)) {
         echo '<option value="' . $row['DepartmentId'] . '">' . $row['DepartmentName'] . '</option>';
       }
     ?>
@@ -81,8 +91,8 @@ $role = $_SESSION['role'];
         if (isset($_POST['department'])) {
           $department = $_POST['department'];
           $query = "SELECT * FROM Module WHERE DepartmentId = '$department'";
-          $result = odbc_exec($connection, $query);
-          while ($row = odbc_fetch_array($result)) {
+          $result = sqlsrv_query($connection, $query);
+          while ($row = sqlsrv_fetch_array($result)) {
             echo '<option value="' . $row['ModuleId'] . '">' . $row['ModuleName'] . '</option>';
           }
         }
@@ -109,8 +119,8 @@ $role = $_SESSION['role'];
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
                       AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
-            $result = odbc_exec($connection, $query);
-            while ($row = odbc_fetch_array($result)) {
+            $result = sqlsrv_query($connection, $query);
+            while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
               echo '<td>' . $row['student_name'] . '</td>';
               echo '<td>' . $row['startdate'] . '</td>';
