@@ -83,6 +83,8 @@ $result = sqlsrv_query($connection, $query);
 <?php
 while ($row = sqlsrv_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
+  $startTime = date("H:i", strtotime($row['StartTime']));
+$endTime = date("H:i", strtotime($row['EndTime']));
   // $end_datetime = strtotime($row['EndDate']);
   // $current_datetime = strtotime('now');
   // $event_has_ended = $end_datetime < $current_datetime;
@@ -96,7 +98,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   echo "<td>" . $row['ModuleName'] . "</td>";
   echo "<td>" . $row['Location'] . "</td>";
   echo "<td>" . $row['StaffMembers'] . "</td>";
-  echo "<td>" . date("H:i", strtotime($row['StartTime'])) . " - " . date("H:i", strtotime($row['EndTime'])) . "</td>";
+  echo "<td>" . $startTime . " - " . $endTime . "</td>";
   
   // Check if attendance has been recorded for this event
   $query2 = "SELECT COUNT(*) as count FROM UserAttendanceHistory WHERE UserId='$userid' AND TimetableId='$timetableid'";
