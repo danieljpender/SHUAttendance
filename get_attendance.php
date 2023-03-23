@@ -28,13 +28,13 @@ JOIN Timetable t ON t.ModuleId=ut.ModuleId
 LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId
 WHERE t.TimetableId = '$timetableid'
 AND u.RoleId = '17B1CDAC-93F8-4A5F-A5CD-907272094140'";
-$result = odbc_exec($connection, $query);
+$result = sqlsrv_query($connection, $query);
 
 
 // Generate the attendance table
 echo '<table>';
 echo '<tr><th>Student ID</th><th>Name</th><th>Email</th><th>Attended</th></tr>';
-while ($row = odbc_fetch_array($result)) {
+while ($row = sqlsrv_fetch_array($result)) {
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
   echo '<td>' . $row['FirstName'] . ' ' . $row['Surname'] . '</td>';
