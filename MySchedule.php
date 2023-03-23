@@ -85,12 +85,12 @@ while ($row = sqlsrv_fetch_array($result)) {
   $startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
 
 $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
-  // $end_datetime = strtotime($row['EndDate']);
-  // $current_datetime = strtotime('now');
-  // $event_has_ended = $end_datetime < $current_datetime;
-  // $code_disabled = $row['timetablecode'] !== NULL;
-  // $no_register = $row['timetablecode'] == NULL && $end_datetime < $current_datetime;
- // $enter_code_disabled = $role == 'Student' && $now > $event_end_time;
+  $end_datetime = strtotime($row['EndDate']);
+  $current_datetime = strtotime('now');
+  $event_has_ended = $end_datetime < $current_datetime;
+  $code_disabled = $row['timetablecode'] !== NULL;
+  $no_register = $row['timetablecode'] == NULL && $end_datetime < $current_datetime;
+ $enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
   echo "<td  style='display:none;''>" . $row['timetable_id'] . "</td>";
