@@ -104,6 +104,9 @@ $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
   // Check if attendance has been recorded for this event
   $query2 = "SELECT COUNT(*) as count FROM UserAttendanceHistory WHERE UserId='$userid' AND TimetableId='$timetableid'";
   $result2 = sqlsrv_query($connection, $query2);
+  if ($result2 === false) {
+    die("Error executing the query: " . print_r(sqlsrv_errors(), true));
+}
   $row2 = sqlsrv_fetch_array($result2);
   $attendance_recorded = $row2['count'] > 0;
   
