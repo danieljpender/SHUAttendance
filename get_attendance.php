@@ -37,7 +37,7 @@ JOIN Timetable t ON t.ModuleId=ut.ModuleId
 LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId
 WHERE t.TimetableId = '$timetableid'
 AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
-echo "SQL query: $query<br>"; // printing the SQL query for debugging purposes
+//echo "SQL query: $query<br>"; // printing the SQL query for debugging purposes
 $result = sqlsrv_query($connection, $query);
 
 
@@ -49,7 +49,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   $body = 'Dear '.$row['FirstName'];
 if ($row['Attended'] == 'No') {
   $subject = $row['Description'].' - Attendance';
-  $body = 'Dear '.$row['FirstName']."%0A%0A".'I just wanted to check with you regarding your attendance record for the session today. Did you face any issues in accessing the event or submitting your attendance record?'.PHP_EOL . PHP_EOL .'Thank you for your cooperation.'.PHP_EOL . PHP_EOL .'Regards,'.PHP_EOL .''.$_SESSION["firstname"].'';
+  $body = 'Dear '.$row['FirstName']."%0A%0A".'I just wanted to check with you regarding your attendance record for the session today. Did you face any issues in accessing the event or submitting your attendance record?'."%0A%0A".'Thank you for your cooperation.'."%0A%0A".'Regards,'."%0A".''.$_SESSION["firstname"].'';
 }
   echo '<tr>';
   echo '<td>' . $row['StudentId'] . '</td>';
