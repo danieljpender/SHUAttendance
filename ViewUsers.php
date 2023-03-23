@@ -32,7 +32,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, r.RoleName as role_name FROM Users u
+$query = "SELECT *, r.RoleName as role_name, u.Email as email FROM Users u
           JOIN [Role] r ON r.RoleId = u.RoleId
           WHERE r.RoleId <> 'B964A9EF-6635-432B-B364-2460B00D8ED1'
           ORDER BY RoleName, FirstName, Surname ASC";
@@ -67,7 +67,7 @@ $result = sqlsrv_query($connection, $query);
     echo "<tr>";
               echo "<td>" . $row['FirstName'] . "</td>";
               echo "<td>" . $row['Surname'] . "</td>";
-              echo "<td>" . $row['Email'] . "</td>";
+              echo "<td>" . $row['email'] . "</td>";
               echo "<td>" . $row['role_name'] . "</td>";
               echo "<td class='link'>Edit</td>";
     echo "</tr>";
