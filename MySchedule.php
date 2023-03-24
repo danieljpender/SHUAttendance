@@ -89,7 +89,7 @@ $end_datetime = $row['EndDate']->getTimestamp();
   $current_datetime = strtotime('now');
   $event_has_ended = $end_datetime < $current_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
-  $no_register = $row['timetablecode'] == NULL && $end_datetime < $current_datetime;
+  $no_register = $row['timetablecode'] == NULL && $end_datetime > $current_datetime;
  //$enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
