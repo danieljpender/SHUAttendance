@@ -39,28 +39,31 @@ $role = $_SESSION['role'];
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
     <script>
   function showModule() {
-    var department = document.getElementById("department").value;
-    if (department) {
-      document.getElementById("module-container").style.display = "inline-block";
-      // Submit the form to retrieve the modules for the selected department
-      document.forms[0].submit();
-    } else {
-      document.getElementById("module-container").style.display = "none";
-      document.getElementById("attendance-table").style.display = "none";
-    }
+  var department = document.getElementById("department").value;
+  if (department) {
+    document.getElementById("module-container").style.display = "inline-block";
+    document.getElementById("attendance-table").style.display = "none";
+    // Submit the form to retrieve the modules for the selected department
+    document.forms[0].submit();
+  } else {
+    document.getElementById("module-container").style.display = "none";
+    document.getElementById("attendance-table").style.display = "none";
   }
+}
 
-  function showAttendanceTable() {
-    var department = document.getElementById("department").value;
-    var module = document.getElementById("module").value;
-    if (department && module) {
-      document.getElementById("attendance-table").style.display = "block";
-      // Submit the form to retrieve the attendance records for the selected department and module
-      document.forms[0].submit();
-    } else {
-      document.getElementById("attendance-table").style.display = "none";
-    }
+
+function showAttendanceTable() {
+  var department = document.getElementById("department").value;
+  var module = document.getElementById("module").value;
+  if (department && module) {
+    document.getElementById("attendance-table").style.display = "block";
+    // Submit the form to retrieve the attendance records for the selected department and module
+    document.forms[0].submit();
+  } else {
+    document.getElementById("attendance-table").style.display = "none";
   }
+}
+
 </script>
   </head>
   <body>
@@ -74,31 +77,31 @@ $role = $_SESSION['role'];
 <form action="StudentAttendance.php" method="post" class="mb-2">
   <label for="department">Department</label>
   <select class="dropdown-box" name="department" id="department" onchange="showModule()">
-    <option value="">Select a Department</option>
+  <option value="" selected>Select a Department</option>
+  <?php
+    $query = "SELECT * FROM Department";
+    $result = sqlsrv_query($connection, $query);
+    while ($row = sqlsrv_fetch_array($result)) {
+      echo '<option value="' . $row['DepartmentId'] . '">' . $row['DepartmentName'] . '</option>';
+    }
+  ?>
+</select>
+<div id="module-container" style="display:none">
+  <label for="module">Module</label>
+  <select class="dropdown-box" name="module" id="module" onchange="showAttendanceTable()">
+    <option value="">Select a Module</option>
     <?php
-      $query = "SELECT * FROM Department";
-      $result = sqlsrv_query($connection, $query);
-      while ($row = sqlsrv_fetch_array($result)) {
-        echo '<option value="' . $row['DepartmentId'] . '">' . $row['DepartmentName'] . '</option>';
+      if (isset($_POST['department'])) {
+        $department = $_POST['department'];
+        $query = "SELECT * FROM Module WHERE DepartmentId = '$department'";
+        $result = sqlsrv_query($connection, $query);
+        while ($row = sqlsrv_fetch_array($result)) {
+          echo '<option value="' . $row['ModuleId'] . '">' . $row['ModuleName'] . '</option>';
+        }
       }
     ?>
   </select>
-  <div id="module-container" style="display:none">
-    <label for="module">Module</label>
-    <select class="dropdown-box" name="module" id="module" onchange="showAttendanceTable()">
-      <option value="">Select a Module</option>
-      <?php
-        if (isset($_POST['department'])) {
-          $department = $_POST['department'];
-          $query = "SELECT * FROM Module WHERE DepartmentId = '$department'";
-          $result = sqlsrv_query($connection, $query);
-          while ($row = sqlsrv_fetch_array($result)) {
-            echo '<option value="' . $row['ModuleId'] . '">' . $row['ModuleName'] . '</option>';
-          }
-        }
-      ?>
-    </select>
-  </div>
+</div>
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
