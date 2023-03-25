@@ -36,6 +36,7 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id,
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE t.TimetableId = '$timetableid'";
+          echo $query;
 $result = sqlsrv_query($connection, $query);
 
 if (!$result) {
