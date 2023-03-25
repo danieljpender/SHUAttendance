@@ -31,7 +31,7 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
   $query = "SELECT TimetableId, [code] FROM Timetable WHERE TimetableId = '$timetableid' AND [code] = $code";
   echo $query;
   $result = sqlsrv_query($connection, $query);
-  if (sqlsrv_has_rows($result) == 1) {
+  if (sqlsrv_has_rows($result)) {
     // Code is valid, update the attendance record for the user and the event
     $userid = $_SESSION['userid'];
     $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, DateCreated) VALUES (NEWID(), '$userid', '$timetableid', GETUTCDATE())";
