@@ -95,6 +95,7 @@ $end_datetime = $row['StartDate']->getTimestamp();
  //$enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
+  echo "<tr id='row_$usertimetableid' data-timetableid='$usertimetableid'>";
   echo "<td  style='display:none;''>" . $row['timetable_id'] . "</td>";
   echo "<td  style='display:none;''>" . $row['usertimetable_id'] . "</td>";
   echo "<td>" . $row['ActivityTypeName'] . "</td>";
