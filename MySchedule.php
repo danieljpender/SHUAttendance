@@ -237,22 +237,22 @@ $(document).ready(function() {
     var timetableid = $('#timetable-id').val();
     var code = $('#code-input').val();
 
-    // Send an AJAX request to the server to validate the code
-    $.ajax({
-      url: 'validate-code.php',
-      type: 'POST',
-      data: { timetableid: timetableid, code: code },
-      success: function(data) {
-        if (data == 'success') {
-          alert('Code validated successfully!');
-          $('#code-modal').css('display', 'none');
-          $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
-        $('.close').click();
-        } else {
-          alert('Invalid code! Please try again.');
-        }
-      }
-    });
+    // // Send an AJAX request to the server to validate the code
+    // $.ajax({
+    //   url: 'validate-code.php',
+    //   type: 'POST',
+    //   data: { timetableid: timetableid, code: code },
+    //   success: function(data) {
+    //     if (data == 'success') {
+    //       alert('Code validated successfully!');
+    //       $('#code-modal').css('display', 'none');
+    //       $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
+    //     $('.close').click();
+    //     } else {
+    //       alert('Invalid code! Please try again.');
+    //     }
+    //   }
+    // });
   });
 });
 </script>
@@ -272,6 +272,26 @@ $(document).ready(function() {
     $(this).prop('disabled', true);
 });
   });
+
+  
+function validateCode(timetableid) {
+  var code = $("#code-input-" + timetableid).val();
+  $.ajax({
+    type: "POST",
+    url: "validate-code.php",
+    data: {
+      timetableid: timetableid,
+      code: code
+    },
+    success: function(response) {
+      alert("Code validated successfully!"); // Display the success message
+      location.reload(); // Reload the page to show the attendance record
+    },
+    error: function(xhr, status, error) {
+      alert(xhr.responseText); // Display the error message
+    }
+  });
+}
   </script>
   <script>
   $(document).ready(function() {
