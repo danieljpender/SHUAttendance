@@ -227,6 +227,8 @@ $(document).ready(function() {
   $('button:contains("Enter Code")').click(function() {
     var timetableid = $(this).closest('tr').attr('id').split('_')[1];
     $('#timetable-id').val(timetableid);
+    var usertimetableid = $(this).closest('tr').attr('id').split('_')[1];
+    $('#usertimetable-id').val(usertimetableid);
     $('#code-modal').css('display', 'block');
   });
 
