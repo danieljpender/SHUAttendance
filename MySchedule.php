@@ -149,6 +149,7 @@ $end_datetime = $row['StartDate']->getTimestamp();
       <h1 for="code-input">Enter Code</h1>
       <input type="text" id="code-input" name="code" placeholder="Please Enter Code">
       <input type="hidden" id="timetable-id" name="timetableid">
+      <input type="hidden" id="usertimetable-id" name="usertimetableid">
       <input type="submit" value="Submit">
     </form>
   </div>
