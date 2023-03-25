@@ -35,6 +35,7 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
     // Code is valid, update the attendance record for the user and the event
     $userid = $_SESSION['userid'];
     $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, DateCreated) VALUES (NEWID(), '$userid', '$timetableid', GETUTCDATE())";
+    echo $query;
     sqlsrv_query($connection, $query);
     echo 'success';
   } else {
