@@ -29,8 +29,8 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
 
   // Query the database to check if the code is valid
   $query = "SELECT TimetableId, [code] FROM Timetable WHERE TimetableId = '$timetableid' AND [code] = $code";
-  echo $query
   $result = sqlsrv_query($connection, $query);
+  echo $query
 
   if (sqlsrv_num_rows($result) == 1) {
     // Code is valid, update the attendance record for the user and the event
