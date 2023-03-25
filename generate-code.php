@@ -28,11 +28,10 @@ if (isset($_POST['timetableid'])) {
   $code = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
   $update_query = "UPDATE Timetable SET [code] = $code WHERE TimetableId = '$timetableid'";
-  $result = sqlsrv_query($connection, $query);
-  if ($result === false) {
-    die("Error executing the query: " . print_r(sqlsrv_errors(), true));
+  sqlsrv_query($connection, $update_query);
+
+  echo $code;
 }
 
-echo "Code generated successfully!";
 sqlsrv_close($connection);
 ?>
