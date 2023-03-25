@@ -29,6 +29,7 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
 
   // Query the database to check if the code is valid
   $query = "SELECT TimetableId, [code] FROM Timetable WHERE TimetableId = '$timetableid' AND [code] = $code";
+  echo $query
   $result = sqlsrv_query($connection, $query);
 
   if (sqlsrv_num_rows($result) == 1) {
