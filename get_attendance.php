@@ -23,10 +23,11 @@ if ($connection === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
+$timetableid = $_POST['timetableid'];
 if (!isset($_POST['timetableid'])) {
   die("Error: no timetable ID provided");
 }
-$timetableid = $_POST['timetableid'];
+
 
 // Get the students enrolled in the timetabled event
 $query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, u.Email,
