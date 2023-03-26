@@ -97,7 +97,7 @@ $lectureEndDateStr = $lectureEndDate->format('Y-m-d H:i:s');
 $currentDatetimeStr = (new DateTime())->format('Y-m-d H:i:s');
  // $event_has_ended = $current_datetime < $end_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
-  $no_register = $row['timetablecode'] == NULL && $currentDatetimeStr < $lectureEndDateStr;
+  $no_register = $row['timetablecode'] == NULL && $currentDatetimeStr > $lectureEndDateStr;
  //$enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 // echo "starttime: " . $startTime ;
 // echo "endtime: " . $startTime;
