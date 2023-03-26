@@ -113,7 +113,7 @@ function showAttendanceTable() {
   </select>
 </div>
 </div>
-<?php
+<script>
 document.querySelector('form').addEventListener('submit', function(e) {
   e.preventDefault(); // Prevent the default form submission
 
@@ -134,7 +134,7 @@ document.querySelector('form').addEventListener('submit', function(e) {
     document.getElementById("attendance-table").style.display = "none";
   }
 });
-?>
+</script>
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
