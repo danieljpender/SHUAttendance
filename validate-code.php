@@ -34,12 +34,7 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
   $query = "SELECT TimetableId, [code] FROM Timetable WHERE TimetableId = '$timetableid' AND [code] = $code";
  // echo "SQL Query: " . $query . "<br>";
   $result = sqlsrv_query($connection, $query);
-  
-  if ($result === false) {
-    // Print the last SQL error message, if any
-    echo "Unable to execute query. Error message: ";
-    die(print_r(sqlsrv_errors(), true));
-  }
+ 
   if (sqlsrv_has_rows($result)) { // Changed to sqlsrv_has_rows to be more reliable
     // Code is valid, update the attendance record for the user and the event
     $userid = $_SESSION['userid'];
@@ -52,7 +47,12 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
     // Code is invalid
     echo 'failure';
   }
-}
+// } 
+//   if ($result === false) {
+//     // Print the last SQL error message, if any
+//     echo "Unable to execute query. Error message: ";
+//     die(print_r(sqlsrv_errors(), true));
+//   }
 
 // Close the database connection
 sqlsrv_close($connection);
