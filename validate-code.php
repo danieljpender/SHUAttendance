@@ -47,7 +47,7 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
     // Code is invalid
     echo 'failure';
   }
-// } 
+} 
 //   if ($result === false) {
 //     // Print the last SQL error message, if any
 //     echo "Unable to execute query. Error message: ";
