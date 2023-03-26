@@ -91,19 +91,15 @@ $timestamp = $lectureEndDate->getTimestamp();
 
   // $end_date_time_str = $endDate . ' ' . $endTime;
   // $end_date_time = strtotime($end_date_time_str);
-$endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
+  $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
 //$end_datetime = date("H:i", strtotime($row['EndDate']->format('Y-m-d H:i:s')));
-$lectureEndDateStr = $lectureEndDate->format('Y-m-d H:i:s');
-$currentDatetimeStr = (new DateTime())->format('Y-m-d H:i:s');
+  $lectureEndDateStr = $lectureEndDate->format('Y-m-d H:i:s');
+  $currentDatetimeStr = (new DateTime())->format('Y-m-d H:i:s');
  // $event_has_ended = $current_datetime < $end_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
   $no_register = $row['timetablecode'] == NULL && $currentDatetimeStr > $lectureEndDateStr;
- //$enter_code_disabled = $role == 'Student' && $now > $event_end_time;
-// echo "starttime: " . $startTime ;
-// echo "endtime: " . $startTime;
-// echo "enddate: " . $startTime;
-// echo "current_datedtime: " . $startTime;
-// echo "event_has_ended: " . $startTime;
+  $enter_code_disabled = $role == 'Student' && $currentDatetimeStr > $lectureEndDateStr;
+
   echo "<tr id='row_$timetableid' data-timetableid='$timetableid'>";
   echo "<td  style='display:none;''>" . $row['timetable_id'] . "</td>";
   echo "<td>" . $row['ActivityTypeName'] . "</td>";
