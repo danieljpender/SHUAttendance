@@ -45,8 +45,16 @@ function showModule() {
     moduleDropdown.disabled = false;
     document.getElementById("module-container").style.display = "inline-block";
     document.getElementById("attendance-table").style.display = "none";
-    // Submit the form to retrieve the modules for the selected department
-    document.forms[0].submit();
+
+    // Make an AJAX request to retrieve the modules for the selected department
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        moduleDropdown.innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "getModules.php?department=" + department, true);
+    xhttp.send();
   } else {
     moduleDropdown.disabled = true;
     moduleDropdown.selectedIndex = 0; // reset the module dropdown to the default option
@@ -54,6 +62,7 @@ function showModule() {
     document.getElementById("attendance-table").style.display = "none";
   }
 }
+
 
 
 
