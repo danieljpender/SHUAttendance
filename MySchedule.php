@@ -86,7 +86,7 @@ while ($row = sqlsrv_fetch_array($result)) {
   $endDate = $row['EndDate'];
   $endTime = $row['EndTime'];
 
-  $endDate->modify($endTime);
+  $endDate->modify($endTime->format('H:i:s.u'));
 $timestamp = $endDate->getTimestamp();
 
   // $end_date_time_str = $endDate . ' ' . $endTime;
