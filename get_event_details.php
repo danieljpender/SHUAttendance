@@ -23,10 +23,11 @@ if ($connection === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-if (isset($_POST['timetableid'])) {
-   // die("Error: no timetable ID provided");
-    $timetableid = $_POST['timetableid'];
-    echo "Timetable ID: " . $timetableid . "<br>";
+if (!isset($_POST['timetableid'])) {
+    die("Error: no timetable ID provided");
+}
+
+$timetableid = $_POST['timetableid'];
 
 $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, 
                 t.[code] as timetablecode, t.Location as location_name,
@@ -35,7 +36,6 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id,
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE t.TimetableId = '$timetableid'";
-          echo $query;
 $result = sqlsrv_query($connection, $query);
 
 if (!$result) {
@@ -58,5 +58,4 @@ $event = array(
 );
 
 echo json_encode($event);
-}
 ?>
