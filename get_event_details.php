@@ -25,7 +25,6 @@ if ($connection === false) {
 
 if (!isset($_POST['timetableid'])) {
     die("Error: no timetable ID provided");
-}
 
 $timetableid = $_POST['timetableid'];
 
@@ -57,6 +56,6 @@ $event = array(
     "activity_name" => $row['ActivityName'],
     "event_date" => date("l, j M Y", strtotime($row['StartDate'])),
 );
-
+}
 echo json_encode($event);
 ?>
