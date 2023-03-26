@@ -85,10 +85,10 @@ while ($row = sqlsrv_fetch_array($result)) {
   //$startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
   $endDate = $row['EndDate'];
   $endTime = $row['EndTime'];
-  $datetime = new DateTime($endDate);
-  $datetime->modify($endTime);
 
-  $timestamp = $datetime->getTimestamp();
+  $endDate->modify($endTime);
+$timestamp = $endDate->getTimestamp();
+
   // $end_date_time_str = $endDate . ' ' . $endTime;
   // $end_date_time = strtotime($end_date_time_str);
 //$endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
