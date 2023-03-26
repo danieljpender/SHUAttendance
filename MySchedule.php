@@ -33,7 +33,7 @@ $userid = $_SESSION['userid'];
 $role = $_SESSION['rolename'];
 
 // Query the database for the events associated with the user
-$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, ut.UserTimetableId as usertimetable_id, t.[code] as timetablecode  FROM UserTimetable ut
+$query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t.[code] as timetablecode  FROM UserTimetable ut
           JOIN Timetable t ON t.ModuleId = ut.ModuleId
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
@@ -82,7 +82,6 @@ $result = sqlsrv_query($connection, $query);
 <?php
 while ($row = sqlsrv_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
-  $usertimetableid = $row['usertimetable_id'];
   $startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
 
 $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
@@ -147,7 +146,6 @@ $end_datetime = $row['StartDate']->getTimestamp();
       <h1 for="code-input">Enter Code</h1>
       <input type="text" id="code-input" name="code" placeholder="Please Enter Code">
       <input type="hidden" id="timetable-id" name="timetableid">
-      <input type="hidden" name="usertimetableid" value="<?php echo $usertimetableid; ?>">
       <input type="submit" value="Submit">
     </form>
   </div>

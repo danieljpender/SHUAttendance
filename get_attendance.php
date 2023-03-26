@@ -35,7 +35,7 @@ CASE WHEN a.UserId IS NULL THEN 'No' ELSE 'Yes' END AS Attended, t.Description, 
 FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
-LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId
+LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId AND a.UserId = ut.UserId
 WHERE t.TimetableId = '$timetableid'
 AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
 echo "SQL query: $query<br>"; // printing the SQL query for debugging purposes
