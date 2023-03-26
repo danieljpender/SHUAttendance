@@ -82,7 +82,7 @@ $result = sqlsrv_query($connection, $query);
 <?php
 while ($row = sqlsrv_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
-  $startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
+  $startTime = date("H:i", strtotime($row['StartTime']));
 
 $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
 $end_datetime = date("H:i", strtotime($row['EndDate']->format('Y-m-d H:i:s')));
