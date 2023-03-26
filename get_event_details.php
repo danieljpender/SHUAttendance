@@ -49,12 +49,12 @@ $event = array(
     "activity_type" => $row['type_name'],
     "location_name" => $row['Location'],
     "staff_members" => $row['StaffMembers'],
-    //"start_time" => date("H:i", strtotime($row['StartTime'])),
-   // "end_time" => date("H:i", strtotime($row['EndTime'])),
+    "start_time" => date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s'))),
+    "end_time" => date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s'))),
     "description" => $row['Description'],
     "module_code" => $row['ModuleCode'],
     "activity_name" => $row['ActivityName'],
-   // "event_date" => date("l, j M Y", strtotime($row['StartDate'])),
+    "event_date" => date("l, j M Y", strtotime($row['StartDate']->format('Y-m-d H:i:s'))),
 );
 
 echo json_encode($event);
