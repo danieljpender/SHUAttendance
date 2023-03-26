@@ -82,19 +82,19 @@ $result = sqlsrv_query($connection, $query);
 <?php
 while ($row = sqlsrv_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
-  //$startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
-  $endDate = $row['EndDate'];
-  $endTime = $row['EndTime'];
+  $startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
+  $lecturEndDate = $row['EndDate'];
+  $lectureEndTime = $row['EndTime'];
 
-  $endDate->modify($endTime->format('H:i:s.u'));
-$timestamp = $endDate->getTimestamp();
+  $lecturEndDate->modify($lectureEndTime->format('H:i:s.u'));
+$timestamp = $lecturEndDate->getTimestamp();
 
   // $end_date_time_str = $endDate . ' ' . $endTime;
   // $end_date_time = strtotime($end_date_time_str);
-//$endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
+$endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
 //$end_datetime = date("H:i", strtotime($row['EndDate']->format('Y-m-d H:i:s')));
   $current_datetime = date("H:i", strtotime('now'));
-  $event_has_ended = $current_datetime < $end_datetime;
+ // $event_has_ended = $current_datetime < $end_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
   $no_register = $row['timetablecode'] == NULL && $current_datetime < $timestamp;
  //$enter_code_disabled = $role == 'Student' && $now > $event_end_time;
