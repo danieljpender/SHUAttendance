@@ -53,10 +53,10 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
       die(print_r(sqlsrv_errors(), true));
     }
     
-    echo 'success';
+    echo 'failure';
   } else {
     // Code is invalid
-    echo 'failure';
+    echo 'success';
   }
 }
 
