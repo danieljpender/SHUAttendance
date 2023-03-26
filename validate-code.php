@@ -47,16 +47,10 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
     echo "SQL Query: " . $query . "<br>";
     $result = sqlsrv_query($connection, $query);
     
-    if ($result === false) {
-      // Print the last SQL error message, if any
-      echo "Unable to execute query. Error message: ";
-      die(print_r(sqlsrv_errors(), true));
-    }
-    
-    echo 'failure';
+    echo 'success';
   } else {
     // Code is invalid
-    echo 'success';
+    echo 'failure';
   }
 }
 
