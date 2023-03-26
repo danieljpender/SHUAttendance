@@ -83,11 +83,11 @@ $result = sqlsrv_query($connection, $query);
 while ($row = sqlsrv_fetch_array($result)) {
   $timetableid = $row['timetable_id'];
   $startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
-  $lecturEndDate = $row['EndDate'];
+  $lectureEndDate = $row['EndDate'];
   $lectureEndTime = $row['EndTime'];
 
-  $lecturEndDate->modify($lectureEndTime->format('H:i:s.u'));
-$timestamp = $lecturEndDate->getTimestamp();
+  $lectureEndDate->modify($lectureEndTime->format('H:i:s.u'));
+$timestamp = $lectureEndDate->getTimestamp();
 
   // $end_date_time_str = $endDate . ' ' . $endTime;
   // $end_date_time = strtotime($end_date_time_str);
@@ -110,6 +110,7 @@ $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
   echo "<td>" . $row['Location'] . "</td>";
   echo "<td>" . $row['StaffMembers'] . "</td>";
   echo "<td>" . $startTime . " - " . $endTime . "</td>";
+  echo "<td>" . $lectureEndDate . " - " . $current_datetime . "</td>";
   
   // Check if attendance has been recorded for this event
   $query2 = "SELECT COUNT(*) as count FROM UserAttendanceHistory WHERE UserId='$userid' AND TimetableId='$timetableid'";
