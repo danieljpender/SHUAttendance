@@ -102,7 +102,7 @@ function showAttendanceTable() {
     ?>
   </select>
 </div>
-<input type="text" name="submit" value="true">
+<input type="hidden" name="submit" value="true">
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
@@ -128,7 +128,7 @@ function showAttendanceTable() {
               echo '<tr>';
               echo '<td>' . $row['student_name'] . '</td>';
               echo '<td>' . $row['startdate'] . '</td>';
-              echo '<td>' . $row['sttendance'] . '</td>';
+              echo '<td>' . $row['attendance'] . '</td>';
               echo '</tr>';
             }
           }
