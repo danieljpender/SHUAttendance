@@ -57,15 +57,3 @@ if (isset($_POST['timetableid']) && isset($_POST['code'])) {
 // Close the database connection
 sqlsrv_close($connection);
 ?> 
-<!-- 
-  if (sqlsrv_has_rows($result)) {
-    // Code is valid, update the attendance record for the user and the event
-    $userid = $_SESSION['userid'];
-    $query = "INSERT INTO UserAttendanceHistory (UserAttendanceHistoryId, UserId, TimetableId, DateCreated) VALUES (NEWID(), '$userid', '$timetableid', GETUTCDATE())";
-    sqlsrv_query($connection, $query);
-    echo 'success';
-  } else {
-    // Code is invalid
-    echo 'failure';
-  }
-} -->
