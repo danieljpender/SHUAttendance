@@ -85,14 +85,18 @@ while ($row = sqlsrv_fetch_array($result)) {
   //$startTime = date("H:i", strtotime($row['StartTime']->format('Y-m-d H:i:s')));
   $endDate = $row['EndDate'];
   $endTime = $row['EndTime'];
-  $end_date_time_str = $endDate . ' ' . $endTime;
-  $end_date_time = strtotime($end_date_time_str);
+  $datetime = new DateTime($endDate);
+  $datetime->modify($endTime);
+
+  $timestamp = $datetime->getTimestamp();
+  // $end_date_time_str = $endDate . ' ' . $endTime;
+  // $end_date_time = strtotime($end_date_time_str);
 //$endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
 //$end_datetime = date("H:i", strtotime($row['EndDate']->format('Y-m-d H:i:s')));
   $current_datetime = date("H:i", strtotime('now'));
   $event_has_ended = $current_datetime < $end_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
-  $no_register = $row['timetablecode'] == NULL && $current_datetime < $end_date_time_str;
+  $no_register = $row['timetablecode'] == NULL && $current_datetime < $timestamp;
  //$enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 // echo "starttime: " . $startTime ;
 // echo "endtime: " . $startTime;
