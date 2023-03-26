@@ -102,7 +102,7 @@ function showAttendanceTable() {
     ?>
   </select>
 </div>
-<input type="hidden" name="submit" value="true">
+<input type="text" name="submit" value="true">
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
