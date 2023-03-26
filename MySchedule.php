@@ -93,10 +93,11 @@ $timestamp = $lectureEndDate->getTimestamp();
   // $end_date_time = strtotime($end_date_time_str);
 $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
 //$end_datetime = date("H:i", strtotime($row['EndDate']->format('Y-m-d H:i:s')));
-  $current_datetime = date("H:i", strtotime('now'));
+$lectureEndDateStr = $lectureEndDate->format('Y-m-d H:i:s');
+$currentDatetimeStr = (new DateTime())->format('Y-m-d H:i:s');
  // $event_has_ended = $current_datetime < $end_datetime;
   $code_disabled = $row['timetablecode'] !== NULL;
-  $no_register = $row['timetablecode'] == NULL && $current_datetime < $timestamp;
+  $no_register = $row['timetablecode'] == NULL && $currentDatetimeStr < $lectureEndDateStr;
  //$enter_code_disabled = $role == 'Student' && $now > $event_end_time;
 // echo "starttime: " . $startTime ;
 // echo "endtime: " . $startTime;
@@ -110,7 +111,7 @@ $endTime = date("H:i", strtotime($row['EndTime']->format('Y-m-d H:i:s')));
   echo "<td>" . $row['Location'] . "</td>";
   echo "<td>" . $row['StaffMembers'] . "</td>";
   echo "<td>" . $startTime . " - " . $endTime . "</td>";
-  echo "<td>" . $lectureEndDate . " - " . $current_datetime . "</td>";
+  echo "<td>" . $lectureEndDateStr . " - " . $currentDatetimeStr . "</td>";
   
   // Check if attendance has been recorded for this event
   $query2 = "SELECT COUNT(*) as count FROM UserAttendanceHistory WHERE UserId='$userid' AND TimetableId='$timetableid'";
