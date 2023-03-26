@@ -25,8 +25,8 @@ if ($connection === false) {
 
 if (isset($_POST['timetableid'])) {
    // die("Error: no timetable ID provided");
-
     $timetableid = $_POST['timetableid'];
+    echo "Timetable ID: " . $timetableid . "<br>";
 
 $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, 
                 t.[code] as timetablecode, t.Location as location_name,
