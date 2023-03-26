@@ -64,15 +64,11 @@ function showModule() {
 }
 
 
-
-
 function showAttendanceTable() {
   var department = document.getElementById("department").value;
   var module = document.getElementById("module").value;
   if (department && module) {
-    document.getElementById("attendance-table").style.display = "block";
-    // Submit the form to retrieve the attendance records for the selected department and module
-    document.forms[0].submit();
+
   } else {
     document.getElementById("attendance-table").style.display = "none";
   }
@@ -88,7 +84,7 @@ function showAttendanceTable() {
   <h1>
   Student Attendance Records
 </h1>
-<form action="StudentAttendance.php" method="post" class="mb-2">
+<form method="post" class="mb-2">
   <label for="department">Department</label>
   <select class="dropdown-box" name="department" id="department" onchange="showModule()">
   <option value="" selected>Select a Department</option>
@@ -117,6 +113,28 @@ function showAttendanceTable() {
   </select>
 </div>
 </div>
+<?php
+document.querySelector('form').addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent the default form submission
+
+  var department = document.getElementById("department").value;
+  var module = document.getElementById("module").value;
+  if (department && module) {
+    // Make an AJAX request to retrieve the attendance records for the selected department and module
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("attendance-table").innerHTML = this.responseText;
+        document.getElementById("attendance-table").style.display = "block";
+      }
+    };
+    xhttp.open("GET", "getAttendance.php?department=" + department + "&module=" + module, true);
+    xhttp.send();
+  } else {
+    document.getElementById("attendance-table").style.display = "none";
+  }
+});
+?>
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
@@ -128,24 +146,24 @@ function showAttendanceTable() {
   </thead>
   <tbody>
         <?php
-          if (isset($_POST['submit'])) {
-            $department = $_POST['department'];
-            $module = $_POST['module'];
-            $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, uah.DateCreated as attendance FROM UserTimetable ut
-                      LEFT JOIN UserAttendanceHistory uah ON ut.UserTimetableId = uah.UserTimetableId
-                      JOIN Timetable t ON t.ModuleId = ut.ModuleId
-                      JOIN Users u ON u.UserId = ut.UserId
-                      WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
-                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
-            $result = sqlsrv_query($connection, $query);
-            while ($row = sqlsrv_fetch_array($result)) {
-              echo '<tr>';
-              echo '<td>' . $row['student_name'] . '</td>';
-              echo '<td>' . $row['startdate'] . '</td>';
-              echo '<td>' . $row['attendance'] . '</td>';
-              echo '</tr>';
-            }
-          }
+          // if (isset($_POST['submit'])) {
+          //   $department = $_POST['department'];
+          //   $module = $_POST['module'];
+          //   $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, uah.DateCreated as attendance FROM UserTimetable ut
+          //             LEFT JOIN UserAttendanceHistory uah ON ut.UserTimetableId = uah.UserTimetableId
+          //             JOIN Timetable t ON t.ModuleId = ut.ModuleId
+          //             JOIN Users u ON u.UserId = ut.UserId
+          //             WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
+          //             AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
+          //   $result = sqlsrv_query($connection, $query);
+          //   while ($row = sqlsrv_fetch_array($result)) {
+          //     echo '<tr>';
+          //     echo '<td>' . $row['student_name'] . '</td>';
+          //     echo '<td>' . $row['startdate'] . '</td>';
+          //     echo '<td>' . $row['attendance'] . '</td>';
+          //     echo '</tr>';
+          //   }
+          // }
         ?>
       </tbody>
     </table>
