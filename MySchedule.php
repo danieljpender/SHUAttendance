@@ -132,7 +132,7 @@ $timestamp = $lectureEndDate->getTimestamp();
         echo "<td><button disabled='disabled'>Attendance Recorded</button></td>";
       } else if ($no_register) {
         echo "<td><button disabled='disabled'>Register Not Taken</button></td>";
-      } else if ($event_has_ended) {
+      } else if ($enter_code_disabled) {
         echo "<td><button disabled='disabled'>Attendance Not Recorded</button></td>";
       } else {
         echo "<td><button class='enter-code-btn' data-timetableid='$timetableid'>Enter Code</button></td>";
