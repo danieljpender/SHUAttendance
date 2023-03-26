@@ -38,18 +38,23 @@ $role = $_SESSION['role'];
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <script src="https://kit.fontawesome.com/4e04e438c0.js" crossorigin="anonymous"></script>
     <script>
-  function showModule() {
+function showModule() {
   var department = document.getElementById("department").value;
+  var moduleDropdown = document.getElementById("module");
   if (department) {
+    moduleDropdown.disabled = false;
     document.getElementById("module-container").style.display = "inline-block";
     document.getElementById("attendance-table").style.display = "none";
     // Submit the form to retrieve the modules for the selected department
     document.forms[0].submit();
   } else {
+    moduleDropdown.disabled = true;
+    moduleDropdown.selectedIndex = 0; // reset the module dropdown to the default option
     document.getElementById("module-container").style.display = "none";
     document.getElementById("attendance-table").style.display = "none";
   }
 }
+
 
 
 function showAttendanceTable() {
@@ -86,9 +91,9 @@ function showAttendanceTable() {
     }
   ?>
 </select>
-<div id="module-container" style="display:none">
+<div id="module-container">
   <label for="module">Module</label>
-  <select class="dropdown-box" name="module" id="module" onchange="showAttendanceTable()">
+  <select class="dropdown-box" name="module" id="module" onchange="showAttendanceTable()" disabled>
     <option value="">Select a Module</option>
     <?php
       if (isset($_POST['department'])) {
@@ -102,7 +107,7 @@ function showAttendanceTable() {
     ?>
   </select>
 </div>
-<input type="hidden" name="submit" value="true">
+</div>
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
