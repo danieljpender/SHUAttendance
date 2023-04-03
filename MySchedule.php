@@ -107,7 +107,7 @@ $timestamp = $lectureEndDate->getTimestamp();
   echo "<td>" . $row['Location'] . "</td>";
   echo "<td>" . $row['StaffMembers'] . "</td>";
   echo "<td>" . $startTime . " - " . $endTime . "</td>";
-  echo "<td>" . $lectureEndDateStr . " - " . $currentDatetimeStr . "</td>";
+  //echo "<td>" . $lectureEndDateStr . " - " . $currentDatetimeStr . "</td>";
   
   // Check if attendance has been recorded for this event
   $query2 = "SELECT COUNT(*) as count FROM UserAttendanceHistory WHERE UserId='$userid' AND TimetableId='$timetableid'";
