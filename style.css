@@ -884,7 +884,21 @@ outline: 0;
     margin-bottom: 0;
     line-height: 1.5;
 }
-  
+.modal-footer {
+    background-color: #f6f6f6;
+    justify-content: space-between;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.75rem;
+    border-top: 1px solid #d6d6d6;
+}
+.modal-cancel {
+    background-color: #fff;
+}
+
 .modal-body {
     position: static;
     flex: 1 1 auto;
