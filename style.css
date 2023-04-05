@@ -1013,7 +1013,7 @@ footer {
 
     .modal-content {
         position: relative;
-    display: flex;
+    display: none;
     flex-direction: column;
     width: 100%;
     pointer-events: auto;
@@ -1023,4 +1023,3 @@ footer {
     border-radius: 0.3rem;
     outline: 0;
     }
-    
