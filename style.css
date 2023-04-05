@@ -967,7 +967,7 @@ outline: 0;
         border-radius: 0.25rem;
     }
     
-    .modal {
+    /* .modal {
         display: none;
         position: fixed;
         z-index: 1;
@@ -986,7 +986,7 @@ outline: 0;
         padding: 20px;
         border: 1px solid #888;
         width: 80%;
-      }
+      } */
       
       .close-btn {
         color: #aaa;
