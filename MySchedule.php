@@ -156,8 +156,8 @@ $timestamp = $lectureEndDate->getTimestamp();
     <div class="w-100"><!----> 
     <div id="error-message" class="alert alert-danger" style="display:none;">Invalid code! Please try again.</div>
   <span>
-    <div role="group" class="form-group" id="__BVID__16" name="competency-type">
-    <label for="competency-type" class="d-block" id="__BVID__16__BV_label_">
+    <div role="group" class="form-group" name="competency-type">
+    <label for="competency-type" class="d-block">
         Attendance Code
       </label>
       <div>
@@ -171,7 +171,7 @@ $timestamp = $lectureEndDate->getTimestamp();
 </div>
 </div>
 <footer class="modal-footer">
-  <button type="button" class="btn btn-outline-secondary modal-cancel close">
+  <button type="button" class="btn btn-outline-secondary modal-cancel">
     Cancel
   </button>
   <button type="submit" class="btn btn-primary">
@@ -272,7 +272,7 @@ $(document).ready(function() {
   });
 
   // Add an event listener to the modal close button
-  $('.close').click(function() {
+  $('.modal-cancel').click(function() {
     $('#code-modal').css('display', 'none');
   });
 
