@@ -1010,3 +1010,17 @@ footer {
         background-color: #fcebe9;
         border-color: #f72323;
     }
+
+    .modal-content {
+        position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid hsla(0,0%,8%,.2);
+    border-radius: 0.3rem;
+    outline: 0;
+    }
+    
