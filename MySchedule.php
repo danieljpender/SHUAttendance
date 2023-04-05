@@ -147,7 +147,7 @@ $timestamp = $lectureEndDate->getTimestamp();
 </div>
 <?php include 'footer.php'; ?>
 </div>
-<div id="code-modal" class="modal-content">
+<div id="code-modal" class="modal">
 <form id="code-form" method="POST">  
 <header class="modal-header">
     <h5 class="modal-title">Record Attendance</h5><!---->
