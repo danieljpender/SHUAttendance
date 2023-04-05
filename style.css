@@ -883,6 +883,7 @@ outline: 0;
     font-weight: 400;
     margin-bottom: 0;
     line-height: 1.5;
+    margin-block: 0;
 }
 .modal-footer {
     background-color: #f6f6f6;
