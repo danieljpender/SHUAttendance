@@ -868,7 +868,29 @@ border-radius: 0.3rem;
 outline: 0;
 }
 
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #d6d6d6;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
   
+.modal-body {
+    position: static;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
   .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
