@@ -153,7 +153,7 @@ $timestamp = $lectureEndDate->getTimestamp();
     <span class="close">&times;</span>
     <form id="code-form" method="POST">
       <h1 for="code-input">Enter Code</h1>
-      <div id="error-message"></div>
+      <div id="error-message" class="alert alert-danger" style="display:none;">Invalid code! Please try again.</div>
       <input type="text" id="code-input" name="code" placeholder="Please Enter Code">
       <input type="hidden" id="timetable-id" name="timetableid">
       <input type="submit" value="Submit">
@@ -261,7 +261,7 @@ $(document).ready(function() {
           $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
         $('.close').click();
         } else {
-          $('#error-message').html('<span class="alert alert-danger">Invalid code! Please try again.</span>');
+          $('#error-message').css('display', 'none');
         }
       }
     });
