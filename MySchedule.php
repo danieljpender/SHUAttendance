@@ -147,8 +147,41 @@ $timestamp = $lectureEndDate->getTimestamp();
 </div>
 <?php include 'footer.php'; ?>
 </div>
+<div id="event-modal" class="modal-content">
+<form id="code-form" method="POST">  
+<header class="modal-header">
+    <h5 class="modal-title">Record Attendance</h5><!---->
+  </header>
+  <div class="modal-body">
+    <div class="w-100"><!----> 
+    <div id="error-message" class="alert alert-danger" style="display:none;">Invalid code! Please try again.</div>
+  <span>
+    <div role="group" class="form-group" id="__BVID__16" name="competency-type">
+    <label for="competency-type" class="d-block" id="__BVID__16__BV_label_">
+        Attendance Code
+      </label>
+      <div>
+        <span>
+        <input type="text" id="code-input" name="code" placeholder="Please Enter Code">
+      <input type="hidden" id="timetable-id" name="timetableid">  
+        </span><!----><!----><!---->
+      </div>
+    </div>
+  </span> <!---->
+</div>
+</div>
+<footer class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary modal-cancel close">
+    Cancel
+  </button>
+  <button type="submit" class="btn btn-primary">
+    OK
+  </button>
+</footer>
+</form>
+</div>
 <!-- Enter Code Modal -->
-<div id="code-modal" class="modal">
+<!-- <div id="code-modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <form id="code-form" method="POST">
@@ -159,7 +192,7 @@ $timestamp = $lectureEndDate->getTimestamp();
       <input type="submit" value="Submit">
     </form>
   </div>
-</div>
+</div> -->
 
 <!-- Event Information Modal -->
 <div id="event-modal" class="modal">
