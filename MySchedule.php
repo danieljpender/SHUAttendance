@@ -261,7 +261,7 @@ $(document).ready(function() {
           $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
         $('.close').click();
         } else {
-          $('#error-message').css('display', 'none');
+          $('#error-message').css('display', 'block');
         }
       }
     });
