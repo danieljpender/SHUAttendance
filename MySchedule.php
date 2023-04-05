@@ -38,7 +38,7 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE ut.UserId= '$userid'
-          AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())
+          --AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())
           ";
 $result = sqlsrv_query($connection, $query);
 
@@ -153,6 +153,7 @@ $timestamp = $lectureEndDate->getTimestamp();
     <span class="close">&times;</span>
     <form id="code-form" method="POST">
       <h1 for="code-input">Enter Code</h1>
+      <div id="error-message"></div>
       <input type="text" id="code-input" name="code" placeholder="Please Enter Code">
       <input type="hidden" id="timetable-id" name="timetableid">
       <input type="submit" value="Submit">
@@ -260,7 +261,7 @@ $(document).ready(function() {
           $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
         $('.close').click();
         } else {
-          alert('Invalid code! Please try again.');
+          $('#error-message').html('<p class="error">Invalid code! Please try again.</p>');
         }
       }
     });
