@@ -72,12 +72,18 @@ function showAttendanceTable() {
   if (department && module) {
     document.getElementById("attendance-table").style.display = "block";
     // Submit the form to retrieve the attendance records for the selected department and module
-    document.forms[0].submit();
   } else {
     document.getElementById("attendance-table").style.display = "none";
   }
 }
 
+function submitForm() {
+  var department = document.getElementById("department").value;
+  var module = document.getElementById("module").value;
+  if (department && module) {
+    document.forms[0].submit();
+  }
+}
 </script>
   </head>
   <body>
