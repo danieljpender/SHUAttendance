@@ -227,7 +227,7 @@ $timestamp = $lectureEndDate->getTimestamp();
     <span class="close">&times;</span>
   </header>
     
-    <table id="attendance-modal-body"></table>
+    <table id="attendance-modal-body" class="mt-2"></table>
   </div>
 </div>
 
