@@ -223,8 +223,8 @@ $timestamp = $lectureEndDate->getTimestamp();
 <div id="attendance-modal" class="modal">
   <div class="modal-content">
   <header class="modal-header">
-    <span class="close">&times;</span>
     <h5 class="modal-title">Attendance</h5><!---->
+    <span class="close">&times;</span>
   </header>
     
     <table id="attendance-modal-body"></table>
