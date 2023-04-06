@@ -148,7 +148,6 @@ function submitForm() {
               echo '<td>' . $row['student_id'] . '</td>';
               echo '<td>' . $row['student_name'] . '</td>';
               echo '<td>' . $row['email'] . '</td>';
-              echo '<td>' . $row['attendance'] . '</td>';
               echo '</tr>';
             }
           }
