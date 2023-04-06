@@ -200,9 +200,9 @@ $timestamp = $lectureEndDate->getTimestamp();
 <!-- Event Information Modal -->
 <div id="event-modal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
     <header class="modal-header">
     <h5 class="modal-title" id="event-description"></h5><!---->
+    <span class="close">&times;</span>
   </header>
     <!-- <h1 id="event-description"></h1> -->
     <h2 id="event-location"></h2>
