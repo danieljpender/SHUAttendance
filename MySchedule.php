@@ -171,6 +171,8 @@ $timestamp = $lectureEndDate->getTimestamp();
   </span> <!---->
 </div>
 </div>
+
+</form>
 <footer class="modal-footer">
   <button type="button" class="btn btn-outline-secondary modal-cancel">
     Cancel
@@ -179,7 +181,6 @@ $timestamp = $lectureEndDate->getTimestamp();
     OK
   </button>
 </footer>
-</form>
 </div>
 </div>
 <!-- Enter Code Modal -->
