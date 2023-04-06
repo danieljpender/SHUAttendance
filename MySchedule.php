@@ -222,8 +222,11 @@ $timestamp = $lectureEndDate->getTimestamp();
 <!-- Attendance Modal -->
 <div id="attendance-modal" class="modal">
   <div class="modal-content">
+  <header class="modal-header">
     <span class="close">&times;</span>
-    <h1>Attendance</h1>
+    <h5 class="modal-title">Attendance</h5><!---->
+  </header>
+    
     <table id="attendance-modal-body"></table>
   </div>
 </div>
