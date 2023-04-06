@@ -292,7 +292,6 @@ $(document).ready(function() {
       data: { timetableid: timetableid, code: code },
       success: function(data) {
         if (data.trim() === 'success') {
-          alert('Code validated successfully!');
           $('#code-modal').css('display', 'none');
           $('#row_' + timetableid + ' button').text('Attendance Recorded').prop('disabled', true);
         $('.close').click();
