@@ -127,9 +127,9 @@ function submitForm() {
 <table id="attendance-table" style="display:none">
   <thead>
     <tr>
+      <th>Student ID</th>
       <th>Student Name</th>
-      <th>Date</th>
-      <th>Attendance Record</th>
+      <th>Email Address</th>
     </tr>
   </thead>
   <tbody>
@@ -137,8 +137,7 @@ function submitForm() {
           if (isset($_POST['submit'])) {
             $department = $_POST['department'];
             $module = $_POST['module'];
-            $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, uah.DateCreated as attendance FROM UserTimetable ut
-                      LEFT JOIN UserAttendanceHistory uah ON ut.UserTimetableId = uah.UserTimetableId
+            $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
                       JOIN Timetable t ON t.ModuleId = ut.ModuleId
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
@@ -146,8 +145,9 @@ function submitForm() {
             $result = sqlsrv_query($connection, $query);
             while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
+              echo '<td>' . $row['student_id'] . '</td>';
               echo '<td>' . $row['student_name'] . '</td>';
-              echo '<td>' . $row['startdate'] . '</td>';
+              echo '<td>' . $row['email'] . '</td>';
               echo '<td>' . $row['attendance'] . '</td>';
               echo '</tr>';
             }
