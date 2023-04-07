@@ -38,9 +38,7 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t
           JOIN Module m ON m.ModuleId = t.ModuleId
           JOIN ActivityType ta ON ta.ActivityTypeId = t.TypeId
           WHERE ut.UserId= '$userid'
-          --AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())
-          AND ModuleName like '%Enterprise%'
-          AND StartDate > '2023-04-07 23:00:00.000'
+          AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())
           ";
 $result = sqlsrv_query($connection, $query);
 
@@ -108,8 +106,8 @@ $timestamp = $lectureEndDate->getTimestamp();
   echo "<td>" . $row['ModuleName'] . "</td>";
   echo "<td>" . $row['Location'] . "</td>";
   echo "<td>" . $row['StaffMembers'] . "</td>";
-  echo "<td> 11:00 - 13:00 </td>";
-  //echo "<td>" . $startTime . " - " . $endTime . "</td>";
+  //echo "<td> 11:00 - 13:00 </td>";
+  echo "<td>" . $startTime . " - " . $endTime . "</td>";
   //echo "<td>" . $lectureEndDateStr . " - " . $currentDatetimeStr . "</td>";
   
   // Check if attendance has been recorded for this event
