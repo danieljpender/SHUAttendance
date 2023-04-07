@@ -136,6 +136,8 @@ function submitForm() {
         <?php
           if (isset($_POST['submit'])) {
             $department = $_POST['department'];
+            echo $department;
+            echo $module;
             $module = $_POST['module'];
             $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
                       JOIN Timetable t ON t.ModuleId = ut.ModuleId
