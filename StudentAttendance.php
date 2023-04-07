@@ -143,8 +143,8 @@ function submitForm() {
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
                       AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
             $result = sqlsrv_query($connection, $query);
+            echo $query;
             while ($row = sqlsrv_fetch_array($result)) {
-              echo $query
               echo '<tr>';
               echo '<td>' . $row['student_id'] . '</td>';
               echo '<td>' . $row['student_name'] . '</td>';
