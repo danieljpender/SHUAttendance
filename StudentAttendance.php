@@ -142,8 +142,8 @@ function submitForm() {
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
                       AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
+                      echo "SQL Query: " . $query . PHP_EOL;
             $result = sqlsrv_query($connection, $query);
-            echo $query;
             while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
               echo '<td>' . $row['student_id'] . '</td>';
