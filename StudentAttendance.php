@@ -141,7 +141,7 @@ function submitForm() {
                       JOIN Timetable t ON t.ModuleId = ut.ModuleId
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
-                      AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
+                      AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
             $result = sqlsrv_query($connection, $query);
             while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
