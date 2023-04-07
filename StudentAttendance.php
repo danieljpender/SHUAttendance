@@ -136,8 +136,6 @@ function submitForm() {
         <?php
           if (isset($_POST['submit'])) {
             $department = $_POST['department'];
-            echo $department;
-            echo $module;
             $module = $_POST['module'];
             $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
                       JOIN Timetable t ON t.ModuleId = ut.ModuleId
@@ -148,8 +146,8 @@ function submitForm() {
             while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
               echo '<td>' . $query . '</td>';
-              echo '<td>' . $row['student_name'] . '</td>';
-              echo '<td>' . $row['email'] . '</td>';
+              echo '<td>' . $department . '</td>';
+              echo '<td>' . $module . '</td>';
               echo '</tr>';
             }
           }
