@@ -145,9 +145,9 @@ function submitForm() {
             $result = sqlsrv_query($connection, $query);
             while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
-              echo '<td>' . $query . '</td>';
-              echo '<td>' . $department . '</td>';
-              echo '<td>' . $module . '</td>';
+              echo '<td>' . $row['student_id'] . '</td>';
+              echo '<td>' . $row['student_name'] . '</td>';
+              echo '<td>' . $row['email'] . '</td>';
               echo '</tr>';
             }
           }
