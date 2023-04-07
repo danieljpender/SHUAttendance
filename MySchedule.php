@@ -40,6 +40,7 @@ $query = "SELECT *, m.ModuleName as ModuleName, t.TimetableId as timetable_id, t
           WHERE ut.UserId= '$userid'
           --AND t.StartDate >= CONVERT(DATE, GETDATE()) AND t.EndDate <= CONVERT(DATE, GETDATE())
           AND ModuleName like '%Enterprise%'
+          AND StartDate > '2023-04-07 00:00:00.000'
           ";
 $result = sqlsrv_query($connection, $query);
 
