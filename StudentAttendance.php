@@ -142,7 +142,7 @@ function submitForm() {
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
                       AND u.RoleId = '17b1cdac-93f8-4a5f-a5cd-907272094140'";
-            
+            echo $query
             $result = sqlsrv_query($connection, $query);
             while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
