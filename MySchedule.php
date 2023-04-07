@@ -108,7 +108,8 @@ $timestamp = $lectureEndDate->getTimestamp();
   echo "<td>" . $row['ModuleName'] . "</td>";
   echo "<td>" . $row['Location'] . "</td>";
   echo "<td>" . $row['StaffMembers'] . "</td>";
-  echo "<td>" . $startTime . " - " . $endTime . "</td>";
+  echo "<td> 11:00 - 13:00 </td>";
+  //echo "<td>" . $startTime . " - " . $endTime . "</td>";
   //echo "<td>" . $lectureEndDateStr . " - " . $currentDatetimeStr . "</td>";
   
   // Check if attendance has been recorded for this event
