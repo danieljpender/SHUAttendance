@@ -138,7 +138,7 @@ function showAttendanceTable() {
 </div>
 <input type="submit" name="submit" value="Submit" onclick="submitForm()">
 </form>
-<table id="attendance-table" style="display:none">
+<!-- <table id="attendance-table" style="display:none">
   <thead>
     <tr>
       <th>Student ID</th>
@@ -169,7 +169,7 @@ function showAttendanceTable() {
           }
         ?>
       </tbody>
-    </table>
+    </table> -->
   </div>
     </div>
 
