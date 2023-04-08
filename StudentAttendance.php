@@ -123,6 +123,7 @@ function submitForm() {
   </select>
 </div>
 </div>
+<input type="submit" name="submit" value="Submit">
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
@@ -134,7 +135,7 @@ function submitForm() {
   </thead>
   <tbody>
         <?php
-          if (isset($_POST['submit'])) {
+          if (isset($_POST['department']) && isset($_POST['module'])) {
             $department = $_POST['department'];
             $module = $_POST['module'];
             $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
