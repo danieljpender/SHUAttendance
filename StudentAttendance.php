@@ -137,7 +137,7 @@ function showAttendanceTable() {
 </div>
 
 </form>
-<table id="attendance-table" style="display:none">
+<table id="attendance-table" style="display:none" class="mt-2">
   <thead>
     <tr>
       <th>Student ID</th>
@@ -153,5 +153,36 @@ function showAttendanceTable() {
     </div>
 </div>
 <?php include 'footer.php'; ?>
+<div id="attendance-modal" class="modal">
+  <div class="modal-content">
+  <header class="modal-header">
+    <h5 class="modal-title">Attendance History</h5><!---->
+    <span class="close">&times;</span>
+  </header>
+    
+    <table id="attendance-modal-body" class="mt-2"></table>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $('.view-attendance-btn').click(function() {
+      var studentid = this.id.replace("attendance_", "");
+    $('#timetable-id').val(timetableid);
+      $.ajax({
+        url: 'get_student_attendance.php',
+        type: 'POST',
+        data: { studentid: studentid },
+        success: function(data) {
+          $('#attendance-modal-body').html(data);
+          $('#attendance-modal').show();
+        }
+      });
+    });
+     // Add an event listener to the modal close button
+  $('.close').click(function() {
+    $('#attendance-modal').css('display', 'none');
+  });
+  });
+</script>
 </body>
 </html>
