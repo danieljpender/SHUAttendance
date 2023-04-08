@@ -51,11 +51,12 @@ if (isset($_GET['department']) && isset($_GET['module'])) {
     echo "</tr>";
 
     while ($row = sqlsrv_fetch_array($result)) {
+      $studentid = $row['student_id'];
       echo '<tr>';
       echo '<td>' . $row['student_id'] . '</td>';
       echo '<td>' . $row['student_name'] . '</td>';
       echo '<td>' . $row['email'] . '</td>';
-      echo "<td><button class='view-attendance-btn' id='attendance_$timetableid'>View Attendance Records</button></td>";
+      echo "<td><button class='view-attendance-btn' id='attendance_$studentid'>View Attendance Records</button></td>";
       echo '</tr>';
     }
   }
