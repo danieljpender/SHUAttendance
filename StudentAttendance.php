@@ -131,6 +131,7 @@ function submitForm() {
       <th>Student ID</th>
       <th>Student Name</th>
       <th>Email Address</th>
+      <th>Attendance Records</th>
     </tr>
   </thead>
   <tbody>
@@ -149,6 +150,7 @@ function submitForm() {
               echo '<td>' . $row['student_id'] . '</td>';
               echo '<td>' . $row['student_name'] . '</td>';
               echo '<td>' . $row['email'] . '</td>';
+              echo "<td><button>View Attendance Records</button></td>";
               echo '</tr>';
             }
           }
