@@ -28,6 +28,10 @@ if (!isset($_POST['timetableid'])) {
   die("Error: no timetable ID provided");
 }
 
+$userid = $_POST['userid'];
+if (!isset($_POST['userid'])) {
+  die("Error: no user ID provided");
+}
 
 // Get the students enrolled in the timetabled event
 $query = "SELECT u.UserId, u.StudentId, u.FirstName, u.Surname, u.Email,
@@ -36,8 +40,8 @@ FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
 LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId AND a.UserId = ut.UserId
-WHERE t.TimetableId = '$timetableid'
-AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
+WHERE u.UserId = '$userid'
+AND m.ModuleId = '$moduleid";
 //echo "SQL query: $query<br>"; // printing the SQL query for debugging purposes
 $result = sqlsrv_query($connection, $query);
 

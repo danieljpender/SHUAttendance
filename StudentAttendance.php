@@ -167,7 +167,7 @@ function showAttendanceTable() {
   $(document).ready(function() {
     $('.view-attendance-btn').click(function() {
       var studentid = this.id.replace("attendance_", "");
-    $('#timetable-id').val(timetableid);
+    $('#student-id').val(studentid);
       $.ajax({
         url: 'get_student_attendance.php',
         type: 'POST',
