@@ -80,7 +80,7 @@ function showAttendanceTable() {
         table.style.display = "block";
       }
     };
-    xhttp.open("GET", "getAttendance.php?department=" + department + "&module=" + module, true);
+    xhttp.open("GET", "StudentAttendance.php?department=" + department + "&module=" + module, true);
     xhttp.send();
   } else {
     table.style.display = "none";
@@ -151,7 +151,7 @@ function showAttendanceTable() {
         <?php
           if (isset($_GET['department']) && isset($_GET['module'])) {
             $department = $_GET['department'];
-$module = $_GET['module'];
+            $module = $_GET['module'];
             $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
                       --JOIN Timetable t ON t.ModuleId = ut.ModuleId
                       JOIN Users u ON u.UserId = ut.UserId
