@@ -70,14 +70,8 @@ function showAttendanceTable() {
   var department = document.getElementById("department").value;
   var module = document.getElementById("module").value;
   if (department && module) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("attendance-table").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("GET", "getAttendanceRecords.php?department=" + department + "&module=" + module, true);
-    xhttp.send();
+    document.getElementById("attendance-table").style.display = "block";
+    // Submit the form to retrieve the attendance records for the selected department and module
   } else {
     document.getElementById("attendance-table").style.display = "none";
   }
@@ -131,8 +125,9 @@ function submitForm() {
   </select>
 </div>
 </div>
+<input type="submit" name="submit" value="Submit">
 </form>
-<table id="attendance-table">
+<table id="attendance-table" style="display:none">
   <thead>
     <tr>
       <th>Student ID</th>
