@@ -80,7 +80,7 @@ function showAttendanceTable() {
         table.style.display = "block";
       }
     };
-    xhttp.open("GET", "StudentAttendance.php?department=" + department + "&module=" + module, true);
+    xhttp.open("GET", "getAttendance.php?department=" + department + "&module=" + module, true);
     xhttp.send();
   } else {
     table.style.display = "none";

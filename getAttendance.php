@@ -22,35 +22,39 @@ if ($connection === false) {
     die(print_r(sqlsrv_errors(), true));
 }
 
-if (isset($_GET['department']) && isset($_GET['module'])) {
-  $department = $_GET['department'];
-  $module = $_GET['module'];
-  
-  $query = "SELECT *, u.FullName as student_name, t.StartDate as startdate, u.UserId as userid
-            FROM UserTimetable ut
-            JOIN [User] u ON ut.StudentId = u.UserId
-            JOIN [Module] m ON ut.ModuleId = m.ModuleId
-            WHERE m.DepartmentId = '$department' AND m.ModuleId = '$module'";
-  $result = sqlsrv_query($connection, $query);
-  if ($result === false) {
-    die(print_r(sqlsrv_errors(), true));
-  }
-  
-  while ($row = sqlsrv_fetch_array($result)) {
-    echo '<tr>';
-    echo '<td>' . $row['student_name'] . '</td>';
-    echo '<td>' . $row['startdate']->format('Y-m-d') . '</td>';
-    echo '<td>';
-    if ($row['Attendance'] === null) {
-      echo 'No record';
-    } else {
-      echo $row['Attendance'] == 1 ? 'Present' : 'Absent';
-    }
-    echo '</td>';
-    echo '</tr>';
-  }
+// Check if the user is logged in
+if (!isset($_SESSION['userid'])) {
+  header("Location: login.php");
+  exit();
 }
 
-sqlsrv_free_stmt($result);
-sqlsrv_close($connection);
+// Retrieve the department and module values from the GET request
+if (isset($_GET['department']) && isset($_GET['module'])) {
+    $department = $_GET['department'];
+    $module = $_GET['module'];
+
+    // Perform a query to retrieve attendance records for the specified department and module
+    $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id FROM User u
+              INNER JOIN Attendance a ON u.UserId = a.UserId
+              WHERE u.DepartmentId = ? AND a.ModuleId = ?";
+    $params = array($department, $module);
+    $result = sqlsrv_query($connection, $query, $params);
+
+    // Output the attendance records as a HTML table
+    echo "<tr>";
+    echo "<th>Student ID</th>";
+    echo "<th>Student Name</th>";
+    echo "<th>Email Address</th>";
+    echo "<th>Attendance Records</th>";
+    echo "</tr>";
+
+    while ($row = sqlsrv_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['student_id'] . "</td>";
+        echo "<td>" . $row['student_name'] . "</td>";
+        echo "<td>" . $row['EmailAddress'] . "</td>";
+        echo "<td>" . $row['AttendanceRecords'] . "</td>";
+        echo "</tr>";
+    }
+}
 ?>
