@@ -69,21 +69,32 @@ function showModule() {
 function showAttendanceTable() {
   var department = document.getElementById("department").value;
   var module = document.getElementById("module").value;
+  var table = document.getElementById("attendance-table");
+  
   if (department && module) {
-    document.getElementById("attendance-table").style.display = "block";
-    // Submit the form to retrieve the attendance records for the selected department and module
+    // Make an AJAX request to retrieve the attendance records for the selected department and module
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        table.innerHTML = this.responseText;
+        table.style.display = "block";
+      }
+    };
+    xhttp.open("GET", "getAttendance.php?department=" + department + "&module=" + module, true);
+    xhttp.send();
   } else {
-    document.getElementById("attendance-table").style.display = "none";
+    table.style.display = "none";
   }
 }
 
-function submitForm() {
-  var department = document.getElementById("department").value;
-  var module = document.getElementById("module").value;
-  if (department && module) {
-    document.forms[0].submit();
-  }
-}
+
+// function submitForm() {
+//   var department = document.getElementById("department").value;
+//   var module = document.getElementById("module").value;
+//   if (department && module) {
+//     document.forms[0].submit();
+//   }
+// }
 </script>
   </head>
   <body>
@@ -138,9 +149,9 @@ function submitForm() {
   </thead>
   <tbody>
         <?php
-          if (isset($_POST['department']) && isset($_POST['module'])) {
-            $department = $_POST['department'];
-            $module = $_POST['module'];
+          if (isset($_GET['department']) && isset($_GET['module'])) {
+            $department = $_GET['department'];
+$module = $_GET['module'];
             $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
                       --JOIN Timetable t ON t.ModuleId = ut.ModuleId
                       JOIN Users u ON u.UserId = ut.UserId
