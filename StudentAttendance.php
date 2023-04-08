@@ -77,7 +77,7 @@ function showAttendanceTable() {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         table.innerHTML = this.responseText;
-        table.style.display = "block";
+        table.style.display = "inline-table";
       }
     };
     xhttp.open("GET", "getAttendance.php?department=" + department + "&module=" + module, true);
