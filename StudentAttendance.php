@@ -143,7 +143,6 @@ function submitForm() {
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
                       AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
-                      echo "SQL Query: " . $query . "<br>"; // Add this line to echo the SQL query
             $result = sqlsrv_query($connection, $query);
             while ($row = sqlsrv_fetch_array($result)) {
               echo '<tr>';
