@@ -40,7 +40,7 @@ FROM UserTimetable ut
 JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
 LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId AND a.UserId = ut.UserId
-WHERE u.UserId = '$userid'
+WHERE u.UserId = '$user'
 AND m.ModuleId = '$moduleid";
 //echo "SQL query: $query<br>"; // printing the SQL query for debugging purposes
 $result = sqlsrv_query($connection, $query);

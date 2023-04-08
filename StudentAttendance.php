@@ -166,12 +166,12 @@ function showAttendanceTable() {
 <script>
   $(document).ready(function() {
     $('.view-attendance-btn').click(function() {
-      var userid = this.id.replace("attendance_", "");
-    $('#student-id').val(userid);
+      var user = this.id.replace("attendance_", "");
+    $('#student-id').val(user);
       $.ajax({
         url: 'get_student_attendance.php',
         type: 'POST',
-        data: { userid: userid },
+        data: { user: user },
         success: function(data) {
           $('#attendance-modal-body').html(data);
           $('#attendance-modal').show();

@@ -34,7 +34,7 @@ if (isset($_GET['department']) && isset($_GET['module'])) {
     $module = $_GET['module'];
 
     // Perform a query to retrieve attendance records for the specified department and module
-    $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
+    $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email, u.UserId as user_id FROM UserTimetable ut
               --JOIN Timetable t ON t.ModuleId = ut.ModuleId
               JOIN Users u ON u.UserId = ut.UserId
               WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
@@ -51,12 +51,12 @@ if (isset($_GET['department']) && isset($_GET['module'])) {
     echo "</tr>";
 
     while ($row = sqlsrv_fetch_array($result)) {
-      $userid = $row['userid'];
+      $user = $row['user_id'];
       echo '<tr>';
       echo '<td>' . $row['student_id'] . '</td>';
       echo '<td>' . $row['student_name'] . '</td>';
       echo '<td>' . $row['email'] . '</td>';
-      echo "<td><button class='view-attendance-btn' id='attendance_$userid'>View Attendance Records</button></td>";
+      echo "<td><button class='view-attendance-btn' id='attendance_$user'>View Attendance Records</button></td>";
       echo '</tr>';
     }
   }
