@@ -149,7 +149,7 @@ function showAttendanceTable() {
   </thead>
   <tbody>
         <?php
-          if (isset($_GET['department']) && isset($_GET['module'])) {
+   
             $department = $_GET['department'];
 $module = $_GET['module'];
             $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
@@ -166,7 +166,7 @@ $module = $_GET['module'];
               echo "<td><button>View Attendance Records</button></td>";
               echo '</tr>';
             }
-          }
+          
         ?>
       </tbody>
     </table>
