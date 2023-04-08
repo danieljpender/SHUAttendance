@@ -29,7 +29,7 @@ if ($connection === false) {
 // }
 
 $user = $_POST['user'];
-if (!isset($_POST['userid'])) {
+if (!isset($_POST['user'])) {
   die("Error: no user ID provided");
 }
 
