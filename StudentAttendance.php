@@ -135,7 +135,7 @@ function showAttendanceTable() {
     ?>
   </select>
 </div>
-</div>
+
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
@@ -151,7 +151,7 @@ function showAttendanceTable() {
     </table>
   </div>
     </div>
-
+</div>
 <?php include 'footer.php'; ?>
 </body>
 </html>
