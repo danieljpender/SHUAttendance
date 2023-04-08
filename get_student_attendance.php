@@ -28,7 +28,7 @@ if ($connection === false) {
 //   die("Error: no timetable ID provided");
 // }
 
-$userid = $_POST['userid'];
+$user = $_POST['user'];
 if (!isset($_POST['userid'])) {
   die("Error: no user ID provided");
 }
@@ -41,7 +41,7 @@ JOIN [Users] u ON u.UserId = ut.UserId
 JOIN Timetable t ON t.ModuleId=ut.ModuleId
 LEFT JOIN UserAttendanceHistory a ON a.TimetableId = t.TimetableId AND a.UserId = ut.UserId
 WHERE u.UserId = '$user'
-AND m.ModuleId = '$moduleid";
+--AND m.ModuleId = '$moduleid";
 //echo "SQL query: $query<br>"; // printing the SQL query for debugging purposes
 $result = sqlsrv_query($connection, $query);
  ?>
