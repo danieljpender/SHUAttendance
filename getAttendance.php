@@ -34,9 +34,11 @@ if (isset($_GET['department']) && isset($_GET['module'])) {
     $module = $_GET['module'];
 
     // Perform a query to retrieve attendance records for the specified department and module
-    $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id FROM User u
-              INNER JOIN Attendance a ON u.UserId = a.UserId
-              WHERE u.DepartmentId = ? AND a.ModuleId = ?";
+    $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
+              --JOIN Timetable t ON t.ModuleId = ut.ModuleId
+              JOIN Users u ON u.UserId = ut.UserId
+              WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
+               AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
     $params = array($department, $module);
     $result = sqlsrv_query($connection, $query, $params);
 
