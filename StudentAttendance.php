@@ -148,7 +148,6 @@ function showAttendanceTable() {
     </tr>
   </thead>
   <tbody>
-        
       </tbody>
     </table>
   </div>
