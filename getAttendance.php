@@ -53,7 +53,7 @@ if (isset($_GET['department']) && isset($_GET['module'])) {
         echo "<td>" . $row['student_id'] . "</td>";
         echo "<td>" . $row['student_name'] . "</td>";
         echo "<td>" . $row['EmailAddress'] . "</td>";
-        echo "<td>" . $row['AttendanceRecords'] . "</td>";
+        echo "<td>View Attendance Records</td>";
         echo "</tr>";
     }
 }
