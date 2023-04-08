@@ -125,7 +125,7 @@ function submitForm() {
   </select>
 </div>
 </div>
-<input type="submit" name="submit" value="Submit">
+<input type="submit" name="submit" value="Submit" onclick="submitForm()">
 </form>
 <table id="attendance-table" style="display:none">
   <thead>
