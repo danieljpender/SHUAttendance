@@ -139,7 +139,7 @@ function submitForm() {
             $department = $_POST['department'];
             $module = $_POST['module'];
             $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
-                      JOIN Timetable t ON t.ModuleId = ut.ModuleId
+                      --JOIN Timetable t ON t.ModuleId = ut.ModuleId
                       JOIN Users u ON u.UserId = ut.UserId
                       WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
                       AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
