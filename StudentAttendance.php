@@ -95,6 +95,7 @@ function submitForm() {
   Student Attendance Records
 </h1>
 <form action="StudentAttendance.php" method="post" class="mb-2">
+<div> 
   <label for="department">Department</label>
   <select class="dropdown-box" name="department" id="department" onchange="showModule()">
   <option value="" selected>Select a Department</option>
@@ -106,6 +107,7 @@ function submitForm() {
     }
   ?>
 </select>
+  </div>
 <div id="module-container">
   <label for="module">Module</label>
   <select class="dropdown-box" name="module" id="module" onchange="showAttendanceTable()" disabled>
