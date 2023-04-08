@@ -40,13 +40,13 @@ if (isset($_GET['department']) && isset($_GET['module'])) {
     $params = array($department, $module);
     $result = sqlsrv_query($connection, $query, $params);
 
-    // Output the attendance records as a HTML table
-    echo "<tr>";
-    echo "<th>Student ID</th>";
-    echo "<th>Student Name</th>";
-    echo "<th>Email Address</th>";
-    echo "<th>Attendance Records</th>";
-    echo "</tr>";
+    // // Output the attendance records as a HTML table
+    // echo "<tr>";
+    // echo "<th>Student ID</th>";
+    // echo "<th>Student Name</th>";
+    // echo "<th>Email Address</th>";
+    // echo "<th>Attendance Records</th>";
+    // echo "</tr>";
 
     while ($row = sqlsrv_fetch_array($result)) {
         echo "<tr>";

@@ -138,7 +138,7 @@ function showAttendanceTable() {
 </div>
 <input type="submit" name="submit" value="Submit" onclick="submitForm()">
 </form>
-<!-- <table id="attendance-table" style="display:none">
+<table id="attendance-table" style="display:none">
   <thead>
     <tr>
       <th>Student ID</th>
@@ -148,28 +148,9 @@ function showAttendanceTable() {
     </tr>
   </thead>
   <tbody>
-        <?php
-          if (isset($_GET['department']) && isset($_GET['module'])) {
-            $department = $_GET['department'];
-            $module = $_GET['module'];
-            $query = "SELECT *, u.FullName as student_name, u.StudentId as student_id, u.email FROM UserTimetable ut
-                      --JOIN Timetable t ON t.ModuleId = ut.ModuleId
-                      JOIN Users u ON u.UserId = ut.UserId
-                      WHERE ut.DepartmentId = '$department' AND ut.ModuleId = '$module'
-                      AND u.RoleId = 'B964A9EF-6635-432B-B364-2460B00D8ED1'";
-            $result = sqlsrv_query($connection, $query);
-            while ($row = sqlsrv_fetch_array($result)) {
-              echo '<tr>';
-              echo '<td>' . $row['student_id'] . '</td>';
-              echo '<td>' . $row['student_name'] . '</td>';
-              echo '<td>' . $row['email'] . '</td>';
-              echo "<td><button>View Attendance Records</button></td>";
-              echo '</tr>';
-            }
-          }
-        ?>
+        
       </tbody>
-    </table> -->
+    </table>
   </div>
     </div>
 
