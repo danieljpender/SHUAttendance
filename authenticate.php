@@ -4,16 +4,7 @@ session_start();
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-// $server = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
-// $database = "SHUAttendance";
-// $serverUsername = "eam";
-// $serverPassword = "%PA55w0rd";
 
-// $connection = odbc_connect("Driver={ODBC Driver 18 for SQL Server};Server=$server;Database=$database;TrustServerCertificate=yes;", $serverUsername, $serverPassword);
-
-// if (!$connection) {
-//     die("Error connecting to database: " . odbc_errormsg());
-// }
 
 $serverName = "eam-group27.c0zwiexiop2w.eu-west-2.rds.amazonaws.com,1433";
 $database = "SHUAttendance";
